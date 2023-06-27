@@ -11,4 +11,9 @@ class Pekerjaan extends Model
 
     protected $table = 'pekerjaan';
     protected $fillable = 'nama_pekerjaan';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_pekerjaan');
+    }
 }

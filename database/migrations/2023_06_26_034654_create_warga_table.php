@@ -6,32 +6,38 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->id('id_user');
+        Schema::create('warga', function (Blueprint $table) {
+            $table->id('id_warga');
             $table->string('nama_lengkap');
             $table->string('nik', 16)->unique();
             $table->string('alamat', 100);
-            $table->string('nomor')->nullable();
+            $table->unsignedBigInteger('id_user')->unique();
             $table->enum('agama', ['0', '1', '2', '3', '4', '5']);
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->unsignedInteger('id_pekerjaan');
+            $table->unsignedBigInteger('id_pekerjaan')->unique();
             $table->enum('status_perkawinan', ['0', '1', '2']);
             $table->enum('status_kependudukan', ['0', '1']);
-            $table->enum('peran', ['rt', 'rw']);
             $table->enum('kewarganegaraan', ['0', '1']);
             $table->string('nomor_telpon', 13);
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('warga');
     }
 };

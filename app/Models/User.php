@@ -26,7 +26,6 @@ class User extends Authenticatable
         'agama',
         'tanggal_lahir',
         'jenis_kelamin',
-        'id_pekerjaan',
         'status_perkawinan',
         'status_kependudukan',
         'peran',
@@ -50,4 +49,13 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+
+    public function warga()
+    {
+        return $this->hasMany(Warga::class, 'id_user');
+    }
+    public function pekerjaan()
+    {
+        return $this->hasMany(Pekerjaan::class, 'id_pekerjaan');
+    }
 }

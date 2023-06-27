@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class RwController extends Controller
 {
 
-    //Register Create USer Start
-    public function register_admin(Request $request)
+    //ADD RT START
+    public function create_rt(Request $request)
     {
         $request->validate([
             'nama_lengkap' => 'required',
@@ -22,13 +21,11 @@ class UserController extends Controller
             'jenis_kelamin' => 'required',
             'status_perkawinan' => 'required',
             'status_kependudukan' => 'required',
-            'peran' => 'required',
             'kewarganegaraan' => 'required',
             'nomor_telpon' => 'required',
             'password' => 'required',
             'password_confirmation' => 'required|same:password'
         ]);
-
         $user = new User([
             'nama_lengkap' => $request->nama_lengkap,
             'nik' => $request->nik,
@@ -38,7 +35,7 @@ class UserController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'status_perkawinan' => $request->status_perkawinan,
             'status_kependudukan' => $request->status_kependudukan,
-            'peran' => $request->peran,
+            'peran' => 'rt',
             'kewarganegaraan' => $request->kewarganegaraan,
             'nomor_telpon' => $request->nomor_telpon,
             'password' => Hash::make($request->password),
@@ -47,21 +44,33 @@ class UserController extends Controller
     }
     //END
 
-    //Login start
-    public function login(Request $request)
+    //UPDATE RT START
+    public function edit_rt(Request $request)
     {
-        $credential = $request->only(['nomor_telpon', 'password']);
-
-        if (Auth::attempt($credential)) {
-            $request->session()->regenerate();
-            if (auth()->user()->peran == 'rw') {
-                //return
-            } else if (auth()->user()->peran == 'rt') {
-                //return
-            }
-        }
+        $user = User::where('id', $request->id)
+            ->update([
+                'nama_lengkap' => $request->nama_lengkap,
+                'nik' => $request->nik,
+                'alamat' => $request->alamat,
+                'agama' => $request->agama,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'status_perkawinan' => $request->status_perkawinan,
+                'status_kependudukan' => $request->status_kependudukan,
+                'peran' => 'rt',
+                'kewarganegaraan' => $request->kewarganegaraan,
+                'nomor_telpon' => $request->nomor_telpon,
+                'password' => $request->password,
+            ]);
+        //return
     }
     //END
 
-
+    //DELETE RT START
+    public function delete_rt(Request $request)
+    {
+        $user = User::where('id', $request->id)
+            ->delete();
+    }
+    //END
 }
