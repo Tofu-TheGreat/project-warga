@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('agama', ['0', '1', '2', '3', '4', '5']);
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string('foto')->nullable();
             $table->unsignedBigInteger('id_pekerjaan')->unique();
             $table->enum('status_perkawinan', ['0', '1', '2']);
             $table->enum('status_kependudukan', ['0', '1']);

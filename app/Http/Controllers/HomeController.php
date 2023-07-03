@@ -41,8 +41,9 @@ class HomeController extends Controller
     public function show_rt()
     {
         $user = User::select('*')
+            ->where('peran', 'rt')
             ->get();
-        return view('test', compact('user'));
+        return view('admin.pages.data_rt', compact('user'));
     }
     //END
 

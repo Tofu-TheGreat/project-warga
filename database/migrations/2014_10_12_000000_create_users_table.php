@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('nomor')->nullable();
             $table->enum('agama', ['0', '1', '2', '3', '4', '5']);
             $table->date('tanggal_lahir');
+            $table->string('foto')->nullable();
             $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->unsignedInteger('id_pekerjaan');
+            $table->unsignedInteger('id_pekerjaan')->nullable();
             $table->enum('status_perkawinan', ['0', '1', '2']);
             $table->enum('status_kependudukan', ['0', '1']);
             $table->enum('peran', ['rt', 'rw']);
