@@ -89,7 +89,7 @@ class RwController extends Controller
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'status_perkawinan' => $request->status_perkawinan,
                 'status_kependudukan' => $request->status_kependudukan,
-                'peran' => 'rt',
+                'peran' => 'Rt',
                 'kewarganegaraan' => $request->kewarganegaraan,
                 'nomor_telpon' => $request->nomor_telpon,
                 'password' => $request->password,

@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Support\Facades\Gate;
 use Closure;
 use Illuminate\Http\Request;
 
-class UserAccess
+class AdminAuth
 {
     /**
      * Handle an incoming request.
@@ -16,6 +17,8 @@ class UserAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (auth()->user()->peran == 'rw') {
+            dd(auth()->user()->peran);
+        }
     }
 }

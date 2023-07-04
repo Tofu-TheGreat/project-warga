@@ -9,7 +9,7 @@ return new class extends Migration
 
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id('id_user');
             $table->string('nama_lengkap');
             $table->string('nik', 16)->unique();
@@ -22,9 +22,9 @@ return new class extends Migration
             $table->unsignedInteger('id_pekerjaan')->nullable();
             $table->enum('status_perkawinan', ['0', '1', '2']);
             $table->enum('status_kependudukan', ['0', '1']);
-            $table->enum('peran', ['rt', 'rw']);
+            $table->enum('peran', ['rw', 'rt'])->nullable();
             $table->enum('kewarganegaraan', ['0', '1']);
-            $table->string('nomor_telpon', 13);
+            $table->string('nomor_telpon', 13)->unique();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -33,6 +33,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 };

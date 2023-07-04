@@ -16,6 +16,12 @@
     <section class="bg-success">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
+                @if (session('error'))
+                    <div class="alert  alert-success alert-dismissible fade show container-fluid" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                 <div class="col col-xl-10">
                     <div class="card" style="border-radius: 1rem;">
                         <div class="row g-0">
@@ -29,7 +35,8 @@
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
-                                    <form>
+                                    <form action="{{ route('login.action') }}" method="post">
+                                        @csrf
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <img src="{{ asset('images/logo-sidawar-nama.png') }}" alt="logo"
                                                 height="60">
@@ -39,20 +46,30 @@
                                         </h5>
 
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="form2Example17"
+                                            <input type="text" name="nomor_telpon" id="form2Example17"
                                                 class="form-control form-control-lg" />
+                                            @if ($errors->has('nomor_telpon'))
+                                                <span class="invalid feedback"role="alert">
+                                                    <p>{{ $errors->first('nomor_telpon') }}.</p>
+                                                </span>
+                                            @endif
                                             <label class="form-label" for="form2Example17">Nomor Telepon</label>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form2Example27"
+                                            <input type="password" name="password" id="form2Example27"
                                                 class="form-control form-control-lg" />
+                                            @if ($errors->has('password'))
+                                                <span class="invalid feedback"role="alert">
+                                                    <p>{{ $errors->first('password') }}.</p>
+                                                </span>
+                                            @endif
                                             <label class="form-label" for="form2Example27">Kata Sandi</label>
                                         </div>
 
                                         <div class="pt-1 mb-4">
                                             <button class="btn login-button btn-lg btn-block text-white rounded-pill"
-                                                style="background-color: #00a862" type="button">Login</button>
+                                                style="background-color: #00a862" type="submit">Login</button>
                                         </div>
                                     </form>
                                 </div>
