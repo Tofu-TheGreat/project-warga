@@ -24,9 +24,11 @@
                             <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Detail RT
                             </h2>
                         </div>
-                        <a href="/edit" class="btn btn-info rounded-pill" role="button">
-                            <i class="bi bi-pencil text-white "></i>
-                        </a>
+                        @foreach ($user as $show)
+                            <a href="/edit-rt/{{ $show->id_user }}" class="btn btn-info rounded-pill" role="button">
+                                <i class="bi bi-pencil text-white "></i>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
                 <div class="card">
@@ -267,10 +269,10 @@
                                                 </div>
                                                 <?php
                                                 $nomorTelpon = $show->nomor_telpon;
-
+                                                
                                                 // Menghapus angka 0 di awal nomor telepon
                                                 $nomorTelpon = substr($nomorTelpon, 1);
-
+                                                
                                                 // Menambahkan kode negara (+62)
                                                 $nomorTelponFormatted = '(+62)' . $nomorTelpon;
                                                 ?>

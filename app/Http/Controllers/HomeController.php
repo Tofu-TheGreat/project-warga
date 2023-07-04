@@ -60,6 +60,15 @@ class HomeController extends Controller
         return view('admin.pages.data_rt.detail_rt', compact('user'));
     }
     //END
+    //Halaman menampilkan detail rt
+    public function edit_rt($id_user)
+    {
+        $user = User::where('id_user', $id_user)
+            ->where('peran', 'rt')
+            ->get();
+        return view('admin.pages.data_rt.edit_rt', compact('user'));
+    }
+    //END
 
     //Halaman menampilkan tambah pekerjaan
     public function tambahpekerjaan_page()
