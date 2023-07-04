@@ -17,12 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Pages.index');
+    return view('Admin.Pages.dashboard');
 });
+
 Route::get('/home', function () {
     return view('pages.home');
 });
 
+
+Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt');
+Route::get('/testes/{id_user}', [HomeController::class, 'table_rt'])->name('show');
 Route::get('/login', function () {
     return view('pages.login');
 })->name('login');

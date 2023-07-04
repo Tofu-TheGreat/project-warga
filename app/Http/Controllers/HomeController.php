@@ -48,7 +48,7 @@ class HomeController extends Controller
         $user = User::select('*')
             ->where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_rt', compact('user'));
+        return view('admin.pages.data_rt.data_rt', compact('user'));
     }
     //END
 
