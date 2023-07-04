@@ -17,13 +17,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('Pages.index');
+});
+
+// route dashboard
+
+Route::get('/dashboard', function () {
+    return view('Admin.Pages.dashboard');
+});
+
+Route::get('/', function () {
     return view('Admin.Pages.dashboard');
 });
 
 Route::get('/home', function () {
     return view('pages.home');
 });
-
 
 Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt');
 Route::get('/testes/{id_user}', [HomeController::class, 'table_rt'])->name('show');
@@ -58,4 +67,18 @@ Route::get('/detail-warga', function () {
 
 Route::get('/edit-warga', function () {
     return view('Admin.pages.data_warga.edit_warga');
+});
+
+// route data pekerjaan
+
+Route::get('/data-pekerjaan', function () {
+    return view('Admin.pages.data_pekerjaan.data_pekerjaan');
+});
+
+Route::get('/detail-pekerjaan', function () {
+    return view('Admin.pages.data_pekerjaan.detail_pekerjaan');
+});
+
+Route::get('/edit-pekerjaan', function () {
+    return view('Admin.pages.data_pekerjaan.edit_pekerjaan');
 });
