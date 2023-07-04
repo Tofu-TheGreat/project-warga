@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     //Halaman Login
     public function login_page()
     {
@@ -49,6 +49,15 @@ class HomeController extends Controller
             ->where('peran', 'rt')
             ->get();
         return view('admin.pages.data_rt.data_rt', compact('user'));
+    }
+    //END
+    //Halaman menampilkan detail rt
+    public function detail_rt($id_user)
+    {
+        $user = User::where('id_user', $id_user)
+            ->where('peran', 'rt')
+            ->get();
+        return view('admin.pages.data_rt.detail_rt', compact('user'));
     }
     //END
 

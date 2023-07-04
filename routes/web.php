@@ -37,10 +37,10 @@ Route::post('/login_action', [UserController::class, 'login'])->name('login.acti
 // Rute yang hanya dapat diakses oleh Admin
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt');
 });
+Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt');
 
 
-Route::get('/testes/{id_user}', [HomeController::class, 'table_rt'])->name('show');
+Route::get('/detail-rt/{id_user}', [HomeController::class, 'detail_rt'])->name('detail.rt');
 
 Route::post('/tambah_rt', [RwController::class, 'create_rt'])->name('create.rt');

@@ -50,7 +50,7 @@
                         </div>
                         <span> {{ $show->nama_lengkap }}</span>
                         <p class="job"> {{ $show->nomor }}</p>
-                        <a class="btn" href="" role="button"> Detail
+                        <a class="btn" href="/detail-rt/{{ $show->id_user }}" role="button"> Detail
                         </a>
                     </div>
                 </div>
@@ -307,7 +307,13 @@
                         </div>
                         <div class="row">
                             <div class="col"> <label for="formFile" class="form-label">Foto (Opsional)</label>
-                                <input class="form-control" name="foto" type="file" id="formFile">
+                                <input class="form-control" name="foto" type="file" id="formFile"
+                                    onchange="previewImage(event)">
+
+                                <div class="mt-2">
+                                    <img id="preview" src="#" alt="Preview"
+                                        style="max-width: 200px; max-height: 200px; display: none;">
+                                </div>
                             </div>
                             <div class="form-group col">
                                 <label for="password_confirmation">Password Confirmation : </label>
@@ -378,4 +384,17 @@
         // Jika gagal:
         // showErrorAlert();
     });
+</script>
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+                document.getElementById('preview').style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
