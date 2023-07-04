@@ -16,11 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Admin.Pages.dashboard');
+    return view('pages.index');
 });
 
-Route::get('/home', function () {
-    return view('pages.home');
+Route::get('/detailrt', function () {
+    return view('Admin.pages.data_rt.detail_rt');
+});
+
+Route::get('/editrt', function () {
+    return view('Admin.pages.data_rt.edit_rt');
+});
+
+Route::get('/dashboard', function () {
+    return view('Admin.Pages.dashboard');
 });
 
 
