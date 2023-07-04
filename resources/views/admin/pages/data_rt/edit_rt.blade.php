@@ -7,7 +7,7 @@
                 <div class="col-6">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 d-flex align-items-center">
-                            <li class="breadcrumb-item"><a href="/dasboard" class="link"><i
+                            <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
                                         class="mdi mdi-home-outline fs-4"></i></a></li>
                             <li class="breadcrumb-item"><a href="/datart" class="link">Data Rt</a></li>
                             <li class="breadcrumb-item"><a href="/detailrt" class="link">Detail Rt</a></li>

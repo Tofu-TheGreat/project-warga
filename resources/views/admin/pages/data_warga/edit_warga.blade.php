@@ -9,8 +9,9 @@
                         <ol class="breadcrumb mb-0 d-flex align-items-center">
                             <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
                                         class="mdi mdi-home-outline fs-4"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/datart" class="link">Data Rt</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Detail RT</li>
+                            <li class="breadcrumb-item"><a href="/datawarga" class="link">Data Warga</a></li>
+                            <li class="breadcrumb-item"><a href="/detail-warga" class="link">Detail Warga</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Warga</li>
                         </ol>
                     </nav>
                 </div>
@@ -18,20 +19,20 @@
                 <div class="card p-3 px-4 bg-primary">
                     <div class="d-flex justify-content-between">
                         <div class="">
-                            <a href="/datart" class="d-inline text-info">
+                            <a href="/datawarga" class="d-inline text-info">
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                             </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Detail RT
+                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Edit Warga
                             </h2>
                         </div>
-                        <a href="/edit" class="btn btn-info rounded-pill" role="button">
-                            <i class="bi bi-pencil text-white "></i>
+                        <a href="/detailwarga" class="btn btn-danger rounded-pill" role="button">
+                            <i class="bi bi-trash text-white "></i>
                         </a>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body ">
-                        <form action="/administrator" method="post" enctype="multipart/form-data">
+                        <form action="/administrator" method="post" enctype="multipawarga/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
@@ -53,7 +54,7 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control capitalize @error('nama_lengkap') is-invalid @enderror"
-                                                        value="" id="nama_lengkap" name="nama_lengkap" readonly>
+                                                        value="" id="nama_lengkap" name="nama_lengkap">
                                                 </div>
                                                 @error('nama_lengkap')
                                                     {{ $message }}
@@ -69,7 +70,7 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control @error('nik') is-invalid @enderror"
-                                                        value="" id="nik" name="nik" readonly>
+                                                        value="" id="nik" name="nik">
                                                 </div>
                                                 @error('nik')
                                                     {{ $message }}
@@ -87,14 +88,14 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control @error('alamat') is-invalid @enderror"
-                                                        value="" id="alamat" name="alamat" readonly>
+                                                        value="" id="alamat" name="alamat">
                                                 </div>
                                                 @error('alamat')
                                                     {{ $message }}
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="nomor">Nomor RT : </label>
+                                                <label for="user_id">Dari RT : </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -102,10 +103,10 @@
                                                         </div>
                                                     </div>
                                                     <input type="text"
-                                                        class="form-control phone @error('nomor') is-invalid @enderror"
-                                                        value="" id="nomor" name="nomor" readonly>
+                                                        class="form-control phone @error('user_id') is-invalid @enderror"
+                                                        value="" id="user_id" name="user_id">
                                                 </div>
-                                                @error('nomor')
+                                                @error('user_id')
                                                     {{ $message }}
                                                 @enderror
                                             </div>
@@ -123,7 +124,7 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control @error('agama') is-invalid @enderror"
-                                                        value="" id="agama" name="agama" readonly>
+                                                        value="" id="agama" name="agama">
                                                 </div>
                                                 @error('agama')
                                                     {{ $message }}
@@ -141,7 +142,7 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control @error('jenis_kelamin') is-invalid @enderror"
-                                                        value="" id="jenis_kelamin" name="jenis_kelamin" readonly>
+                                                        value="" id="jenis_kelamin" name="jenis_kelamin">
                                                 </div>
                                                 @error('jenis_kelamin')
                                                     {{ $message }}
@@ -163,7 +164,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control capitalize @error('status_perkawinan') is-invalid @enderror"
-                                                value="" id="status_perkawinan" name="status_perkawinan" readonly>
+                                                value="" id="status_perkawinan" name="status_perkawinan">
                                         </div>
                                         @error('status_perkawinan')
                                             {{ $message }}
@@ -179,8 +180,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('status_kependudukan') is-invalid @enderror"
-                                                value="" id="status_kependudukan" name="status_kependudukan"
-                                                readonly>
+                                                value="" id="status_kependudukan" name="status_kependudukan">
                                         </div>
                                         @error('status_kependudukan')
                                             {{ $message }}
@@ -198,7 +198,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('peran') is-invalid @enderror" value=""
-                                                id="peran" name="peran" readonly>
+                                                id="peran" name="peran">
                                         </div>
                                         @error('peran')
                                             {{ $message }}
@@ -214,7 +214,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control phone @error('kewarganegaraan') is-invalid @enderror"
-                                                value="" id="kewarganegaraan" name="kewarganegaraan" readonly>
+                                                value="" id="kewarganegaraan" name="kewarganegaraan">
                                         </div>
                                         @error('kewarganegaraan')
                                             {{ $message }}
@@ -234,7 +234,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('id_pekerjaan') is-invalid @enderror"
-                                                value="" id="id_pekerjaan" name="id_pekerjaan" readonly>
+                                                value="" id="id_pekerjaan" name="id_pekerjaan">
                                         </div>
                                         @error('id_pekerjaan')
                                             {{ $message }}
@@ -252,7 +252,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('nomor_telpon') is-invalid @enderror"
-                                                value="" id="nomor_telpon" name="nomor_telpon" readonly>
+                                                value="" id="nomor_telpon" name="nomor_telpon">
                                         </div>
                                         @error('nomor_telpon')
                                             {{ $message }}
@@ -271,14 +271,35 @@
                                         </div>
                                         <input type="text"
                                             class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                            value="" id="tanggal_lahir" name="tanggal_lahir" readonly>
+                                            value="" id="tanggal_lahir" name="tanggal_lahir">
                                     </div>
                                     @error('tanggal_lahir')
                                         {{ $message }}
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label for="foto">Foto : </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-file-earmark-image"></i>
+                                            </div>
+                                        </div>
+                                        <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                            value="" id="foto" name="foto">
+                                    </div>
+                                    @error('foto')
+                                        {{ $message }}
+                                    @enderror
+                                    <small class="text-secondary">Note: Maksimal 1 mb</small>
+                                </div>
                             </div>
                     </div>
+                    <div class="d-flex justify-content-end p-3">
+                        <button type="button" class="btn btn-secondary me-2">Keluar</button>
+                        <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+
                     </form>
                 </div>
                 </section>

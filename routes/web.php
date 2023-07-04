@@ -38,3 +38,18 @@ Route::get('/login', function () {
     return view('pages.login');
 })->middleware('guest');
 Route::post('/tambah_rt', [RwController::class, 'create_rt'])->name('create.rt');
+
+// route data warga
+
+
+Route::get('/datawarga', function () {
+    return view('Admin.pages.data_warga.data_warga');
+});
+
+Route::get('/detail-warga', function () {
+    return view('Admin.pages.data_warga.detail_warga');
+});
+
+Route::get('/edit-warga', function () {
+    return view('Admin.pages.data_warga.edit_warga');
+});
