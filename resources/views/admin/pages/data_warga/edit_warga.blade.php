@@ -9,9 +9,9 @@
                         <ol class="breadcrumb mb-0 d-flex align-items-center">
                             <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
                                         class="mdi mdi-home-outline fs-4"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/datart" class="link">Data Rt</a></li>
-                            <li class="breadcrumb-item"><a href="/detailrt" class="link">Detail Rt</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit RT</li>
+                            <li class="breadcrumb-item"><a href="/datawarga" class="link">Data Warga</a></li>
+                            <li class="breadcrumb-item"><a href="/detail-warga" class="link">Detail Warga</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Warga</li>
                         </ol>
                     </nav>
                 </div>
@@ -19,20 +19,20 @@
                 <div class="card p-3 px-4 bg-primary">
                     <div class="d-flex justify-content-between">
                         <div class="">
-                            <a href="/datart" class="d-inline text-info">
+                            <a href="/datawarga" class="d-inline text-info">
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                             </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Edit RT
+                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Edit Warga
                             </h2>
                         </div>
-                        <a href="/detailrt" class="btn btn-danger rounded-pill" role="button">
+                        <a href="/detailwarga" class="btn btn-danger rounded-pill" role="button">
                             <i class="bi bi-trash text-white "></i>
                         </a>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body ">
-                        <form action="/administrator" method="post" enctype="multipart/form-data">
+                        <form action="/administrator" method="post" enctype="multipawarga/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
@@ -95,7 +95,7 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="nomor">Nomor RT : </label>
+                                                <label for="user_id">Dari RT : </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -103,10 +103,10 @@
                                                         </div>
                                                     </div>
                                                     <input type="text"
-                                                        class="form-control phone @error('nomor') is-invalid @enderror"
-                                                        value="" id="nomor" name="nomor">
+                                                        class="form-control phone @error('user_id') is-invalid @enderror"
+                                                        value="" id="user_id" name="user_id">
                                                 </div>
-                                                @error('nomor')
+                                                @error('user_id')
                                                     {{ $message }}
                                                 @enderror
                                             </div>

@@ -44,3 +44,18 @@ Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt');
 Route::get('/detail-rt/{id_user}', [HomeController::class, 'detail_rt'])->name('detail.rt');
 
 Route::post('/tambah_rt', [RwController::class, 'create_rt'])->name('create.rt');
+
+// route data warga
+
+
+Route::get('/datawarga', function () {
+    return view('Admin.pages.data_warga.data_warga');
+});
+
+Route::get('/detail-warga', function () {
+    return view('Admin.pages.data_warga.detail_warga');
+});
+
+Route::get('/edit-warga', function () {
+    return view('Admin.pages.data_warga.edit_warga');
+});
