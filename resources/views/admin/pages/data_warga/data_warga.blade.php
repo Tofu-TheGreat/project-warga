@@ -39,7 +39,7 @@
     @endif
     <div class="container-fluid ">
         <div class="row card mx-2">
-            <table class="table table-bordered table=responsive table-striped">
+            <table class="table table-bordered table-responsive table-striped">
                 <thead class="table-success">
                     <tr>
                         <th>#</th>
@@ -336,7 +336,13 @@
                         </div>
                         <div class="row">
                             <div class="col"> <label for="formFile" class="form-label">Foto (Opsional)</label>
-                                <input class="form-control" name="foto" type="file" id="formFile">
+                                <input class="form-control" name="foto" type="file" id="formFile"
+                                    onchange="previewImage(event)">
+
+                                <div class="mt-2">
+                                    <img id="preview" src="#" alt="Preview"
+                                        style="max-width: 200px; max-height: 200px; display: none;">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -395,4 +401,17 @@
         // Jika gagal:
         // showErrorAlert();
     });
+</script>
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+                document.getElementById('preview').style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
