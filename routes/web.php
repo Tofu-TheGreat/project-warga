@@ -35,6 +35,7 @@ Route::get('/home', function () {
 });
 
 Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt');
+Route::get('/data_warga/{id_user}', [HomeController::class, 'show_warga'])->name('show.warga');
 Route::get('/testes/{id_user}', [HomeController::class, 'table_rt'])->name('show');
 Route::get('/login', function () {
     return view('pages.login');
