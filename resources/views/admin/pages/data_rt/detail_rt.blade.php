@@ -38,7 +38,7 @@
                                     <div class="col-md-4">
                                         <div class="justify-content-center mt-3 ms-4">
                                             @if ($show->foto == null)
-                                                <img src="{{ asset('images/logo-sidawar-icon.png') }}" alt="foto"
+                                                <img src="{{ asset('images/kosong.webp') }}" alt="foto"
                                                     class="foto-user w-75 rounded-circle">
                                             @else
                                                 <img src="../image_save/{{ $show->foto }}" alt="foto"
@@ -267,10 +267,10 @@
                                                 </div>
                                                 <?php
                                                 $nomorTelpon = $show->nomor_telpon;
-                                                
+
                                                 // Menghapus angka 0 di awal nomor telepon
                                                 $nomorTelpon = substr($nomorTelpon, 1);
-                                                
+
                                                 // Menambahkan kode negara (+62)
                                                 $nomorTelponFormatted = '(+62)' . $nomorTelpon;
                                                 ?>

@@ -199,3 +199,9 @@ body {
 .person a:hover {
     background: #534bf3;
 }
+
+/* foto user */
+
+.foto-user {
+    aspect-ratio: 1/1;
+}
