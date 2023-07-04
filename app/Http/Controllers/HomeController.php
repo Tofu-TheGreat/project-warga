@@ -50,7 +50,7 @@ class HomeController extends Controller
             ->get();
         return view('admin.pages.data_rt.data_rt', compact('user'));
     }
-    //END
+    //END 
     //Halaman menampilkan detail rt
     public function detail_rt($id_user)
     {
