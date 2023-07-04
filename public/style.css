@@ -135,25 +135,46 @@ body {
     border-radius: 0px 0px 15px 15px;
 }
 
-.person .card-border-top a {
+.person .card-border-top .btn-hapus {
     position: absolute;
     right: -20px;
-    top: -22px;
+    top: 16px;
     background-color: red;
     width: 30%;
     height: 30px;
 }
 
-.person .card-border-top a i {
+.person .card-border-top .btn-hapus i {
     position: absolute;
     right: 30px;
 }
 
-.person .card-border-top a:hover {
+.person .card-border-top .btn-hapus:hover {
+    position: absolute;
+    right: -16px;
+    top: 16px;
+    background-color: rgb(168, 22, 22);
+}
+
+.person .card-border-top .btn-warga {
+    position: absolute;
+    right: -20px;
+    top: -22px;
+    background-color: green;
+    width: 30%;
+    height: 30px;
+}
+
+.person .card-border-top .btn-warga i {
+    position: absolute;
+    right: 30px;
+}
+
+.person .card-border-top .btn-warga:hover {
     position: absolute;
     right: -16px;
     top: -22px;
-    background-color: red;
+    background-color: rgb(11, 112, 11);
 }
 
 .person span {
