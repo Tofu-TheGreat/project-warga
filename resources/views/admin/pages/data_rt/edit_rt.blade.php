@@ -384,9 +384,9 @@
                         </div>
                     </div>
                     </section>
+                @endforeach
             </div>
         </div>
-    </div>
     </div>
 @endsection
 <script>

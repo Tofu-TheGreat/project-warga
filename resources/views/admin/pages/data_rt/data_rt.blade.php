@@ -402,3 +402,53 @@
         }
     }
 </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.15/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.15/dist/sweetalert2.all.min.js"></script>
+
+<script>
+    // Get the "hapus" button by its class name
+    const btnHapus = document.querySelector('.btn-hapus');
+
+    // Add an event listener to the button
+    btnHapus.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+
+        // Display the SweetAlert2 confirmation popup
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: 'Apakah Anda yakin ingin menghapus data ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user clicks "Hapus"
+                Swal.fire({
+                    title: 'Loading',
+                    text: 'Menjalankan proses penghapusan...',
+                    icon: 'info',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    willOpen: () => {
+                        Swal.showLoading();
+                    },
+                });
+
+                // Simulate an asynchronous process
+                setTimeout(() => {
+                    // Perform the actual deletion using AJAX or other methods
+                    // Once the deletion is complete, display the success message
+                    Swal.fire({
+                        title: 'Berhasil',
+                        text: 'Data berhasil dihapus.',
+                        icon: 'success',
+                    });
+                }, 2000);
+            } else {
+                // If the user clicks "Batal" or closes the popup
+                Swal.close();
+            }
+        });
+    });
+</script>
