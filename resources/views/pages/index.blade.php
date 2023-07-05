@@ -19,7 +19,7 @@
                     <div class="hero-text">
                         <img class="d-none d-lg-block " src="{{ asset('images/logo-sidawar-nama.png') }}" height="80"
                             alt="">
-                        <h1 class="lilitan">Aplikasi Pendataan Warga</h1>
+                        <h1 class="lilitan">Aplikasi Pendataan <span class="text-success">Warga</span></h1>
                         <p class="text-capitalize sora">Lihat Data Warga dan memanipulasinya</p>
                         <a class="btn btn-success" href="/login" role="button">Ayo Mulai</a>
                     </div>
@@ -35,6 +35,8 @@
             <h2 class="fs-1 text-dark">Fungsi <span>Kami</span></h2>
         </div>
         <div class="container">
+            <div class="shape-index d-none d-md-block"></div>
+            <div class="spinner"></div>
             <div class="row justify-content-center">
                 <div class="col-lg-6 d-flex align-items-center justify-content-center">
                     <div class="about-img w-50">
@@ -93,11 +95,11 @@
     <!-- Fitur Section End -->
 
     {{-- footer --}}
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#198754" fill-opacity="1"
-            d="M0,192L48,176C96,160,192,128,288,149.3C384,171,480,245,576,261.3C672,277,768,235,864,229.3C960,224,1056,256,1152,256C1248,256,1344,224,1392,208L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-        </path>
-    </svg>
+    <div class="ocean">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
     <section class="footer bg-success">
         <footer class="bg-success text-white text-center text-lg-start">
             <div class="container p-4">
