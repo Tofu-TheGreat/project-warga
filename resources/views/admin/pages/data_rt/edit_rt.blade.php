@@ -18,11 +18,11 @@
 
                 <div class="card p-3 px-4 bg-primary">
                     <div class="d-flex justify-content-between">
-                        <div class="">
+                        <div class="mt-1">
                             <a href="/datart" class="d-inline text-info">
-                                <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
+                                <i class="bi bi-arrow-left-circle-fill d-inline fs-3 rounded-circle"></i>
                             </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Edit RT
+                            <h2 class="fw-bold text-white" style="position: absolute; top:17px; left: 60px">Edit RT
                             </h2>
                         </div>
                         <a href="/detailrt" class="btn btn-danger rounded-pill" role="button">
@@ -58,7 +58,7 @@
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text ">
-                                                                <i class="bi bi-person-fill"></i>
+                                                                <i class="bi bi-person-fill fs-2"></i>
                                                             </div>
                                                         </div>
                                                         <input type="text"
@@ -75,7 +75,7 @@
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text">
-                                                                <i class="bi bi-person-vcard-fill"></i>
+                                                                <i class="bi bi-person-vcard-fill fs-2"></i>
                                                             </div>
                                                         </div>
                                                         <input type="text"
@@ -93,7 +93,7 @@
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text">
-                                                                <i class="bi bi-geo-alt"></i>
+                                                                <i class="bi bi-geo-alt fs-2"></i>
                                                             </div>
                                                         </div>
                                                         <input type="text"
@@ -109,7 +109,7 @@
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text">
-                                                                <i class="bi bi-list-ol"></i>
+                                                                <i class="bi bi-list-ol fs-2"></i>
                                                             </div>
                                                         </div>
                                                         <input type="text"
@@ -129,7 +129,7 @@
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text">
-                                                                <i class="bi bi-book-half"></i>
+                                                                <i class="bi bi-book-half fs-2"></i>
                                                             </div>
                                                         </div>
                                                         <select class="form-select" name="agama"
@@ -163,7 +163,7 @@
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text">
-                                                                <i class="bi bi-gender-ambiguous"></i>
+                                                                <i class="bi bi-gender-ambiguous fs-2"></i>
                                                             </div>
                                                         </div>
                                                         <select class="form-select" name="jenis_kelamin"
@@ -194,7 +194,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text ">
-                                                        <i class="bi bi-postcard-heart-fill"></i>
+                                                        <i class="bi bi-postcard-heart-fill fs-2"></i>
                                                     </div>
                                                 </div>
                                                 <select class="form-select" name="status_perkawinan"
@@ -220,7 +220,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
-                                                        <i class="bi bi-geo-fill"></i>
+                                                        <i class="bi bi-geo-fill fs-2"></i>
                                                     </div>
                                                 </div>
                                                 <select class="form-select" name="status_kependudukan"
@@ -245,7 +245,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
-                                                        <i class="bi bi-stack"></i>
+                                                        <i class="bi bi-stack fs-2"></i>
                                                     </div>
                                                 </div>
                                                 <select class="form-select" name="peran"
@@ -266,7 +266,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
-                                                        <i class="bi bi-globe-americas"></i>
+                                                        <i class="bi bi-globe-americas fs-2"></i>
                                                     </div>
                                                 </div>
                                                 <select class="form-select" name="kewarganegaraan"
@@ -291,7 +291,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
-                                                        <i class="bi bi-briefcase"></i>
+                                                        <i class="bi bi-briefcase fs-2"></i>
                                                     </div>
                                                 </div>
                                                 <input type="text"
@@ -309,7 +309,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
-                                                        <i class="bi bi-telephone-fill"></i>
+                                                        <i class="bi bi-telephone-fill fs-2"></i>
                                                     </div>
                                                 </div>
 
@@ -330,7 +330,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-calendar-event-fill"></i>
+                                                    <i class="bi bi-calendar-event-fill fs-2"></i>
                                                 </div>
                                             </div>
                                             <input type="date"
@@ -347,7 +347,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-file-earmark-image"></i>
+                                                    <i class="bi bi-file-earmark-image fs-2"></i>
                                                 </div>
                                             </div>
                                             <input type="file" class="form-control @error('foto') is-invalid @enderror"
