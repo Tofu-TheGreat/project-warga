@@ -142,6 +142,7 @@ body {
     background-color: red;
     width: 30%;
     height: 30px;
+    transition: 0.2s;
 }
 
 .person .card-border-top .btn-hapus i {
@@ -163,6 +164,7 @@ body {
     background-color: green;
     width: 30%;
     height: 30px;
+    transition: 0.2s;
 }
 
 .person .card-border-top .btn-warga i {
