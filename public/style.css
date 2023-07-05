@@ -341,6 +341,12 @@ body {
     overflow: hidden;
 }
 
+.img-rt {
+    width: 95px;
+    aspect-ratio: 1/1;
+    padding-top: 5px;
+}
+
 .person .card-border-top {
     width: 60%;
     height: 3%;
