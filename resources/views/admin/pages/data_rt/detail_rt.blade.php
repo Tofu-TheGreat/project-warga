@@ -177,7 +177,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control capitalize @error('status_perkawinan') is-invalid @enderror"
-                                                    value="{{ $show->status_perkawinan == '0' ? 'Sudah Menikah' : '' }}{{ $show->status_perkawinan == '1' ? 'Belum Menikah' : '' }} {{ $show->status_perkawinan == '3' ? 'Cerai' : '' }}"
+                                                    value="{{ $show->status_perkawinan == '0' ? 'Sudah Menikah' : '' }}{{ $show->status_perkawinan == '1' ? 'Belum Menikah' : '' }} {{ $show->status_perkawinan == '2' ? 'Cerai' : '' }}"
                                                     id="status_perkawinan" name="status_perkawinan" readonly>
                                             </div>
                                             @error('status_perkawinan')

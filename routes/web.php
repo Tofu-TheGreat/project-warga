@@ -54,6 +54,7 @@ Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt');
 Route::get('/detail-rt/{id_user}', [HomeController::class, 'detail_rt'])->name('detail.rt');
 Route::get('/edit-rt/{id_user}', [HomeController::class, 'edit_rt'])->name('edit.rt');
 Route::post('/edit-rt-action', [RwController::class, 'edit_rt'])->name('edit.rt.action');
+Route::get('/hapus_rt/{id_user}', [RwController::class, 'delete_rt'])->name('delete.rt.action');
 
 Route::post('/tambah_rt', [RwController::class, 'create_rt'])->name('create.rt');
 

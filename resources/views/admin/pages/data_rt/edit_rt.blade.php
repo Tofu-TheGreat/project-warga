@@ -4,37 +4,43 @@
     <div class=" mx-2">
         <div class="page-breadcrumb">
             <div class="row align-items-center">
-                <div class="col-6">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0 d-flex align-items-center">
-                            <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
-                                        class="mdi mdi-home-outline fs-4"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/datart" class="link">Data Rt</a></li>
-                            <li class="breadcrumb-item"><a href="/detailrt" class="link">Detail Rt</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit RT</li>
-                        </ol>
-                    </nav>
-                </div>
+                @foreach ($user as $show)
+                    <div class="col-6">
+                        <nav aria-label="breadcrumb">
 
-                <div class="card p-3 px-4 bg-primary">
-                    <div class="d-flex justify-content-between">
-                        <div class="">
-                            <a href="/datart" class="d-inline text-info">
-                                <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
-                            </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Edit RT
-                            </h2>
-                        </div>
-                        <a href="/detailrt" class="btn btn-danger rounded-pill" role="button">
-                            <i class="bi bi-trash text-white "></i>
-                        </a>
+                            <ol class="breadcrumb mb-0 d-flex align-items-center">
+                                <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
+                                            class="mdi mdi-home-outline fs-4"></i></a></li>
+                                <li class="breadcrumb-item"><a href="/datart" class="link">Data Rt</a></li>
+                                <li class="breadcrumb-item"><a href="/detail-rt/{{ $show->id_user }}" class="link">Detail
+                                        Rt</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit RT</li>
+                            </ol>
+
+                        </nav>
                     </div>
-                </div>
+
+                    <div class="card p-3 px-4 bg-primary">
+                        <div class="d-flex justify-content-between">
+                            <div class="">
+                                <a href="/datart" class="d-inline text-info">
+                                    <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
+                                </a>
+                                <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Edit RT
+                                </h2>
+                            </div>
+                            <a href="/hapus_rt/{{ $show->id_user }}" class="btn btn-danger rounded-pill" role="button">
+                                <i class="bi bi-trash text-white "></i>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
                 <div class="card">
                     <div class="card-body ">
                         @foreach ($user as $show)
                             <form action="{{ route('edit.rt.action') }}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                <input type="text" name="foto" value="{{ $show->foto }}" hidden>
                                 <input type="text" name="id_user" value="{{ $show->id_user }}" hidden id="">
                                 <div class="row">
                                     <div class="col-md-4">

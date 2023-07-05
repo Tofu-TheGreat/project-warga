@@ -99,9 +99,23 @@ class RwController extends Controller
             $request->validate([
                 'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
-            $nama_foto = time() . '.' . $request->foto->extension();
 
+
+
+
+            // Hapus foto lama jika ada
+            $user = User::where('id_user', $request->id_user)->first();
+            // Hapus foto lama jika ada
+            if ($user->foto != null) {
+                $fotoPath = public_path('image_save/') . $user->foto;
+                if (file_exists($fotoPath)) {
+                    unlink($fotoPath);
+                }
+            }
+
+            $nama_foto = time() . '.' . $request->foto->extension();
             $request->foto->move(public_path('image_save'), $nama_foto);
+
             $user = User::where('id_user', $request->id_user)
                 ->update([
                     'nama_lengkap' => $request->nama_lengkap,
@@ -144,10 +158,20 @@ class RwController extends Controller
     //END
 
     //DELETE RT START
-    public function delete_rt(Request $request)
+    public function delete_rt(Request $request, $id_user)
     {
-        $user = User::where('id', $request->id)
+        $user = User::where('id_user', $request->id_user)->first();
+        // Hapus foto lama jika ada
+        if ($user->foto != null) {
+            $fotoPath = public_path('image_save/') . $user->foto;
+            if (file_exists($fotoPath)) {
+                unlink($fotoPath);
+            }
+        }
+        $user = User::where('id_user', $id_user)
             ->delete();
+
+        return redirect()->intended('/datart');
     }
     //END
 }

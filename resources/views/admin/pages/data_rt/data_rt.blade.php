@@ -42,7 +42,7 @@
                 <div class="col">
                     <div class="card person">
                         <div class="card-border-top">
-                            <a class="btn btn-danger btn-hapus" role="button">
+                            <a class="btn btn-danger btn-hapus" href="/hapus_rt/{{ $show->id_user }}" role="button">
                                 <i class="bi bi-trash"></i>
                             </a>
                             <a class="btn btn-waring btn-warga" role="button">
@@ -50,6 +50,7 @@
                             </a>
                         </div>
                         <div class="img">
+                            <img src="/image_save/{{ $show->foto }}" alt="">
                         </div>
                         <span> {{ $show->nama_lengkap }}</span>
                         <p class="job"> {{ $show->nomor }}</p>
