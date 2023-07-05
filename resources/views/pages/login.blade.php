@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <section class="bg-success">
+    <section class="bg-section-login">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 @if (session('error'))

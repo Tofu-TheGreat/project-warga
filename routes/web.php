@@ -26,10 +26,6 @@ Route::get('/dashboard', function () {
     return view('Admin.Pages.dashboard');
 });
 
-Route::get('/', function () {
-    return view('Admin.Pages.dashboard');
-});
-
 Route::get('/home', function () {
     return view('pages.home');
 });
