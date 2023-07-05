@@ -41,27 +41,32 @@
             @foreach ($user as $show)
                 <div class="col">
                     <div class="card person">
-                        <div class="card-border-top">
-                            <a class="btn btn-danger btn-hapus" href="/hapus_rt/{{ $show->id_user }}" role="button">
-                                <i class="bi bi-trash"></i>
-                            </a>
-                            <a class="btn btn-waring btn-warga" role="button">
-                                <i class="bi bi-people"></i>
-                            </a>
-                        </div>
-                        <div class="">
-                            @if ($show->foto == null)
-                                <img src="{{ asset('images/kosong.webp') }}" alt="foto" class="img-rt" id="preview"
-                                    src="#" alt="Preview">
-                            @else
-                                <img src="../image_save/{{ $show->foto }}" alt="foto" class="img-rt" id="preview"
-                                    src="#" alt="Preview">
-                            @endif
+
+                        <a class="btn btn-danger btn-hapus" href="/hapus_rt/{{ $show->id_user }}" role="button">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                        <a class="btn btn-info btn-detail" href="/detail-rt/{{ $show->id_user }}" role="button">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <a class="btn btn-waring btn-warga" role="button">
+                            <i class="bi bi-people"></i>
+                        </a>
+
+                        <div class="d-flex justify-content-center">
+                            <div class="card-border-top">
+                            </div>
+                            <div class="mt-4">
+                                @if ($show->foto == null)
+                                    <img src="{{ asset('images/kosong.webp') }}" alt="foto" class="img-rt "
+                                        id="preview" src="#" alt="Preview">
+                                @else
+                                    <img src="../image_save/{{ $show->foto }}" alt="foto" class="img-rt "
+                                        id="preview" src="#" alt="Preview">
+                                @endif
+                            </div>
                         </div>
                         <span> {{ $show->nama_lengkap }}</span>
                         <p class="job"> {{ $show->nomor }}</p>
-                        <a class="btn" href="/detail-rt/{{ $show->id_user }}" role="button"> Detail
-                        </a>
                     </div>
                 </div>
             @endforeach
