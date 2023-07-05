@@ -69,7 +69,7 @@
                     <h1 class="modal-title fs-2 bold justify-center">Tambah Data RT</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('create.rt') }}" id="warga_form" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('create.rt') }}" id="myForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body p-5">
                         <input type="text" name="peran" value="rt" hidden>
@@ -347,108 +347,108 @@
         </div>
     </div>
 @endsection
-<!-- SweetAlert2 CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-<!-- SweetAlert2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // Fungsi untuk menampilkan SweetAlert2 saat submit berhasil
-    function showSuccessAlert() {
-        Swal.fire({
-            title: 'Sukses',
-            text: 'Data berhasil disimpan.',
-            icon: 'success',
-            confirmButtonText: 'OK'
+    // Menggunakan jQuery untuk menangani penyerahan formulir
+    $(document).ready(function() {
+        $('#myForm').on('submit', function(e) {
+            e.preventDefault(); // Mencegah form dari submit normal
+
+            // Menampilkan SweetAlert loading
+            Swal.fire({
+                title: 'Loading...',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                onOpen: function() {
+                    Swal.showLoading();
+                }
+            });
+
+            // Submit formulir secara asinkron dengan menggunakan AJAX
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    Swal.close(); // Menutup SweetAlert loading setelah permintaan berhasil
+                    // Tampilkan SweetAlert sukses
+                    Swal.fire({
+                        title: 'Sukses',
+                        text: response
+                            .message, // Anda dapat menyesuaikan pesan sukses dengan respons yang diterima dari server
+                        icon: 'success'
+                    }).then(function() {
+                        // Redirect ke halaman lain jika perlu
+                        window.location.href = '/datart';
+                    });
+                },
+                error: function(xhr) {
+                    Swal.close(); // Menutup SweetAlert loading jika terjadi kesalahan
+                    // Tampilkan SweetAlert error
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Terjadi kesalahan saat memproses permintaan.',
+                        icon: 'error'
+                    });
+                }
+            });
         });
-    }
-
-    // Fungsi untuk menampilkan SweetAlert2 saat submit gagal
-    function showErrorAlert() {
-        Swal.fire({
-            title: 'Error',
-            text: 'Terjadi kesalahan saat menyimpan data.',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-    }
-
-    // Mendengarkan event submit form
-    document.getElementById('warga_form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Mencegah form submit secara default
-
-        // Menggunakan AJAX atau Fetch untuk mengirim data form secara asynchronous
-        // ...
-
-        // Setelah berhasil atau gagal menyimpan data, panggil fungsi yang sesuai
-        // Contoh:
-        // Jika sukses:
-        showSuccessAlert();
-        // Jika gagal:
-        // showErrorAlert();
     });
 </script>
-<script>
-    function previewImage(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('preview').src = e.target.result;
-                document.getElementById('preview').style.display = 'block';
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.15/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.15/dist/sweetalert2.all.min.js"></script>
+
+
 
 <script>
-    // Get the "hapus" button by its class name
-    const btnHapus = document.querySelector('.btn-hapus');
+    $(document).ready(function() {
+        $('.btn-hapus').on('click', function(e) {
+            e.preventDefault();
 
-    // Add an event listener to the button
-    btnHapus.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default behavior of the link
+            var url = $(this).attr('href');
 
-        // Display the SweetAlert2 confirmation popup
-        Swal.fire({
-            title: 'Konfirmasi',
-            text: 'Apakah Anda yakin ingin menghapus data ini?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Hapus',
-            cancelButtonText: 'Batal',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // If the user clicks "Hapus"
-                Swal.fire({
-                    title: 'Loading',
-                    text: 'Menjalankan proses penghapusan...',
-                    icon: 'info',
-                    allowOutsideClick: false,
-                    showConfirmButton: false,
-                    willOpen: () => {
-                        Swal.showLoading();
-                    },
-                });
-
-                // Simulate an asynchronous process
-                setTimeout(() => {
-                    // Perform the actual deletion using AJAX or other methods
-                    // Once the deletion is complete, display the success message
-                    Swal.fire({
-                        title: 'Berhasil',
-                        text: 'Data berhasil dihapus.',
-                        icon: 'success',
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Anda yakin ingin menghapus item ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus',
+                cancelButtonText: 'Batal'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Submit formulir secara asinkron dengan menggunakan AJAX
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        data: {
+                            _method: 'GET',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            // Tampilkan SweetAlert sukses
+                            Swal.fire({
+                                title: 'Sukses',
+                                text: response.message,
+                                icon: 'success'
+                            }).then(function() {
+                                // Refresh halaman setelah menghapus item
+                                window.location.reload();
+                            });
+                        },
+                        error: function(xhr) {
+                            // Tampilkan SweetAlert error
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Terjadi kesalahan saat memproses permintaan.',
+                                icon: 'error'
+                            });
+                        }
                     });
-                }, 2000);
-            } else {
-                // If the user clicks "Batal" or closes the popup
-                Swal.close();
-            }
+                }
+            });
         });
     });
 </script>

@@ -29,7 +29,8 @@
                                 <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Edit RT
                                 </h2>
                             </div>
-                            <a href="/detailrt" class="btn btn-danger rounded-pill" role="button">
+                            <a href="/hapus_rt/{{ $show->id_user }}" class="btn btn-danger rounded-pill btn-hapus"
+                                role="button">
                                 <i class="bi bi-trash text-white "></i>
                             </a>
                         </div>
@@ -401,4 +402,58 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function() {
+        $('.btn-hapus').on('click', function(e) {
+            e.preventDefault();
+
+            var url = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Anda yakin ingin menghapus item ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus',
+                cancelButtonText: 'Batal'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Submit formulir secara asinkron dengan menggunakan AJAX
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            // Tampilkan SweetAlert sukses
+                            Swal.fire({
+                                title: 'Sukses',
+                                text: response.message,
+                                icon: 'success'
+                            }).then(function() {
+                                // Refresh halaman setelah menghapus item
+                                window.location.reload();
+                            });
+                        },
+                        error: function(xhr) {
+                            // Tampilkan SweetAlert error
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Terjadi kesalahan saat memproses permintaan.',
+                                icon: 'error'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
 </script>
