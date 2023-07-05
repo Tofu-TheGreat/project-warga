@@ -425,9 +425,9 @@
                     // Submit formulir secara asinkron dengan menggunakan AJAX
                     $.ajax({
                         url: url,
-                        type: 'POST',
+                        type: 'GET',
                         data: {
-                            _method: 'DELETE',
+                            _method: 'GET',
                             _token: '{{ csrf_token() }}'
                         },
                         success: function(response) {
