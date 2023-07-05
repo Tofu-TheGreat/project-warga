@@ -341,56 +341,84 @@ body {
     overflow: hidden;
 }
 
+.img-rt {
+    width: 100px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 3px solid #6b64f3;
+}
+
 .person .card-border-top {
+    position: absolute;
     width: 60%;
     height: 3%;
     background: #6b64f3;
-    margin: auto;
     border-radius: 0px 0px 15px 15px;
 }
 
-.person .card-border-top .btn-hapus {
+.person .btn-hapus {
     position: absolute;
     right: -20px;
-    top: 16px;
+    top: 52px;
     background-color: red;
     width: 30%;
     height: 30px;
     transition: 0.2s;
 }
 
-.person .card-border-top .btn-hapus i {
+.person .btn-hapus i {
     position: absolute;
     right: 30px;
 }
 
-.person .card-border-top .btn-hapus:hover {
+.person .btn-hapus:hover {
     position: absolute;
     right: -16px;
-    top: 16px;
+    top: 52px;
     background-color: rgb(168, 22, 22);
 }
 
-.person .card-border-top .btn-warga {
+.person .btn-warga {
     position: absolute;
     right: -20px;
-    top: -22px;
+    top: 16px;
     background-color: green;
     width: 30%;
     height: 30px;
     transition: 0.2s;
 }
 
-.person .card-border-top .btn-warga i {
+.person .btn-warga i {
     position: absolute;
     right: 30px;
 }
 
-.person .card-border-top .btn-warga:hover {
+.person .btn-warga:hover {
+    position: absolute;
+    right: -16px;
+    top: 16px;
+    background-color: rgb(11, 112, 11);
+}
+.person .btn-detail {
+    position: absolute;
+    right: -20px;
+    top: -22px;
+    background-color: skyblue;
+    width: 30%;
+    height: 30px;
+    transition: 0.2s;
+}
+
+.person .btn-detail i {
+    position: absolute;
+    right: 30px;
+}
+
+.person .btn-detail:hover {
     position: absolute;
     right: -16px;
     top: -22px;
-    background-color: rgb(11, 112, 11);
+    background-color: skyblue;
 }
 
 .person span {
