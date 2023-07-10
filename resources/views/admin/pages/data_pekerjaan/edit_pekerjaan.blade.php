@@ -17,62 +17,67 @@
                         </ol>
                     </nav>
                 </div>
-
-                <div class="card p-3 px-4 bg-primary">
-                    <div class="d-flex justify-content-between">
-                        <div class="">
-                            <a href="/data-pekerjaan" class="d-inline text-info">
-                                <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
+                @foreach ($pekerjaan as $show)
+                    <div class="card p-3 px-4 bg-primary">
+                        <div class="d-flex justify-content-between">
+                            <div class="">
+                                <a href="/data-pekerjaan" class="d-inline text-info">
+                                    <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
+                                </a>
+                                <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:12px; left: 60px">Edit
+                                    Pekerjaan
+                                </h2>
+                            </div>
+                            <a href="/hapus_pekerjaan/{{ $show->id_pekerjaan }}"
+                                class="btn btn-danger rounded-pill btn-hapus" role="button">
+                                <i class="bi bi-trash text-white "></i>
                             </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:12px; left: 60px">Edit
-                                Pekerjaan
-                            </h2>
                         </div>
-                        <a href="/hapus_pekerjaan/" class="btn btn-danger rounded-pill btn-hapus" role="button">
-                            <i class="bi bi-trash text-white "></i>
-                        </a>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-body ">
-                        {{-- @foreach ($user as $show) --}}
-                        <form action="{{ route('edit.pekerjaan.action') }}" id="myForm" method="post"
-                            enctype="multipapekerjaan/form-data">
-                            @csrf
-                            <input type="text" name="foto" value="{{ $show->foto }}" hidden>
-                            <input type="text" name="id_user" value="{{ $show->id_user }}" hidden id="">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="nama_lengkap">Nama Pekerjaan: </label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text ">
-                                                            <i class="bi bi-briefcase fs-2"></i>
+                @endforeach
+                @foreach ($pekerjaan as $show)
+                    <div class="card">
+                        <div class="card-body ">
+                            {{-- @foreach ($user as $show) --}}
+                            <form action="{{ route('edit.pekerjaan.action') }}" id="myForm" method="post"
+                                enctype="multipapekerjaan/form-data">
+                                @csrf
+                                <input type="text" name="id_pekerjaan" value="{{ $show->id_pekerjaan }}" hidden
+                                    id="">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="nama_lengkap">Nama Pekerjaan: </label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text ">
+                                                                <i class="bi bi-briefcase fs-2"></i>
+                                                            </div>
                                                         </div>
+                                                        <input type="text"
+                                                            class="form-control capitalize @error('nama_pekerjaan') is-invalid @enderror"
+                                                            value="{{ $show->nama_pekerjaan }}" id="nama_pekerjaan"
+                                                            name="nama_pekerjaan">
                                                     </div>
-                                                    <input type="text"
-                                                        class="form-control capitalize @error('nama_lengkap') is-invalid @enderror"
-                                                        value="" id="nama_lengkap" name="nama_lengkap">
+                                                    @error('nama_pekerjaan')
+                                                        {{ $message }}
+                                                    @enderror
                                                 </div>
-                                                @error('nama_lengkap')
-                                                    {{ $message }}
-                                                @enderror
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-end p-3">
+                                        <a type="button" href="/data_pekerjaan" class="btn btn-secondary me-2">Keluar</a>
+                                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                    </div>
                                 </div>
-                                <div class="d-flex justify-content-end p-3">
-                                    <a type="button" href="/data-pekerjaan" class="btn btn-secondary me-2">Keluar</a>
-                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                                </div>
-                            </div>
-                        </form>
-                        {{-- @endforeach --}}
+                            </form>
+                            {{-- @endforeach --}}
+                        </div>
                     </div>
-                </div>
+                @endforeach
                 </section>
                 {{-- @endforeach --}}
             </div>
@@ -123,7 +128,7 @@
                             // Hide loading overlay
                             Swal.close();
 
-                            // Show success Swal alepekerjaan
+                            // Show success Swal alert
                             Swal.fire({
                                 title: 'Sukses',
                                 text: response.message,
@@ -138,7 +143,7 @@
                             // Hide loading overlay
                             Swal.close();
 
-                            // Show error Swal alepekerjaan
+                            // Show error Swal alert
                             Swal.fire({
                                 title: 'Error',
                                 text: 'Terjadi kesalahan saat memproses permintaan.',
@@ -151,6 +156,7 @@
         });
     });
 </script>
+
 
 <script>
     function previewImage(event) {

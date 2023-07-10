@@ -54,51 +54,67 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Pasya Abinaya Al mala</td>
-                        <td>1050245708900002</td>
-                        <td>Islam</td>
-                        <td class="text-center">
-                            <span class="badge text-bg-primary rounded-circle p-2">
-                                <i class="bi bi-gender-male"></i>
-                            </span>
-                            <span class="badge rounded-circle p-2" style="background-color: rgb(255, 146, 164)">
-                                <i class="bi bi-gender-female"></i>
-                            </span>
-                        </td>
-                        <td class="text-center">
-                            <span class="badge text-bg-success">
-                                Menetap
-                            </span>
-                            <span class="badge text-bg-warning">
-                                Berkunjung
-                            </span>
-                        </td>
-                        <td>1</td>
-                        <td>08887878379</td>
-                        {{-- Tombol Action --}}
-                        <td class="">
-                            <a class="btn btn-primary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-three-dots-vertical btn-tambah-data"></i>
-                            </a>
-                            <ul class="dropdown-menu ">
-                                <a class="dropdown-item has-icon text-info" href="/detail-warga"><i class="far bi-eye"></i>
-                                    Detail</a>
-                                <a class="dropdown-item has-icon text-warning" href="/edit-warga"><i
-                                        class="far bi-pencil-square"></i>
-                                    Edit</a>
-                                <form action="" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="confirm dropdown-item has-icon text-danger">
-                                        <i class="far bi-trash-fill mt-2"></i><small>Hapus</small></button>
-                                </form>
-                            </ul>
-                        </td>
-                        {{-- Tombol Action --}}
-                    </tr>
+                    @foreach ($warga as $show)
+                        <tr>
+                            <th scope="row">{{ $show->id_warga }}</th>
+                            <td>{{ $show->nama_lengkap }}</td>
+                            <td>{{ $show->nik }}</td>
+                            <td>{{ $show->agama == '0' ? 'Islam' : '' }}
+
+                                {{ $show->agama == '1' ? 'Kristen Protestan' : '' }}
+                                {{ $show->agama == '2' ? 'Kristen Katolik' : '' }}
+                                {{ $show->agama == '3' ? 'Khonghucu' : '' }}
+                                {{ $show->agama == '4' ? 'Hindu' : '' }}
+                                {{ $show->agama == '5' ? 'Buddha' : '' }}
+                            </td>
+                            <td class="text-center">
+                                @if ($show->jenis_kelamin == 'L')
+                                    <span class="badge text-bg-primary rounded-circle p-2">
+                                        <i class="bi bi-gender-male"></i>
+                                    </span>
+                                @else
+                                    <span class="badge rounded-circle p-2" style="background-color: rgb(255, 146, 164)">
+                                        <i class="bi bi-gender-female"></i>
+                                    </span>
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                @if ($show->status_kependudukan == '0')
+                                    <span class="badge text-bg-success">
+                                        Menetap
+                                    </span>
+                                @else
+                                    <span class="badge text-bg-warning">
+                                        Berkunjung
+                                    </span>
+                                @endif
+                            </td>
+                            <td>{{ $show->nomor }}</td>
+                            <td>{{ $show->nomor_telpon }}</td>
+                            {{-- Tombol Action --}}
+                            <td class="">
+                                <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical btn-tambah-data"></i>
+                                </a>
+                                <ul class="dropdown-menu ">
+                                    <a class="dropdown-item has-icon text-info" href="/detail-warga"><i
+                                            class="far bi-eye"></i>
+                                        Detail</a>
+                                    <a class="dropdown-item has-icon text-warning" href="/edit-warga"><i
+                                            class="far bi-pencil-square"></i>
+                                        Edit</a>
+                                    <form action="" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="confirm dropdown-item has-icon text-danger">
+                                            <i class="far bi-trash-fill mt-2"></i><small>Hapus</small></button>
+                                    </form>
+                                </ul>
+                            </td>
+                            {{-- Tombol Action --}}
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -111,7 +127,7 @@
                     <h1 class="modal-title fs-2 bold justify-center">Tambah Data Warga</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('create.rt') }}" id="warga_form" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('create.warga') }}" id="myForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body p-5">
                         <input type="text" name="peran" value="warga" hidden>
@@ -326,8 +342,13 @@
                                             <i class="bi bi-person-square fs-2"></i>
                                         </div>
                                     </div>
-                                    <select class="form-select" name="id_user" aria-label="Default select example">
-                                        <option selected>Pilih di bawah ini</option>
+                                    <select class="form-select " name="id_user" aria-label="Default select example">
+                                        <option selected disabled>Pilih di bawah ini</option>
+                                        @foreach ($rt as $show)
+                                            <option value="{{ $show->id_user }}">
+                                                {{ $show->nomor }} | {{ $show->nama_lengkap }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 @error('id_user')
@@ -342,8 +363,12 @@
                                             <i class="bi bi-briefcase fs-2"></i>
                                         </div>
                                     </div>
-                                    <select class="form-select" name="id_pekerjaan" aria-label="Default select example">
-                                        <option selected>Pilih di bawah ini</option>
+                                    <select class="form-select " name="id_pekerjaan" aria-label="Default select example">
+                                        <option selected disabled>Pilih di bawah ini</option>
+                                        @foreach ($pekerjaan as $show)
+                                            <option value="{{ $show->id_pekerjaan }}">{{ $show->nama_pekerjaan }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 @error('id_pekerjaan')
@@ -372,12 +397,15 @@
         </div>
     </div>
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
 </script>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -386,8 +414,67 @@
 <script src="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+{{-- SELECT2 --}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{{-- <script>
+    $(document).ready(function() {
+        $('.form-select').select2();
+    });
+</script> --}}
+
 <script>
     $(document).ready(function() {
         let table = new DataTable('#myTable');
+    });
+</script>
+
+
+
+<script>
+    // Menggunakan jQuery untuk menangani penyerahan formulir
+    $(document).ready(function() {
+        $('#myForm').on('submit', function(e) {
+            e.preventDefault(); // Mencegah form dari submit normal
+
+            // Menampilkan SweetAlert loading
+            Swal.fire({
+                title: 'Loading...',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                onOpen: function() {
+                    Swal.showLoading();
+                }
+            });
+
+            // Submit formulir secara asinkron dengan menggunakan AJAX
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    Swal.close(); // Menutup SweetAlert loading setelah permintaan berhasil
+                    // Tampilkan SweetAlert sukses
+                    Swal.fire({
+                        title: 'Sukses',
+                        text: response
+                            .message, // Anda dapat menyesuaikan pesan sukses dengan respons yang diterima dari server
+                        icon: 'success'
+                    }).then(function() {
+                        // Redirect ke halaman lain jika perlu
+                        window.location.href = '/data_pekerjaan';
+                    });
+                },
+                error: function(xhr) {
+                    Swal.close(); // Menutup SweetAlert loading jika terjadi kesalahan
+                    // Tampilkan SweetAlert error
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Terjadi kesalahan saat memproses permintaan.',
+                        icon: 'error'
+                    });
+                }
+            });
+        });
     });
 </script>

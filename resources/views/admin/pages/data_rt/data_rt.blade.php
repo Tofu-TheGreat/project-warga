@@ -48,7 +48,7 @@
                         <a class="btn btn-info btn-detail" href="/detail-rt/{{ $show->id_user }}" role="button">
                             <i class="bi bi-eye"></i>
                         </a>
-                        <a class="btn btn-waring btn-warga" role="button">
+                        <a class="btn btn-waring btn-warga" href="/data_warga/{{ $show->id_user }}" role="button">
                             <i class="bi bi-people"></i>
                         </a>
 
@@ -362,6 +362,16 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('preview');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
 <script>
     // Menggunakan jQuery untuk menangani penyerahan formulir
     $(document).ready(function() {

@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\RwController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WargaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,11 +51,17 @@ Route::get('/edit-rt/{id_user}', [HomeController::class, 'edit_rt'])->name('edit
 Route::post('/edit-rt-action', [RwController::class, 'edit_rt'])->name('edit.rt.action');
 Route::get('/hapus_rt/{id_user}', [RwController::class, 'delete_rt'])->name('delete.rt.action');
 
+Route::get('/hapus_pekerjaan/{id_pekerjaan}', [PekerjaanController::class, 'delete_pekerjaan'])->name('delete.pekerjaan');
+Route::post('/edit-pekerjaan-action', [PekerjaanController::class, 'edit_pekerjaan'])->name('edit.pekerjaan.action');
+Route::get('/edit_pekerjaan/{id_pekerjaan}', [HomeController::class, 'edit_pekerjaan'])->name('edit.pekerjaan');
+Route::get('/detail_pekerjaan/{id_pekerjaan}', [HomeController::class, 'detail_pekerjaan'])->name('detail.pekerjaan');
 Route::get('/data_pekerjaan', [HomeController::class, 'show_pekerjaan'])->name('show.pekerjaan');
 Route::post('/tambah_pekerjaan', [PekerjaanController::class, 'create_pekerjaan'])->name('create.pekerjaan');
 
 Route::post('/tambah_rt', [RwController::class, 'create_rt'])->name('create.rt');
 
+Route::get('/data_warga/{id_user}', [HomeController::class, 'show_warga'])->name('show.warga');
+Route::post('/tambah_warga', [WargaController::class, 'create_warga'])->name('create.warga');
 // route data warga
 
 
@@ -76,9 +83,7 @@ Route::get('/data-pekerjaan', function () {
     return view('Admin.pages.data_pekerjaan.data_pekerjaan');
 });
 
-Route::get('/detail-pekerjaan', function () {
-    return view('Admin.pages.data_pekerjaan.detail_pekerjaan');
-});
+
 
 Route::get('/edit-pekerjaan', function () {
     return view('Admin.pages.data_pekerjaan.edit_pekerjaan');

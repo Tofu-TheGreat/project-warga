@@ -60,18 +60,18 @@
                                     <i class="bi bi-three-dots-vertical btn-tambah-data"></i>
                                 </a>
                                 <ul class="dropdown-menu ">
-                                    <a class="dropdown-item has-icon text-info" href="/detail-pekerjaan"><i
-                                            class="far bi-eye"></i>
+                                    <a class="dropdown-item has-icon text-info"
+                                        href="/detail_pekerjaan/{{ $show->id_pekerjaan }}"><i class="far bi-eye"></i>
                                         Detail</a>
-                                    <a class="dropdown-item has-icon text-warning" href="/edit-pekerjaan"><i
+                                    <a class="dropdown-item has-icon text-warning"
+                                        href="/edit_pekerjaan/{{ $show->id_pekerjaan }}"><i
                                             class="far bi-pencil-square"></i>
                                         Edit</a>
-                                    <form action="" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="confirm dropdown-item has-icon text-danger">
-                                            <i class="far bi-trash-fill mt-2"></i><small>Hapus</small></button>
-                                    </form>
+
+                                    <a type="button" href="/hapus_pekerjaan/{{ $show->id_pekerjaan }}"
+                                        class="confirm dropdown-item has-icon text-danger btn-hapus">
+                                        <i class="far bi-trash-fill mt-2"></i><small>Hapus</small></a>
+
                                 </ul>
                             </td>
                             {{-- Tombol Action --}}
@@ -128,6 +128,75 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    $(document).ready(function() {
+        $('.btn-hapus').on('click', function(e) {
+            e.preventDefault();
+
+            var url = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Anda yakin ingin menghapus item ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus',
+                cancelButtonText: 'Batal'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Show loading overlay
+                    Swal.fire({
+                        title: 'Loading',
+                        html: 'Menghapus item...',
+                        allowOutsideClick: false,
+                        onBeforeOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    // Submit form asynchronously using AJAX
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        data: {
+                            _method: 'GET',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            // Hide loading overlay
+                            Swal.close();
+
+                            // Show success Swal alert
+                            Swal.fire({
+                                title: 'Sukses',
+                                text: response.message,
+                                icon: 'success'
+                            }).then(function() {
+                                // Redirect to the specified route
+                                window.location.href =
+                                    '{{ route('show.rt') }}';
+                            });
+                        },
+                        error: function(xhr) {
+                            // Hide loading overlay
+                            Swal.close();
+
+                            // Show error Swal alert
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Terjadi kesalahan saat memproses permintaan.',
+                                icon: 'error'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<script>
     // Menggunakan jQuery untuk menangani penyerahan formulir
     $(document).ready(function() {
         $('#myForm').on('submit', function(e) {
@@ -174,7 +243,11 @@
         });
     });
 </script>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

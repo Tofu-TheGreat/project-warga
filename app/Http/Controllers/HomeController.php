@@ -31,6 +31,11 @@ class HomeController extends Controller
     {
         $warga = Warga::where('id_user', $id_user)
             ->get();
+        $pekerjaan = Pekerjaan::select('*')
+            ->get();
+        $rt = User::where('peran', 'rt')
+            ->get();
+        return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt'));
     }
 
     //END
@@ -40,6 +45,24 @@ class HomeController extends Controller
         $pekerjaan = Pekerjaan::select('*')
             ->get();
         return view('admin.pages.data_pekerjaan.data_pekerjaan', compact('pekerjaan'));
+    }
+
+    //END
+    //Halaman menampilkan detail pekerjaan
+    public function detail_pekerjaan($id_pekerjaan)
+    {
+        $pekerjaan = Pekerjaan::where('id_pekerjaan', $id_pekerjaan)
+            ->get();
+        return view('admin.pages.data_pekerjaan.detail_pekerjaan', compact('pekerjaan'));
+    }
+
+    //END
+    //Halaman menampilkan detail pekerjaan
+    public function edit_pekerjaan($id_pekerjaan)
+    {
+        $pekerjaan = Pekerjaan::where('id_pekerjaan', $id_pekerjaan)
+            ->get();
+        return view('admin.pages.data_pekerjaan.edit_pekerjaan', compact('pekerjaan'));
     }
 
     //END
