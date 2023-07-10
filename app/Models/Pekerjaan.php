@@ -10,7 +10,7 @@ class Pekerjaan extends Model
     use HasFactory;
 
     protected $table = 'pekerjaan';
-    protected $fillable = 'nama_pekerjaan';
+    protected $fillable = ['nama_pekerjaan'];
 
     public function user()
     {

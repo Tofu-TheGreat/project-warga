@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\RwController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -41,9 +42,6 @@ Route::post('/login_action', [UserController::class, 'login'])->name('login.acti
 
 
 // Rute yang hanya dapat diakses oleh Admin
-
-Route::middleware(['auth', 'admin'])->group(function () {
-});
 Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt');
 
 
@@ -52,6 +50,8 @@ Route::get('/edit-rt/{id_user}', [HomeController::class, 'edit_rt'])->name('edit
 Route::post('/edit-rt-action', [RwController::class, 'edit_rt'])->name('edit.rt.action');
 Route::get('/hapus_rt/{id_user}', [RwController::class, 'delete_rt'])->name('delete.rt.action');
 
+Route::get('/data_pekerjaan', [HomeController::class, 'show_pekerjaan'])->name('show.pekerjaan');
+Route::post('/tambah_pekerjaan', [PekerjaanController::class, 'create_pekerjaan'])->name('create.pekerjaan');
 
 Route::post('/tambah_rt', [RwController::class, 'create_rt'])->name('create.rt');
 

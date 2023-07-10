@@ -35,10 +35,11 @@ class HomeController extends Controller
 
     //END
     //Halaman menampilkan kumpulan pekerjaan
-    public function show_pekerjaan($id_pekerjaan)
+    public function show_pekerjaan()
     {
-        $pekerjaan = Pekerjaan::where('id_pekerjaan', $id_pekerjaan)
+        $pekerjaan = Pekerjaan::select('*')
             ->get();
+        return view('admin.pages.data_pekerjaan.data_pekerjaan', compact('pekerjaan'));
     }
 
     //END
