@@ -52,6 +52,7 @@ Route::get('/edit-rt/{id_user}', [HomeController::class, 'edit_rt'])->name('edit
 Route::post('/edit-rt-action', [RwController::class, 'edit_rt'])->name('edit.rt.action');
 Route::get('/hapus_rt/{id_user}', [RwController::class, 'delete_rt'])->name('delete.rt.action');
 
+
 Route::post('/tambah_rt', [RwController::class, 'create_rt'])->name('create.rt');
 
 // route data warga

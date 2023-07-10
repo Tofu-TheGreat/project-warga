@@ -27,7 +27,8 @@
                                 <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:12px; left: 60px">Edit RT
                                 </h2>
                             </div>
-                            <a href="/detailrt" class="btn btn-danger rounded-pill" role="button">
+                            <a href="/hapus_rt/{{ $show->id_user }}" class="btn btn-danger rounded-pill btn-hapus"
+                                role="button">
                                 <i class="bi bi-trash text-white "></i>
                             </a>
                         </div>
@@ -35,7 +36,8 @@
                     <div class="card">
                         <div class="card-body ">
                             @foreach ($user as $show)
-                                <form action="{{ route('edit.rt.action') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('edit.rt.action') }}" id="myForm" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <input type="text" name="foto" value="{{ $show->foto }}" hidden>
                                     <input type="text" name="id_user" value="{{ $show->id_user }}" hidden id="">
@@ -373,7 +375,7 @@
                                             <small class="text-secondary">Note: Maksimal 1 mb</small>
                                         </div>
                                         <div class="d-flex justify-content-end p-3">
-                                            <button type="button" class="btn btn-secondary me-2">Keluar</button>
+                                            <a type="button" href="/datart" class="btn btn-secondary me-2">Keluar</a>
                                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                         </div>
                                     </div>
@@ -387,16 +389,142 @@
         </div>
     </div>
 @endsection
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function() {
+        $('.btn-hapus').on('click', function(e) {
+            e.preventDefault();
+
+            var url = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Anda yakin ingin menghapus item ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus',
+                cancelButtonText: 'Batal'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Show loading overlay
+                    Swal.fire({
+                        title: 'Loading',
+                        html: 'Menghapus item...',
+                        allowOutsideClick: false,
+                        onBeforeOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    // Submit form asynchronously using AJAX
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        data: {
+                            _method: 'GET',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            // Hide loading overlay
+                            Swal.close();
+
+                            // Show success Swal alert
+                            Swal.fire({
+                                title: 'Sukses',
+                                text: response.message,
+                                icon: 'success'
+                            }).then(function() {
+                                // Redirect to the specified route
+                                window.location.href =
+                                    '{{ route('show.rt') }}';
+                            });
+                        },
+                        error: function(xhr) {
+                            // Hide loading overlay
+                            Swal.close();
+
+                            // Show error Swal alert
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Terjadi kesalahan saat memproses permintaan.',
+                                icon: 'error'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+
 <script>
     function previewImage(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('preview').src = e.target.result;
-                document.getElementById('preview').style.display = 'block';
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('preview');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
     }
+
+    $(document).ready(function() {
+        // Update image preview when the page loads
+        var fotoInput = document.getElementById('foto');
+        if (fotoInput && fotoInput.files.length > 0) {
+            previewImage({
+                target: {
+                    files: [fotoInput.files[0]]
+                }
+            });
+        }
+
+        // Update image preview when the image input changes
+        $('#foto').on('change', function(event) {
+            previewImage(event);
+        });
+
+        $('#myForm').on('submit', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Loading...',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                onOpen: function() {
+                    Swal.showLoading();
+                }
+            });
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    Swal.close();
+                    Swal.fire({
+                        title: 'Sukses',
+                        text: response.message,
+                        icon: 'success'
+                    }).then(function() {
+                        window.location.href = '{{ route('show.rt') }}';
+                    });
+                },
+                error: function(xhr) {
+                    Swal.close();
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Terjadi kesalahan saat memproses permintaan.',
+                        icon: 'error'
+                    });
+                }
+            });
+        });
+    });
 </script>
