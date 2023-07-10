@@ -8,6 +8,10 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .section-title h2 {
     color: var(--green-color);
 }
