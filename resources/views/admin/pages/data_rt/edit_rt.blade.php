@@ -24,7 +24,7 @@
                                 <a href="/datart" class="d-inline text-info">
                                     <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                                 </a>
-                                <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Edit RT
+                                <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:12px; left: 60px">Edit RT
                                 </h2>
                             </div>
                             <a href="/hapus_rt/{{ $show->id_user }}" class="btn btn-danger rounded-pill btn-hapus"
