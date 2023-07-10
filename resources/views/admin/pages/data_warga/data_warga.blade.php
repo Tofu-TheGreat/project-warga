@@ -39,7 +39,7 @@
     @endif
     <div class="container-fluid ">
         <div class="row card mx-2">
-            <table class="table table-bordered table-responsive table-striped">
+            <table id="myTable" class="table table-bordered table-responsive table-striped">
                 <thead class="table-success">
                     <tr>
                         <th>#</th>
@@ -141,7 +141,8 @@
                                             <i class="bi bi-person-vcard-fill fs-2"></i>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control capitalize @error('nik') is-invalid @enderror"
+                                    <input type="text"
+                                        class="form-control capitalize @error('nik') is-invalid @enderror"
                                         value="{{ old('nik') }}" id="nik" name="nik"
                                         placeholder="Masukkan NIK">
                                 </div>
@@ -355,63 +356,15 @@
         </div>
     </div>
 @endsection
-<!-- SweetAlert2 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- SweetAlert2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
-
+{{-- DATA TABLES --}}
+<script src="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <script>
-    // Fungsi untuk menampilkan SweetAlert2 saat submit berhasil
-    function showSuccessAlert() {
-        Swal.fire({
-            title: 'Sukses',
-            text: 'Data berhasil disimpan.',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        });
-    }
-
-    // Fungsi untuk menampilkan SweetAlert2 saat submit gagal
-    function showErrorAlert() {
-        Swal.fire({
-            title: 'Error',
-            text: 'Terjadi kesalahan saat menyimpan data.',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-    }
-
-    // Mendengarkan event submit form
-    document.getElementById('warga_form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Mencegah form submit secara default
-
-        // Menggunakan AJAX atau Fetch untuk mengirim data form secara asynchronous
-        // ...
-
-        // Setelah berhasil atau gagal menyimpan data, panggil fungsi yang sesuai
-        // Contoh:
-        // Jika sukses:
-        showSuccessAlert();
-        // Jika gagal:
-        // showErrorAlert();
+    $(document).ready(function() {
+        let table = new DataTable('#myTable');
     });
-</script>
-<script>
-    function previewImage(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('preview').src = e.target.result;
-                document.getElementById('preview').style.display = 'block';
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
 </script>
