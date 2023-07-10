@@ -12,6 +12,11 @@ html {
     scroll-behavior: smooth;
 }
 
+.logo {
+    border-radius: 10px;
+    border: 1px solid rgba(178, 236, 178, 0.753);
+}
+
 .section-title h2 {
     color: var(--green-color);
 }
