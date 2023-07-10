@@ -174,4 +174,21 @@ class RwController extends Controller
         return redirect()->intended('/datart');
     }
     //END
+    //DELETE RT START
+    public function delete_rt_detail(Request $request, $id_user)
+    {
+        $user = User::where('id_user', $request->id_user)->first();
+        // Hapus foto lama jika ada
+        if ($user->foto != null) {
+            $fotoPath = public_path('image_save/') . $user->foto;
+            if (file_exists($fotoPath)) {
+                unlink($fotoPath);
+            }
+        }
+        $user = User::where('id_user', $id_user)
+            ->delete();
+
+        return redirect()->intended('/datart');
+    }
+    //END
 }

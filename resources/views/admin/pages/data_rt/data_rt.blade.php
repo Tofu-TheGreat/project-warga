@@ -58,10 +58,10 @@
                             <div class="mt-4">
                                 @if ($show->foto == null)
                                     <img src="{{ asset('images/kosong.webp') }}" alt="foto" class="img-rt "
-                                        id="preview" src="#" alt="Preview">
+                                        src="#" alt="Preview">
                                 @else
                                     <img src="../image_save/{{ $show->foto }}" alt="foto" class="img-rt "
-                                        id="preview" src="#" alt="Preview">
+                                        src="#" alt="Preview">
                                 @endif
                             </div>
                         </div>

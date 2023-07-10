@@ -25,8 +25,9 @@
                             </h2>
                         </div>
                         @foreach ($user as $show)
-                            <a href="/edit-rt/{{ $show->id_user }}" class="btn btn-info rounded-pill" role="button">
-                                <i class="bi bi-pencil text-white "></i>
+                            <a href="/edit-rt/{{ $show->id_user }}" class="btn btn-info rounded-pill btn-edit"
+                                role="button">
+                                <i class="bi bi-pencil text-white"></i>
                             </a>
                         @endforeach
                     </div>
@@ -324,3 +325,31 @@
     </div>
     </div>
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.btn-edit').on('click', function(e) {
+            e.preventDefault();
+
+            var url = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Apakah Anda ingin mengedit item ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Proceed with the edit by redirecting to the specified URL
+                    window.location.href = url;
+                }
+            });
+        });
+    });
+</script>
