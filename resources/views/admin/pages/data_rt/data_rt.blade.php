@@ -58,7 +58,7 @@
                             <div class="mt-4">
                                 @if ($show->foto == null)
                                     <img src="{{ asset('images/kosong.webp') }}" alt="foto" class="img-rt "
-                                        src="#" alt="Preview">
+                                        src="#" src="#" alt="Preview">
                                 @else
                                     <img src="../image_save/{{ $show->foto }}" alt="foto" class="img-rt "
                                         src="#" alt="Preview">
@@ -362,6 +362,24 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var preview = document.getElementById('preview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
 <script>
     // Menggunakan jQuery untuk menangani penyerahan formulir
     $(document).ready(function() {
@@ -409,8 +427,6 @@
         });
     });
 </script>
-
-
 
 <script>
     $(document).ready(function() {
