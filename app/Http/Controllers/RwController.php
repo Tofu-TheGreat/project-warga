@@ -71,6 +71,7 @@ class RwController extends Controller
                 'nomor_telpon' => $request->nomor_telpon,
                 'password' => Hash::make($request->password),
             ]);
+            dd($user);
             $user->save();
             return redirect()->intended('/datart');
             // dd($user);
