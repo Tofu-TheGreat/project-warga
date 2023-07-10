@@ -39,8 +39,8 @@
         @endforeach
     @endif
     <div class="container-fluid ">
-        <div class="row card mx-2">
-            <table class="table table-bordered table-responsive table-striped">
+        <div class="row card p-3 mx-2">
+            <table id="myTable1" class="table table-bordered table-responsive table-striped">
                 <thead class="table-success">
                     <tr>
                         <th>#</th>
@@ -181,4 +181,17 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{{-- DATA TABLES --}}
+<script src="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+<script>
+    $(document).ready(function() {
+        let table = new DataTable('#myTable1');
+    });
 </script>
