@@ -21,11 +21,11 @@
                             <a href="/datawarga" class="d-inline text-info">
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                             </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Detail
+                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:12px; left: 60px">Detail
                                 Warga
                             </h2>
                         </div>
-                        <a href="/edit" class="btn btn-info rounded-pill" role="button">
+                        <a href="/edit" class="btn btn-edit btn-info rounded-pill" role="button">
                             <i class="bi bi-pencil text-white "></i>
                         </a>
                     </div>
@@ -49,7 +49,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text ">
-                                                            <i class="bi bi-person-fill"></i>
+                                                            <i class="bi fs-2 bi-person-fill"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
@@ -65,7 +65,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <i class="bi bi-person-vcard-fill"></i>
+                                                            <i class="bi fs-2 bi-person-vcard-fill"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
@@ -83,7 +83,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <i class="bi bi-geo-alt"></i>
+                                                            <i class="bi fs-2 bi-geo-alt"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
@@ -99,7 +99,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <i class="bi bi-list-ol"></i>
+                                                            <i class="bi fs-2 bi-list-ol"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
@@ -119,7 +119,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <i class="bi bi-book-half"></i>
+                                                            <i class="bi fs-2 bi-book-half"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
@@ -137,7 +137,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <i class="bi bi-gender-ambiguous"></i>
+                                                            <i class="bi fs-2 bi-gender-ambiguous"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
@@ -159,7 +159,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text ">
-                                                    <i class="bi bi-postcard-heart-fill"></i>
+                                                    <i class="bi fs-2 bi-postcard-heart-fill"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
@@ -175,7 +175,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-geo-fill"></i>
+                                                    <i class="bi fs-2 bi-geo-fill"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
@@ -194,7 +194,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-stack"></i>
+                                                    <i class="bi fs-2 bi-stack"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
@@ -210,7 +210,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-globe-americas"></i>
+                                                    <i class="bi fs-2 bi-globe-americas"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
@@ -230,7 +230,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-briefcase"></i>
+                                                    <i class="bi fs-2 bi-briefcase"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
@@ -248,7 +248,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-telephone-fill"></i>
+                                                    <i class="bi fs-2 bi-telephone-fill"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
@@ -267,7 +267,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                                <i class="bi bi-calendar-event-fill"></i>
+                                                <i class="bi fs-2 bi-calendar-event-fill"></i>
                                             </div>
                                         </div>
                                         <input type="text"
@@ -288,3 +288,32 @@
     </div>
     </div>
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.btn-edit').on('click', function(e) {
+            e.preventDefault();
+
+            var url = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Apakah Anda ingin mengedit item ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Proceed with the edit by redirecting to the specified URL
+                    window.location.href = url;
+                }
+            });
+        });
+    });
+</script>
