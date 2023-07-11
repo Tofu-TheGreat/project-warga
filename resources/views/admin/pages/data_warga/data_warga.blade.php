@@ -113,12 +113,11 @@
                                     <a class="dropdown-item has-icon text-warning" href="/edit-warga"><i
                                             class="far bi-pencil-square"></i>
                                         Edit</a>
-                                    <form action="" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="confirm dropdown-item has-icon text-danger">
-                                            <i class="far bi-trash-fill mt-2"></i><small>Hapus</small></button>
-                                    </form>
+
+                                    <a type="button" href="/hapus_warga/{{ $show->id_warga }}"
+                                        class="confirm dropdown-item has-icon text-danger">
+                                        <i class="far bi-trash-fill mt-2"></i><small>Hapus</small></a>
+
                                 </ul>
                             </td>
                             {{-- Tombol Action --}}
@@ -166,8 +165,7 @@
                                             <i class="bi bi-person-vcard-fill fs-2"></i>
                                         </div>
                                     </div>
-                                    <input type="text"
-                                        class="form-control capitalize @error('nik') is-invalid @enderror"
+                                    <input type="text" class="form-control capitalize @error('nik') is-invalid @enderror"
                                         value="{{ old('nik') }}" id="nik" name="nik"
                                         placeholder="Masukkan NIK">
                                 </div>
@@ -387,8 +385,7 @@
                         </div>
                         <div class="row">
                             <div class="col"> <label for="formFile" class="form-label">Foto (Opsional)</label>
-                                <input class="form-control" name="foto" type="file" id="formFile"
-                                    onchange="previewImage(event)">
+                                <input class="form-control" name="foto" type="file" id="formFile">
 
                                 <div class="mt-2">
                                     <img id="preview" src="#" alt="Preview"
@@ -438,53 +435,64 @@
     });
 </script>
 
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        var preview = document.getElementById('preview');
 
-@foreach ($warga as $show)
-    <script>
-        // Menggunakan jQuery untuk menangani penyerahan formulir
-        $(document).ready(function() {
-            $('#myForm').on('submit', function(e) {
-                e.preventDefault(); // Mencegah form dari submit normal
+        reader.onload = function() {
+            preview.src = reader.result;
+            preview.style.display = 'block';
+        }
 
-                // Menampilkan SweetAlert loading
-                Swal.fire({
-                    title: 'Loading...',
-                    allowEscapeKey: false,
-                    allowOutsideClick: false,
-                    onOpen: function() {
-                        Swal.showLoading();
-                    }
-                });
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+{{-- 
+<script>
+    // Menggunakan jQuery untuk menangani penyerahan formulir
+    $(document).ready(function() {
+        $('#myForm').on('submit', function(e) {
+            e.preventDefault(); // Mencegah form dari submit normal
 
-                // Submit formulir secara asinkron dengan menggunakan AJAX
-                $.ajax({
-                    url: $(this).attr('action'),
-                    type: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        Swal.close(); // Menutup SweetAlert loading setelah permintaan berhasil
-                        // Tampilkan SweetAlert sukses
-                        Swal.fire({
-                            title: 'Sukses',
-                            text: response
-                                .message, // Anda dapat menyesuaikan pesan sukses dengan respons yang diterima dari server
-                            icon: 'success'
-                        }).then(function() {
-                            // Redirect ke halaman lain jika perlu
-                            window.location.href = '/data_warga/{{ $show->id_user }}';
-                        });
-                    },
-                    error: function(xhr) {
-                        Swal.close(); // Menutup SweetAlert loading jika terjadi kesalahan
-                        // Tampilkan SweetAlert error
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'Terjadi kesalahan saat memproses permintaan.',
-                            icon: 'error'
-                        });
-                    }
-                });
+            // Menampilkan SweetAlert loading
+            Swal.fire({
+                title: 'Loading...',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                onOpen: function() {
+                    Swal.showLoading();
+                }
+            });
+
+            // Submit formulir secara asinkron dengan menggunakan AJAX
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    Swal.close(); // Menutup SweetAlert loading setelah permintaan berhasil
+                    // Tampilkan SweetAlert sukses
+                    Swal.fire({
+                        title: 'Sukses',
+                        text: response
+                            .message, // Anda dapat menyesuaikan pesan sukses dengan respons yang diterima dari server
+                        icon: 'success'
+                    }).then(function() {
+                        // Redirect to the previous page
+                        window.history.back();
+                    });
+                },
+                error: function(xhr) {
+                    Swal.close(); // Menutup SweetAlert loading jika terjadi kesalahan
+                    // Tampilkan SweetAlert error
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Terjadi kesalahan saat memproses permintaan.',
+                        icon: 'error'
+                    });
+                }
             });
         });
-    </script>
-@endforeach
+    });
+</script> --}}

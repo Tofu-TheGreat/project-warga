@@ -20,6 +20,7 @@ class Warga extends Model
         'id_user',
         'tanggal_lahir',
         'jenis_kelamin',
+        'foto',
         'id_pekerjaan',
         'status_perkawinan',
         'status_kependudukan',
@@ -34,6 +35,6 @@ class Warga extends Model
     }
     public function pekerjaan()
     {
-        return $this->hasMany(Pekerjaan::class, 'id_pekerjaan');
+        return $this->hasOne(Pekerjaan::class, 'id_pekerjaan');
     }
 }

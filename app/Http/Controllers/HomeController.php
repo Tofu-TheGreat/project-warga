@@ -59,7 +59,24 @@ class HomeController extends Controller
     {
         $warga = Warga::where('id_warga', $id_warga)
             ->get();
-        return view('admin.pages.data_warga.detail_warga', compact('warga'));
+
+        foreach ($warga as $wargaBaru) {
+            $pekerjaan = Pekerjaan::where('id_pekerjaan', $wargaBaru['id_pekerjaan'])->get();
+            foreach ($pekerjaan as $pekerjaanWarga1) {
+                $pekerjaanWarga = $pekerjaanWarga1["nama_pekerjaan"];
+            }
+        }
+
+        return view('admin.pages.data_warga.detail_warga', compact('warga', 'pekerjaanWarga'));
+    }
+    public function edit_warga($id_warga)
+    {
+        $warga = Warga::where('id_warga', $id_warga)
+            ->get();
+        $pekerjaan = Pekerjaan::all();
+        $rt = User::where('peran', 'rt')
+            ->get();
+        return view('admin.pages.data_warga.edit_warga', compact('warga', 'pekerjaan', 'rt'));
     }
 
 

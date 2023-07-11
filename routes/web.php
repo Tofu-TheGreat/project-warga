@@ -60,9 +60,12 @@ Route::post('/tambah_pekerjaan', [PekerjaanController::class, 'create_pekerjaan'
 
 Route::post('/tambah_rt', [RwController::class, 'create_rt'])->name('create.rt');
 
+Route::post('/edit_warga-action', [WargaController::class, 'edit_warga'])->name('edit.warga.action');
 Route::get('/data_warga/{id_user}', [HomeController::class, 'show_warga'])->name('show.warga');
-Route::get('/detail_warga/{id_user}', [HomeController::class, 'detail_warga'])->name('detail.warga');
+Route::get('/detail_warga/{id_warga}', [HomeController::class, 'detail_warga'])->name('detail.warga');
 Route::get('/data_warga', [HomeController::class, 'show_warga_all'])->name('show.warga.all');
+Route::get('/edit_warga/{id_warga}', [HomeController::class, 'edit_warga'])->name('edit.warga');
+Route::get('/hapus_warga/{id_warga}', [WargaController::class, 'delete_warga'])->name('delete.warga');
 Route::post('/tambah_warga', [WargaController::class, 'create_warga'])->name('create.warga');
 // route data warga
 
