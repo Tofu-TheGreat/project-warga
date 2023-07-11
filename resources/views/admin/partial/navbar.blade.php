@@ -4,7 +4,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/">
                 <!-- Logo icon -->
                 <b class="logo-icon">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -30,7 +30,7 @@
             <!-- End Logo -->
             <!-- ============================================================== -->
             <!-- This is for the sidebar toggle which is visible on mobile only -->
-            <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+            <a class="nav-toggler waves-effect waves-light d-block d-md-none" href=""><i
                     class="ti-menu ti-close"></i></a>
         </div>
         <!-- ============================================================== -->
@@ -44,9 +44,8 @@
                 <!-- ============================================================== -->
                 <!-- Search -->
                 <!-- ============================================================== -->
-                <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark"
-                        href="javascript:void(0)"><i class="mdi mdi-magnify me-1"></i> <span
-                            class="font-16">Search</span></a>
+                <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href=""><i
+                            class="mdi mdi-magnify me-1"></i> <span class="font-16">Search</span></a>
                     <form class="app-search position-absolute">
                         <input type="text" class="form-control" placeholder="Search &amp; enter"> <a
                             class="srh-btn"><i class="mdi mdi-window-close"></i></a>
@@ -64,15 +63,21 @@
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#"
                         id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="../assets/images/users/profile.png" alt="user" class="rounded-circle"
-                            width="31">
+                            width="40" style="border: 3px solid rgba(189, 189, 241, 0.87)">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
-                            My Profile</a>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i>
-                            My Balance</a>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
-                            Inbox</a>
+                        <a class="dropdown-item fs-5" href="/profile"><i
+                                class="ti-user text-warning m-r-5 m-l-5 fs-3 p-1"></i>
+                            Profile</a>
+                        <a class="dropdown-item fs-5" href=""><i
+                                class="mdi mdi-account-key m-r-5 m-l-5 fs-3 p-1"></i>
+                            Ubah Password</a>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <a class="dropdown-item fs-5 text-danger" href=""><i
+                                class="mdi mdi-arrow-left-box m-r-5 m-l-5 fs-3 p-1 "></i>
+                            Logout</a>
                     </ul>
                 </li>
                 <!-- ============================================================== -->
