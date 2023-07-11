@@ -90,3 +90,9 @@ Route::get('/data-pekerjaan', function () {
 Route::get('/edit-pekerjaan', function () {
     return view('Admin.pages.data_pekerjaan.edit_pekerjaan');
 });
+
+// profile route
+
+Route::get('/profile', function () {
+    return view('Pages.profile');
+});
