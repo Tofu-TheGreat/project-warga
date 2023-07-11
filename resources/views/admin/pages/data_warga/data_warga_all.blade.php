@@ -1,7 +1,7 @@
 @extends('admin.pages.index')
 
 @section('konten')
-    <div class=" mx-2">
+    <div class="mx-2">
         <div class="page-breadcrumb">
             <div class="row align-items-center">
                 <div class="col-6">
@@ -9,7 +9,7 @@
                         <ol class="breadcrumb mb-0 d-flex align-items-center">
                             <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
                                         class="mdi mdi-home-outline fs-4"></i></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Data RT</li>
+                            <li class="breadcrumb-item active" aria-current="page">Data Warga</li>
                         </ol>
                     </nav>
                 </div>
@@ -20,10 +20,11 @@
                             <a href="/dashboard" class="d-inline text-info">
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3 p-1 rounded-circle"></i>
                             </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data RT
+                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data Warga
                             </h2>
                         </div>
-                        <button data-bs-toggle="modal" data-bs-target="#modaltambah_rt" class="btn btn-info rounded-pill">
+                        <button data-bs-toggle="modal" data-bs-target="#modaltambah_warga"
+                            class="btn btn-info rounded-pill">
                             <i class="bi bi-patch-plus text-white"></i>
                         </button>
                     </div>
@@ -37,53 +38,105 @@
         @endforeach
     @endif
     <div class="container-fluid ">
-        <div class="row ms-5">
-            @foreach ($user as $show)
-                <div class="col">
-                    <div class="card person">
+        <div class="row card p-3 mx-2">
+            <table id="myTable" class="table table-bordered table-responsive table-striped">
+                <thead class="table-success">
+                    <tr>
+                        <th>#</th>
+                        <th>Nama</th>
+                        <th>NIK</th>
+                        <th>Agama</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Status Kependudukan</th>
+                        <th>RT</th>
+                        <th>Nomor Telpon</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $no = 0;
+                    ?>
+                    @foreach ($warga as $show)
+                        <?php
+                        $no++;
+                        ?>
+                        <tr>
+                            <th scope="row">{{ $no }}</th>
+                            <td>{{ $show->nama_lengkap }}</td>
+                            <td>{{ $show->nik }}</td>
+                            <td>{{ $show->agama == '0' ? 'Islam' : '' }}
 
-                        <a class="btn btn-danger btn-hapus" href="/hapus_rt/{{ $show->id_user }}" role="button">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                        <a class="btn btn-info btn-detail" href="/detail-rt/{{ $show->id_user }}" role="button">
-                            <i class="bi bi-eye"></i>
-                        </a>
-                        <a class="btn btn-waring btn-warga" href="/data_warga/{{ $show->id_user }}" role="button">
-                            <i class="bi bi-people"></i>
-                        </a>
-
-                        <div class="d-flex justify-content-center">
-                            <div class="card-border-top">
-                            </div>
-                            <div class="mt-4">
-                                @if ($show->foto == null)
-                                    <img src="{{ asset('images/kosong.webp') }}" alt="foto" class="img-rt "
-                                        src="#" src="#" alt="Preview">
+                                {{ $show->agama == '1' ? 'Kristen Protestan' : '' }}
+                                {{ $show->agama == '2' ? 'Kristen Katolik' : '' }}
+                                {{ $show->agama == '3' ? 'Khonghucu' : '' }}
+                                {{ $show->agama == '4' ? 'Hindu' : '' }}
+                                {{ $show->agama == '5' ? 'Buddha' : '' }}
+                            </td>
+                            <td class="text-center">
+                                @if ($show->jenis_kelamin == 'L')
+                                    <span class="badge text-bg-primary rounded-circle p-2">
+                                        <i class="bi bi-gender-male"></i>
+                                    </span>
                                 @else
-                                    <img src="../image_save/{{ $show->foto }}" alt="foto" class="img-rt "
-                                        src="#" alt="Preview">
+                                    <span class="badge rounded-circle p-2" style="background-color: rgb(255, 146, 164)">
+                                        <i class="bi bi-gender-female"></i>
+                                    </span>
                                 @endif
-                            </div>
-                        </div>
-                        <span> {{ $show->nama_lengkap }}</span>
-                        <p class="job"> {{ $show->nomor }}</p>
-                    </div>
-                </div>
-            @endforeach
+                            </td>
+                            <td class="text-center">
+                                @if ($show->status_kependudukan == '0')
+                                    <span class="badge text-bg-success">
+                                        Menetap
+                                    </span>
+                                @else
+                                    <span class="badge text-bg-warning">
+                                        Berkunjung
+                                    </span>
+                                @endif
+                            </td>
+                            <td>{{ $show->user->nomor }}</td>
+                            <td>{{ $show->nomor_telpon }}</td>
+                            {{-- Tombol Action --}}
+                            <td class="">
+                                <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical btn-tambah-data"></i>
+                                </a>
+                                <ul class="dropdown-menu ">
+                                    <a class="dropdown-item has-icon text-info" href="/detail-warga"><i
+                                            class="far bi-eye"></i>
+                                        Detail</a>
+                                    <a class="dropdown-item has-icon text-warning" href="/edit-warga"><i
+                                            class="far bi-pencil-square"></i>
+                                        Edit</a>
+                                    <form action="" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="confirm dropdown-item has-icon text-danger">
+                                            <i class="far bi-trash-fill mt-2"></i><small>Hapus</small></button>
+                                    </form>
+                                </ul>
+                            </td>
+                            {{-- Tombol Action --}}
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="modaltambah_rt" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modaltambah_warga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content rounded-5 ">
                 <div class="modal-header p-4 d-flex ">
-                    <h1 class="modal-title fs-2 bold justify-center">Tambah Data RT</h1>
+                    <h1 class="modal-title fs-2 bold justify-center">Tambah Data Warga</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('create.rt') }}" id="myForm" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('create.warga') }}" id="myForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body p-5">
-                        <input type="text" name="peran" value="rt" hidden>
+                        <input type="text" name="peran" value="warga" hidden>
                         <div class="row">
                             <div class="form-group col">
                                 <label for="nama_lengkap">Nama Lengkap: </label>
@@ -110,7 +163,8 @@
                                             <i class="bi bi-person-vcard-fill fs-2"></i>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control capitalize @error('nik') is-invalid @enderror"
+                                    <input type="text"
+                                        class="form-control capitalize @error('nik') is-invalid @enderror"
                                         value="{{ old('nik') }}" id="nik" name="nik"
                                         placeholder="Masukkan NIK">
                                 </div>
@@ -287,35 +341,43 @@
 
                         <div class="row">
                             <div class="form-group col">
-                                <label for="nomor">Nomor RT: </label>
+                                <label for="id_user">Dari RT : </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text ">
-                                            <i class="bi bi-list-ol fs-2"></i>
+                                            <i class="bi bi-person-square fs-2"></i>
                                         </div>
                                     </div>
-                                    <input type="text"
-                                        class="form-control capitalize @error('nomor') is-invalid @enderror"
-                                        value="RT-{{ old('nomor') }}" id="nomor" name="nomor"
-                                        placeholder="Masukkan Nomor Telepon">
+                                    <select class="form-select " name="id_user" aria-label="Default select example">
+                                        <option selected disabled>Pilih di bawah ini</option>
+                                        @foreach ($rt as $show)
+                                            <option value="{{ $show->id_user }}">
+                                                {{ $show->nomor }} | {{ $show->nama_lengkap }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                @error('nomor')
+                                @error('id_user')
                                     {{ $message }}
                                 @enderror
                             </div>
                             <div class="form-group col">
-                                <label for="password">Password : </label>
+                                <label for="id_pekerjaan">Pekerjaan Warga : </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text ">
-                                            <i class="bi bi-key fs-2"></i>
+                                            <i class="bi bi-briefcase fs-2"></i>
                                         </div>
                                     </div>
-                                    <input type="password"
-                                        class="form-control capitalize @error('password') is-invalid @enderror"
-                                        value="" id="password" name="password" placeholder="Masukkan Password ">
+                                    <select class="form-select " name="id_pekerjaan" aria-label="Default select example">
+                                        <option selected disabled>Pilih di bawah ini</option>
+                                        @foreach ($pekerjaan as $show)
+                                            <option value="{{ $show->id_pekerjaan }}">{{ $show->nama_pekerjaan }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                @error('password')
+                                @error('id_pekerjaan')
                                     {{ $message }}
                                 @enderror
                             </div>
@@ -330,23 +392,6 @@
                                         style="max-width: 200px; max-height: 200px; display: none;">
                                 </div>
                             </div>
-                            <div class="form-group col">
-                                <label for="password_confirmation">Password Confirmation : </label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text ">
-                                            <i class="bi bi-key-fill fs-2"></i>
-                                        </div>
-                                    </div>
-                                    <input type="password"
-                                        class="form-control capitalize @error('password_confirmation') is-invalid @enderror"
-                                        value="" id="password_confirmation" name="password_confirmation"
-                                        placeholder="Masukkan Konfirmasi Password ">
-                                </div>
-                                @error('password_confirmation')
-                                    {{ $message }}
-                                @enderror
-                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -358,39 +403,41 @@
         </div>
     </div>
 @endsection
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+</script>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-    function previewImage(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                var preview = document.getElementById('preview');
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
-
-<script>
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var output = document.getElementById('preview');
-            output.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script>
+{{-- DATA TABLES --}}
+<script src="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+{{-- SELECT2 --}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 {{-- <script>
+    $(document).ready(function() {
+        $('.form-select').select2();
+    });
+</script> --}}
+
+<script>
+    $(document).ready(function() {
+        let table = new DataTable('#myTable');
+    });
+</script>
+
+
+
+<script>
     // Menggunakan jQuery untuk menangani penyerahan formulir
     $(document).ready(function() {
         $('#myForm').on('submit', function(e) {
@@ -421,7 +468,7 @@
                         icon: 'success'
                     }).then(function() {
                         // Redirect ke halaman lain jika perlu
-                        window.location.href = '/datart';
+                        window.location.href = '/data_warga';
                     });
                 },
                 error: function(xhr) {
@@ -431,58 +478,6 @@
                         title: 'Error',
                         text: 'Terjadi kesalahan saat memproses permintaan.',
                         icon: 'error'
-                    });
-                }
-            });
-        });
-    });
-</script> --}}
-
-<script>
-    $(document).ready(function() {
-        $('.btn-hapus').on('click', function(e) {
-            e.preventDefault();
-
-            var url = $(this).attr('href');
-
-            Swal.fire({
-                title: 'Konfirmasi',
-                text: 'Anda yakin ingin menghapus item ini?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Hapus',
-                cancelButtonText: 'Batal'
-            }).then(function(result) {
-                if (result.isConfirmed) {
-                    // Submit formulir secara asinkron dengan menggunakan AJAX
-                    $.ajax({
-                        url: url,
-                        type: 'GET',
-                        data: {
-                            _method: 'GET',
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(response) {
-                            // Tampilkan SweetAlert sukses
-                            Swal.fire({
-                                title: 'Sukses',
-                                text: response.message,
-                                icon: 'success'
-                            }).then(function() {
-                                // Refresh halaman setelah menghapus item
-                                window.location.reload();
-                            });
-                        },
-                        error: function(xhr) {
-                            // Tampilkan SweetAlert error
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'Terjadi kesalahan saat memproses permintaan.',
-                                icon: 'error'
-                            });
-                        }
                     });
                 }
             });

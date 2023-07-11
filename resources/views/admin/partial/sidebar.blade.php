@@ -10,8 +10,9 @@
                         aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">Data
                             RT</span></a>
                 </li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/datawarga"
-                        aria-expanded="false"><i class="mdi mdi-human-male-female"></i><span class="hide-menu">Data
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="/data_warga" aria-expanded="false"><i class="mdi mdi-human-male-female"></i><span
+                            class="hide-menu">Data
                             Warga</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                         href="/data_pekerjaan" aria-expanded="false"><i class="mdi mdi-briefcase"></i><span

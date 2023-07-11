@@ -29,14 +29,39 @@ class HomeController extends Controller
     //Halaman menampilkan warga
     public function show_warga($id_user)
     {
-        $warga = Warga::where('id_user', $id_user)
+        $warga = User::find($id_user)
+            ->warga()
+            ->where('id_user', $id_user)
+            ->get();
+
+        $nomor = User::select('nomor')
+            ->where('id_user', $id_user)
             ->get();
         $pekerjaan = Pekerjaan::select('*')
             ->get();
         $rt = User::where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt'));
+        return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt', 'nomor'));
     }
+    public function show_warga_all()
+    {
+        $warga = Warga::all();
+
+
+        $pekerjaan = Pekerjaan::select('*')
+            ->get();
+        $rt = User::where('peran', 'rt')
+            ->get();
+        return view('admin.pages.data_warga.data_warga_all', compact('warga', 'pekerjaan', 'rt'));
+    }
+
+    public function detail_warga($id_warga)
+    {
+        $warga = Warga::where('id_warga', $id_warga)
+            ->get();
+        return view('admin.pages.data_warga.detail_warga', compact('warga'));
+    }
+
 
     //END
     //Halaman menampilkan kumpulan pekerjaan

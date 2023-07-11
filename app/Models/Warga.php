@@ -9,6 +9,8 @@ class Warga extends Model
 {
     use HasFactory;
 
+
+    protected $primaryKey = 'id_warga';
     protected $table = 'warga';
     protected $fillable = [
         'nama_lengkap',
@@ -29,5 +31,9 @@ class Warga extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+    public function pekerjaan()
+    {
+        return $this->hasMany(Pekerjaan::class, 'id_pekerjaan');
     }
 }

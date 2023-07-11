@@ -9,7 +9,7 @@
                         <ol class="breadcrumb mb-0 d-flex align-items-center">
                             <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
                                         class="mdi mdi-home-outline fs-4"></i></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Data Warga</li>
+                            <li class="breadcrumb-item active" aria-current="page">Data Warga </li>
                         </ol>
                     </nav>
                 </div>
@@ -20,8 +20,11 @@
                             <a href="/dashboard" class="d-inline text-info">
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3 p-1 rounded-circle"></i>
                             </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data Warga
-                            </h2>
+                            @foreach ($nomor as $show)
+                                <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data
+                                    Warga {{ $show->nomor }}
+                                </h2>
+                            @endforeach
                         </div>
                         <button data-bs-toggle="modal" data-bs-target="#modaltambah_warga"
                             class="btn btn-info rounded-pill">
@@ -54,9 +57,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    $no = 0;
+                    ?>
                     @foreach ($warga as $show)
+                        <?php
+                        $no++;
+                        ?>
                         <tr>
-                            <th scope="row">{{ $show->id_warga }}</th>
+                            <th scope="row">{{ $no }}</th>
                             <td>{{ $show->nama_lengkap }}</td>
                             <td>{{ $show->nik }}</td>
                             <td>{{ $show->agama == '0' ? 'Islam' : '' }}
@@ -89,7 +98,7 @@
                                     </span>
                                 @endif
                             </td>
-                            <td>{{ $show->nomor }}</td>
+                            <td>{{ $show->user->nomor }}</td>
                             <td>{{ $show->nomor_telpon }}</td>
                             {{-- Tombol Action --}}
                             <td class="">
@@ -98,8 +107,8 @@
                                     <i class="bi bi-three-dots-vertical btn-tambah-data"></i>
                                 </a>
                                 <ul class="dropdown-menu ">
-                                    <a class="dropdown-item has-icon text-info" href="/detail-warga"><i
-                                            class="far bi-eye"></i>
+                                    <a class="dropdown-item has-icon text-info"
+                                        href="/detail_warga/{{ $show->id_warga }}"><i class="far bi-eye"></i>
                                         Detail</a>
                                     <a class="dropdown-item has-icon text-warning" href="/edit-warga"><i
                                             class="far bi-pencil-square"></i>
@@ -430,51 +439,52 @@
 </script>
 
 
+@foreach ($warga as $show)
+    <script>
+        // Menggunakan jQuery untuk menangani penyerahan formulir
+        $(document).ready(function() {
+            $('#myForm').on('submit', function(e) {
+                e.preventDefault(); // Mencegah form dari submit normal
 
-<script>
-    // Menggunakan jQuery untuk menangani penyerahan formulir
-    $(document).ready(function() {
-        $('#myForm').on('submit', function(e) {
-            e.preventDefault(); // Mencegah form dari submit normal
+                // Menampilkan SweetAlert loading
+                Swal.fire({
+                    title: 'Loading...',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    onOpen: function() {
+                        Swal.showLoading();
+                    }
+                });
 
-            // Menampilkan SweetAlert loading
-            Swal.fire({
-                title: 'Loading...',
-                allowEscapeKey: false,
-                allowOutsideClick: false,
-                onOpen: function() {
-                    Swal.showLoading();
-                }
-            });
-
-            // Submit formulir secara asinkron dengan menggunakan AJAX
-            $.ajax({
-                url: $(this).attr('action'),
-                type: 'POST',
-                data: $(this).serialize(),
-                success: function(response) {
-                    Swal.close(); // Menutup SweetAlert loading setelah permintaan berhasil
-                    // Tampilkan SweetAlert sukses
-                    Swal.fire({
-                        title: 'Sukses',
-                        text: response
-                            .message, // Anda dapat menyesuaikan pesan sukses dengan respons yang diterima dari server
-                        icon: 'success'
-                    }).then(function() {
-                        // Redirect ke halaman lain jika perlu
-                        window.location.href = '/data_pekerjaan';
-                    });
-                },
-                error: function(xhr) {
-                    Swal.close(); // Menutup SweetAlert loading jika terjadi kesalahan
-                    // Tampilkan SweetAlert error
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Terjadi kesalahan saat memproses permintaan.',
-                        icon: 'error'
-                    });
-                }
+                // Submit formulir secara asinkron dengan menggunakan AJAX
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        Swal.close(); // Menutup SweetAlert loading setelah permintaan berhasil
+                        // Tampilkan SweetAlert sukses
+                        Swal.fire({
+                            title: 'Sukses',
+                            text: response
+                                .message, // Anda dapat menyesuaikan pesan sukses dengan respons yang diterima dari server
+                            icon: 'success'
+                        }).then(function() {
+                            // Redirect ke halaman lain jika perlu
+                            window.location.href = '/data_warga/{{ $show->id_user }}';
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.close(); // Menutup SweetAlert loading jika terjadi kesalahan
+                        // Tampilkan SweetAlert error
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Terjadi kesalahan saat memproses permintaan.',
+                            icon: 'error'
+                        });
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
+@endforeach
