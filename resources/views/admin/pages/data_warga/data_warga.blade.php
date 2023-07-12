@@ -17,7 +17,7 @@
                 <div class="card p-3 px-4  bg-primary">
                     <div class="d-flex justify-content-between">
                         <div class="">
-                            <a href="/dashboard" class="d-inline text-info">
+                            <a href="/datart" class="d-inline text-info">
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3 p-1 rounded-circle"></i>
                             </a>
                             @foreach ($nomor as $show)
@@ -385,7 +385,8 @@
                         </div>
                         <div class="row">
                             <div class="col"> <label for="formFile" class="form-label">Foto (Opsional)</label>
-                                <input class="form-control" name="foto" type="file" id="formFile">
+                                <input class="form-control" name="foto" type="file" id="formFile"
+                                    onchange="previewImage(event)">
 
                                 <div class="mt-2">
                                     <img id="preview" src="#" alt="Preview"
@@ -403,9 +404,6 @@
         </div>
     </div>
 @endsection
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

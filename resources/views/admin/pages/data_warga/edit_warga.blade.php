@@ -10,8 +10,9 @@
                             <ol class="breadcrumb mb-0 d-flex align-items-center">
                                 <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
                                             class="mdi mdi-home-outline fs-4"></i></a></li>
-                                <li class="breadcrumb-item"><a href="/datawarga" class="link">Data Warga</a></li>
-                                <li class="breadcrumb-item"><a href="/detail-warga" class="link">Detail Warga</a></li>
+                                <li class="breadcrumb-item"><a href="/data_warga" class="link">Data Warga</a></li>
+                                <li class="breadcrumb-item"><a href="/detail_warga/{{ $show->id_warga }}"
+                                        class="link">Detail Warga</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Edit Warga</li>
                             </ol>
                         </nav>
@@ -263,8 +264,7 @@
                                                         <i class="bi bi-stack fs-2"></i>
                                                     </div>
                                                 </div>
-                                                <select disabled class="form-select" name="peran"
-                                                    aria-label="Default select example">
+                                                <select disabled class="form-select" aria-label="Default select example">
                                                     <option>Pilih di bawah ini</option>
                                                     <option selected>
                                                         Warga

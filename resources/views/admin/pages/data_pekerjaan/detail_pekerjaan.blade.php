@@ -1,24 +1,25 @@
 @extends('admin.pages.index')
 
 @section('konten')
-    <div class=" mx-2">
-        <div class="page-breadcrumb">
-            <div class="row align-items-center">
-                <div class="col-6">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0 d-flex align-items-center">
-                            <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
-                                        class="mdi mdi-home-outline fs-4"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/data-pekerjaan" class="link">Data Pekerjaan</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Detail Pekerjaan</li>
-                        </ol>
-                    </nav>
-                </div>
-                @foreach ($pekerjaan as $show)
+    @foreach ($pekerjaan as $show)
+        <div class=" mx-2">
+            <div class="page-breadcrumb">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 d-flex align-items-center">
+                                <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
+                                            class="mdi mdi-home-outline fs-4"></i></a></li>
+                                <li class="breadcrumb-item"><a href="/data_pekerjaan" class="link">Data Pekerjaan</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Detail Pekerjaan</li>
+                            </ol>
+                        </nav>
+                    </div>
+
                     <div class="card p-3 px-4 bg-primary">
                         <div class="d-flex justify-content-between">
                             <div class="">
-                                <a href="/data-pekerjaan" class="d-inline text-info">
+                                <a href="/data_pekerjaan" class="d-inline text-info">
                                     <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                                 </a>
                                 <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:12px; left: 60px">Detail
@@ -33,8 +34,8 @@
                             {{-- @endforeach --}}
                         </div>
                     </div>
-                @endforeach
-                @foreach ($pekerjaan as $show)
+
+
                     <div class="card">
                         <div class="card-body ">
                             {{-- @foreach ($user as $show) --}}
@@ -69,13 +70,14 @@
                             {{-- @endforeach --}}
                         </div>
                     </div>
-                @endforeach
 
-                </section>
+
+                    </section>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
+        </div>
+    @endforeach
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

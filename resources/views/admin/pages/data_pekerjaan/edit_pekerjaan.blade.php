@@ -5,23 +5,25 @@
         <div class="page-breadcrumb">
             <div class="row align-items-center">
                 {{-- @foreach ($user as $show) --}}
-                <div class="col-6">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0 d-flex align-items-center">
-                            <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
-                                        class="mdi mdi-home-outline fs-4"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/data-pekerjaan" class="link">Data Pekerjaan</a></li>
-                            <li class="breadcrumb-item"><a href="/detail-pekerjaan/" class="link">Detail
-                                    Pekerjaan</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit Pekerjaan</li>
-                        </ol>
-                    </nav>
-                </div>
                 @foreach ($pekerjaan as $show)
+                    <div class="col-6">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 d-flex align-items-center">
+                                <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
+                                            class="mdi mdi-home-outline fs-4"></i></a></li>
+                                <li class="breadcrumb-item"><a href="/data_pekerjaan" class="link">Data Pekerjaan</a></li>
+                                <li class="breadcrumb-item"><a href="/detail_pekerjaan/{{ $show->id_pekerjaan }}"
+                                        class="link">Detail
+                                        Pekerjaan</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit Pekerjaan</li>
+                            </ol>
+                        </nav>
+                    </div>
+
                     <div class="card p-3 px-4 bg-primary">
                         <div class="d-flex justify-content-between">
                             <div class="">
-                                <a href="/data-pekerjaan" class="d-inline text-info">
+                                <a href="/detail_pekerjaan/{{ $show->id_pekerjaan }}" class="d-inline text-info">
                                     <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                                 </a>
                                 <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:12px; left: 60px">Edit

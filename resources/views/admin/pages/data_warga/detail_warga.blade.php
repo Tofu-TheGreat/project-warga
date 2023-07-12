@@ -10,7 +10,8 @@
                             <ol class="breadcrumb mb-0 d-flex align-items-center">
                                 <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
                                             class="mdi mdi-home-outline fs-4"></i></a></li>
-                                <li class="breadcrumb-item"><a href="/datawarga" class="link">Data Warga</a></li>
+                                <li class="breadcrumb-item"><a href="/data_warga/{{ $show->id_user }}" class="link">Data
+                                        Warga</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Detail Warga</li>
                             </ol>
                         </nav>
@@ -19,7 +20,7 @@
                     <div class="card p-3 px-4 bg-primary">
                         <div class="d-flex justify-content-between">
                             <div class="">
-                                <a href="/datawarga" class="d-inline text-info">
+                                <a href="/data_warga/{{ $show->id_user }}" class="d-inline text-info">
                                     <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                                 </a>
                                 <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:12px; left: 60px">Detail
