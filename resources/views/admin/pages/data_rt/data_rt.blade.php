@@ -21,8 +21,7 @@
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3 p-1 rounded-circle"></i>
                             </a>
                             <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data
-                                RT<span class="badge bg-secondary">{{ $count }}
-                                    Total RT</span>
+                                RT
                             </h2>
                         </div>
                         <button data-bs-toggle="modal" data-bs-target="#modaltambah_rt" class="btn btn-info rounded-pill">
@@ -31,6 +30,8 @@
                     </div>
                 </div>
             </div>
+            <span class="badge bg-success p-2 px-3">{{ $count }}
+                Total RT</span>
         </div>
     </div>
     @if ($errors->any())
@@ -39,6 +40,7 @@
         @endforeach
     @endif
     <div class="container-fluid ">
+
         <div class="row ms-5">
             @foreach ($user as $show)
                 <div class="col">
