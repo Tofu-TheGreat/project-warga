@@ -21,8 +21,7 @@
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3 p-1 rounded-circle"></i>
                             </a>
                             <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data
-                                Pekerjaan<span class="badge bg-secondary">{{ $count }}
-                                    Total Pekerjaan</span>
+                                Pekerjaan
                             </h2>
                         </div>
                         <button data-bs-toggle="modal" data-bs-target="#modaltambah_pekerjaan"
@@ -32,6 +31,8 @@
                     </div>
                 </div>
             </div>
+            <span class="badge bg-success p-2 px-3">{{ $count }}
+                Total Pekerjaan</span>
         </div>
     </div>
     @if ($errors->any())

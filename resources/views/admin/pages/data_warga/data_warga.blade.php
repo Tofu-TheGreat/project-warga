@@ -22,8 +22,7 @@
                             </a>
                             @foreach ($nomor as $show)
                                 <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data
-                                    Warga {{ $show->nomor }} <span class="badge bg-secondary">{{ $count }}
-                                        Warga</span>
+                                    Warga {{ $show->nomor }}
                                 </h2>
                             @endforeach
                         </div>
@@ -34,6 +33,8 @@
                     </div>
                 </div>
             </div>
+            <span class="badge bg-success p-2 px-3">{{ $count }}
+                Total Warga</span>
         </div>
     </div>
     @if ($errors->any())
@@ -441,7 +442,7 @@
         reader.readAsDataURL(event.target.files[0]);
     }
 </script>
-{{-- 
+{{--
 <script>
     // Menggunakan jQuery untuk menangani penyerahan formulir
     $(document).ready(function() {
