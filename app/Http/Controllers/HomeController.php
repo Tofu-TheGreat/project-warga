@@ -54,13 +54,15 @@ class HomeController extends Controller
     public function show_warga_all()
     {
         $warga = Warga::all();
+        $count = Warga::all()
+            ->count();
 
 
         $pekerjaan = Pekerjaan::select('*')
             ->get();
         $rt = User::where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_warga.data_warga_all', compact('warga', 'pekerjaan', 'rt'))->with('title', 'Data Warga');
+        return view('admin.pages.data_warga.data_warga_all', compact('warga', 'pekerjaan', 'rt', 'count'))->with('title', 'Data Warga');
     }
 
     public function detail_warga($id_warga)
@@ -94,7 +96,9 @@ class HomeController extends Controller
     {
         $pekerjaan = Pekerjaan::select('*')
             ->get();
-        return view('admin.pages.data_pekerjaan.data_pekerjaan', compact('pekerjaan'))->with('title', 'Data Pekerjaan');
+        $count = Pekerjaan::select('*')
+            ->count();
+        return view('admin.pages.data_pekerjaan.data_pekerjaan', compact('pekerjaan', 'count'))->with('title', 'Data Pekerjaan');
     }
 
     //END
@@ -122,7 +126,10 @@ class HomeController extends Controller
         $user = User::select('*')
             ->where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_rt.data_rt', compact('user'))->with('title', 'Data RT');
+        $count = User::select('*')
+            ->where('peran', 'rt')
+            ->count();
+        return view('admin.pages.data_rt.data_rt', compact('user', 'count'))->with('title', 'Data RT');
     }
     //END 
     //Halaman menampilkan detail rt

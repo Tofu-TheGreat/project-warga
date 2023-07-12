@@ -20,7 +20,9 @@
                             <a href="/dashboard" class="d-inline text-info">
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3 p-1 rounded-circle"></i>
                             </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data RT
+                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data
+                                RT<span class="badge bg-secondary">{{ $count }}
+                                    Total RT</span>
                             </h2>
                         </div>
                         <button data-bs-toggle="modal" data-bs-target="#modaltambah_rt" class="btn btn-info rounded-pill">

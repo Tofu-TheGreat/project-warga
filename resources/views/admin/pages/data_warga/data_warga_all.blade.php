@@ -20,7 +20,9 @@
                             <a href="/dashboard" class="d-inline text-info">
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3 p-1 rounded-circle"></i>
                             </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data Warga
+                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data
+                                Warga<span class="badge bg-secondary">{{ $count }}
+                                    Total Warga</span>
                             </h2>
                         </div>
                         <button data-bs-toggle="modal" data-bs-target="#modaltambah_warga"
@@ -161,7 +163,8 @@
                                             <i class="bi bi-person-vcard-fill fs-2"></i>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control capitalize @error('nik') is-invalid @enderror"
+                                    <input type="text"
+                                        class="form-control capitalize @error('nik') is-invalid @enderror"
                                         value="{{ old('nik') }}" id="nik" name="nik"
                                         placeholder="Masukkan NIK">
                                 </div>
