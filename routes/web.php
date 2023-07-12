@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\RwController;
@@ -67,6 +68,8 @@ Route::get('/edit_warga/{id_warga}', [HomeController::class, 'edit_warga'])->nam
 Route::get('/hapus_warga/{id_warga}', [WargaController::class, 'delete_warga'])->name('delete.warga');
 Route::post('/tambah_warga', [WargaController::class, 'create_warga'])->name('create.warga');
 // route data warga
+
+Route::get('/chart_warga', [Controller::class, 'getChartData'])->name('chart.warga');
 
 
 Route::get('/datawarga', function () {

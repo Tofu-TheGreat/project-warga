@@ -29,7 +29,12 @@ class HomeController extends Controller
     //Halaman menampilkan warga
     public function dashboard()
     {
-        return view('admin.pages.dashboard')->with('title', 'Dashboard');
+        $rt = User::select('*')->where('peran', 'rt')->count();
+        $datart = User::select('*')->where('peran', 'rt')->limit(5)->get();
+        $datawarga = Warga::get();
+        $warga = Warga::all()->count();
+        $pekerjaan = Pekerjaan::all()->count();
+        return view('admin.pages.dashboard', compact('rt', 'warga', 'pekerjaan', 'datart', 'datawarga'))->with('title', 'Dashboard');
     }
     public function show_warga($id_user)
     {

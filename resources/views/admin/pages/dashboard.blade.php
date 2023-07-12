@@ -29,21 +29,21 @@
             <div class="col-lg-4 mt-2 col-md-6 col-sm-6 col-12">
                 <div class="jumlah-data jumlah-data-1">
                     <p class="jumlah-title"><span>Jumlah RT</span></p>
-                    <p class="jumlah">20 (misalkan)</p>
+                    <p class="jumlah">{{ $rt }} RT</p>
                     <i width="1em" height="1em" class="icon-jumlah mdi mdi-account-network"></i>
                 </div>
             </div>
             <div class="col-lg-4 mt-2 col-md-6 col-sm-6 col-12">
                 <div class="jumlah-data jumlah-data-2">
                     <p class="jumlah-title"><span>Jumlah Warga</span></p>
-                    <p class="jumlah">20 (misalkan)</p>
+                    <p class="jumlah">{{ $warga }} Warga</p>
                     <i width="1em" height="1em" class="icon-jumlah mdi mdi mdi-human-male-female"></i>
                 </div>
             </div>
             <div class="col-lg-4 mt-2 col-md-6 col-sm-6 col-12">
                 <div class="jumlah-data jumlah-data-3">
                     <p class="jumlah-title"><span>Jumlah Pekerjaan</span></p>
-                    <p class="jumlah">20 (misalkan)</p>
+                    <p class="jumlah">{{ $pekerjaan }} Pekerjaan</p>
                     <i width="1em" height="1em" class="icon-jumlah mdi mdi-briefcase"></i>
                 </div>
             </div>
@@ -70,7 +70,8 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="amp-pxl mt-4" style="height: 350px;">
+                        <canvas id="myChart"></canvas>
+                        <div class="amp-pxl mt-4">
                             <div class="chartist-tooltip"></div>
                         </div>
                     </div>
@@ -80,21 +81,61 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Daftar RT</h4>
-                        <div class="mt-5 pb-3 d-flex align-items-center">
-                            <span class="btn btn-primary btn-circle d-flex align-items-center">
-                                <i class="mdi mdi-cart-outline fs-4"></i>
-                            </span>
-                            <div class="ms-3">
-                                <h5 class="mb-0 fw-bold">Top Sales</h5>
-                                <span class="text-muted fs-6">Johnathan Doe</span>
+                        @foreach ($datart as $show)
+                            <div class="mt-5 pb-3 d-flex align-items-center">
+                                <span class="btn btn-primary btn-circle d-flex align-items-center">
+                                    @if ($show->foto == null)
+                                        <img src="{{ asset('images/kosong.webp') }}" alt="foto"
+                                            class="foto-user w-75 rounded-circle">
+                                    @else
+                                        <img src="../image_save/{{ $show->foto }}" alt="foto"
+                                            class="foto-user w-75 rounded-circle">
+                                    @endif
+                                </span>
+                                <div class="ms-3">
+                                    <h5 class="mb-0 fw-bold">{{ $show->nama_lengkap }}</h5>
+                                    <span class="text-muted fs-6">{{ $show->nomor }}</span>
+                                </div>
+
+
+                                <div class="ms-auto">
+                                    <span class="badge bg-light text-muted">
+                                        {{ $datawarga->where('id_user', $show->id_user)->count() }} Warga</span>
+                                </div>
+
                             </div>
-                            <div class="ms-auto">
-                                <span class="badge bg-light text-muted">+68%</span>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    fetch('/chart_warga')
+        .then(response => response.json())
+        .then(data => {
+            const labels = Object.keys(data);
+            const values = Object.values(data);
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Jumlah Warga',
+                        data: values,
+                        backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                        borderColor: 'rgba(0, 123, 255, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    // Konfigurasi chart lainnya
+                }
+            });
+        });
+</script>
