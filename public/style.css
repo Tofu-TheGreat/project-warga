@@ -326,6 +326,103 @@ html {
 
 /* Dashboard css */
 
+.jumlah-data-1 {
+    width: 280px;
+    height: 150px;
+    background: rgb(197, 54, 18);
+    border-radius: 15px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    background: linear-gradient(45deg, rgb(66, 39, 39), rgb(160, 56, 56));
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.jumlah-data-1:hover {
+    box-shadow: rgb(189, 113, 113) 1px 3px 5px, rgb(192, 131, 131) -1px 0px 5px;
+}
+.jumlah-data-2 {
+    width: 280px;
+    height: 150px;
+    background: rgb(197, 125, 18);
+    border-radius: 15px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    background: linear-gradient(45deg, rgb(66, 59, 39), rgb(241, 170, 15));
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.jumlah-data-2:hover {
+    box-shadow: rgb(189, 175, 113) 1px 3px 5px, rgb(192, 181, 131) -1px 0px 5px;
+}
+.jumlah-data-3 {
+    width: 280px;
+    height: 150px;
+    background: rgb(179, 197, 18);
+    border-radius: 15px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    background: linear-gradient(45deg, rgb(59, 66, 39), rgb(153, 160, 56));
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.jumlah-data-3:hover {
+    box-shadow: rgb(175, 189, 113) 1px 3px 5px, rgb(174, 192, 131) -1px 0px 5px;
+}
+
+.jumlah-title {
+    font-size: 20px;
+    margin-top: 0px;
+    margin-left: 15px;
+    font-weight: 600;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    transition: 0.5s;
+}
+
+.jumlah {
+    font-size: 18px;
+    margin-top: 0px;
+    margin-left: 15px;
+    font-weight: 500;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    transition: 0.5s;
+}
+
+.icon-jumlah {
+    font-size: 20px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.jumlah-data:hover > .icon-jumlah {
+    font-size: 30px;
+}
+
+.jumlah-data:hover .jumlah-title {
+    font-size: 20px;
+}
+.jumlah-data:hover .jumlah {
+    font-size: 20px;
+}
+
 /* Akhir Dashboard css */
 
 /* detail css */

@@ -25,6 +25,29 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-4 mt-2 col-md-6 col-sm-6 col-12">
+                <div class="jumlah-data jumlah-data-1">
+                    <p class="jumlah-title"><span>Jumlah RT</span></p>
+                    <p class="jumlah">20 (misalkan)</p>
+                    <i width="1em" height="1em" class="icon-jumlah mdi mdi-account-network"></i>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-2 col-md-6 col-sm-6 col-12">
+                <div class="jumlah-data jumlah-data-2">
+                    <p class="jumlah-title"><span>Jumlah Warga</span></p>
+                    <p class="jumlah">20 (misalkan)</p>
+                    <i width="1em" height="1em" class="icon-jumlah mdi mdi mdi-human-male-female"></i>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-2 col-md-6 col-sm-6 col-12">
+                <div class="jumlah-data jumlah-data-3">
+                    <p class="jumlah-title"><span>Jumlah Pekerjaan</span></p>
+                    <p class="jumlah">20 (misalkan)</p>
+                    <i width="1em" height="1em" class="icon-jumlah mdi mdi-briefcase"></i>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container-fluid ">
         <div class="row">
