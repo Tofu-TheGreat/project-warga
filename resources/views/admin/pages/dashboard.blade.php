@@ -13,20 +13,20 @@
                 </nav>
             </div>
 
-            <div class="card p-3 px-4 bg-primary">
+            <div class="card p-4 px-4 bg-primary">
                 <div class="d-flex justify-content-between">
                     <div class="">
                         <a href="/dashboard" class="d-inline text-info">
                             <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                         </a>
-                        <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Dahboard siapa
+                        <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:19px; left: 60px">Dahboard siapa
                         </h2>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 mt-2 col-md-6 col-sm-6 col-12">
+        <div class="row ">
+            <div class="col-lg-4 mt-2 col-md-6 col-sm-6 col-12 ">
                 <div class="jumlah-data jumlah-data-1">
                     <p class="jumlah-title"><span>Jumlah RT</span></p>
                     <p class="jumlah">{{ $rt }} RT</p>
@@ -79,17 +79,21 @@
             </div>
             <div class="col-lg-4">
                 <div class="card">
+                    <h4 class="card-header d-flex">
+                        <strong>Daftar RT</strong>
+                        <a role="button" href="/datart" class="btn btn-info rounded-pill text-white"
+                            style="position:absolute; right:25px;top:10px"><i class="bi bi-eye"></i></a>
+                    </h4>
                     <div class="card-body">
-                        <h4 class="card-title">Daftar RT</h4>
                         @foreach ($datart as $show)
-                            <div class="mt-5 pb-3 d-flex align-items-center">
-                                <span class="btn btn-primary btn-circle d-flex align-items-center">
+                            <div class="my-2 pb-3 d-flex align-items-center">
+                                <span class="d-flex align-items-center mb-2">
                                     @if ($show->foto == null)
                                         <img src="{{ asset('images/kosong.webp') }}" alt="foto"
-                                            class="foto-user w-75 rounded-circle">
+                                            class="foto-user rounded-circle" width="60px">
                                     @else
                                         <img src="../image_save/{{ $show->foto }}" alt="foto"
-                                            class="foto-user w-75 rounded-circle">
+                                            class="foto-user rounded-circle" width="60px">
                                     @endif
                                 </span>
                                 <div class="ms-3">
