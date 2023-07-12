@@ -6,14 +6,24 @@
             <div class="col-6">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 d-flex align-items-center">
-                        <li class="breadcrumb-item"><a href="index.html" class="link"><i
+                        <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
                                     class="mdi mdi-home-outline fs-4"></i></a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item"><a>Dashboard</a></li>
                     </ol>
                 </nav>
-                <h1 class="mb-0 fw-bold">Halo, </h1>
             </div>
 
+            <div class="card p-3 px-4 bg-primary">
+                <div class="d-flex justify-content-between">
+                    <div class="">
+                        <a href="/dashboard" class="d-inline text-info">
+                            <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
+                        </a>
+                        <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Dahboard siapa
+                        </h2>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="container-fluid ">
@@ -23,8 +33,8 @@
                     <div class="card-body">
                         <div class="d-md-flex align-items-center">
                             <div>
-                                <h4 class="card-title">Sales Summary</h4>
-                                <h6 class="card-subtitle">Ample admin Vs Pixel admin</h6>
+                                <h4 class="card-title">Halo, siapa</h4>
+                                <h6 class="card-subtitle">Chart Warga</h6>
                             </div>
                             <div class="ms-auto d-flex no-block align-items-center">
                                 <ul class="list-inline dl d-flex align-items-center m-r-15 m-b-0">
@@ -46,8 +56,7 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Weekly Stats</h4>
-                        <h6 class="card-subtitle">Average sales</h6>
+                        <h4 class="card-title">Daftar RT</h4>
                         <div class="mt-5 pb-3 d-flex align-items-center">
                             <span class="btn btn-primary btn-circle d-flex align-items-center">
                                 <i class="mdi mdi-cart-outline fs-4"></i>
@@ -58,55 +67,6 @@
                             </div>
                             <div class="ms-auto">
                                 <span class="badge bg-light text-muted">+68%</span>
-                            </div>
-                        </div>
-                        <div class="py-3 d-flex align-items-center">
-                            <span class="btn btn-warning btn-circle d-flex align-items-center">
-                                <i class="mdi mdi-star-circle fs-4"></i>
-                            </span>
-                            <div class="ms-3">
-                                <h5 class="mb-0 fw-bold">Best Seller</h5>
-                                <span class="text-muted fs-6">MaterialPro Admin</span>
-                            </div>
-                            <div class="ms-auto">
-                                <span class="badge bg-light text-muted">+68%</span>
-                            </div>
-                        </div>
-                        <div class="py-3 d-flex align-items-center">
-                            <span class="btn btn-success btn-circle d-flex align-items-center">
-                                <i class="mdi mdi-comment-multiple-outline text-white fs-4"></i>
-                            </span>
-                            <div class="ms-3">
-                                <h5 class="mb-0 fw-bold">Most Commented</h5>
-                                <span class="text-muted fs-6">Ample Admin</span>
-                            </div>
-                            <div class="ms-auto">
-                                <span class="badge bg-light text-muted">+68%</span>
-                            </div>
-                        </div>
-                        <div class="py-3 d-flex align-items-center">
-                            <span class="btn btn-info btn-circle d-flex align-items-center">
-                                <i class="mdi mdi-diamond fs-4 text-white"></i>
-                            </span>
-                            <div class="ms-3">
-                                <h5 class="mb-0 fw-bold">Top Budgets</h5>
-                                <span class="text-muted fs-6">Sunil Joshi</span>
-                            </div>
-                            <div class="ms-auto">
-                                <span class="badge bg-light text-muted">+15%</span>
-                            </div>
-                        </div>
-
-                        <div class="pt-3 d-flex align-items-center">
-                            <span class="btn btn-danger btn-circle d-flex align-items-center">
-                                <i class="mdi mdi-content-duplicate fs-4 text-white"></i>
-                            </span>
-                            <div class="ms-3">
-                                <h5 class="mb-0 fw-bold">Best Designer</h5>
-                                <span class="text-muted fs-6">Nirav Joshi</span>
-                            </div>
-                            <div class="ms-auto">
-                                <span class="badge bg-light text-muted">+90%</span>
                             </div>
                         </div>
                     </div>

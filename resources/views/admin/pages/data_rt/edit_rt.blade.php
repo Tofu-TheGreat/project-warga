@@ -311,7 +311,8 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control @error('id_pekerjaan') is-invalid @enderror"
-                                                        value="" id="id_pekerjaan" name="id_pekerjaan">
+                                                        value="" id="id_pekerjaan" name="id_pekerjaan"
+                                                        placeholder="Ketua RT" disabled>
                                                 </div>
                                                 @error('id_pekerjaan')
                                                     {{ $message }}
