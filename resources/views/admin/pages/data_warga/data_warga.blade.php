@@ -22,7 +22,8 @@
                             </a>
                             @foreach ($nomor as $show)
                                 <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data
-                                    Warga {{ $show->nomor }}
+                                    Warga {{ $show->nomor }} <span class="badge bg-secondary">{{ $count }}
+                                        Warga</span>
                                 </h2>
                             @endforeach
                         </div>
@@ -165,7 +166,8 @@
                                             <i class="bi bi-person-vcard-fill fs-2"></i>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control capitalize @error('nik') is-invalid @enderror"
+                                    <input type="text"
+                                        class="form-control capitalize @error('nik') is-invalid @enderror"
                                         value="{{ old('nik') }}" id="nik" name="nik"
                                         placeholder="Masukkan NIK">
                                 </div>

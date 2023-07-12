@@ -24,9 +24,7 @@ Route::get('/', function () {
 
 // route dashboard
 
-Route::get('/dashboard', function () {
-    return view('Admin.Pages.dashboard');
-});
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
 Route::get('/home', function () {
     return view('pages.home');

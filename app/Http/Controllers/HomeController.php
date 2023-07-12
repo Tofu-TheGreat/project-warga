@@ -27,12 +27,20 @@ class HomeController extends Controller
     }
     //END
     //Halaman menampilkan warga
+    public function dashboard()
+    {
+        return view('admin.pages.dashboard')->with('title', 'Dashboard');
+    }
     public function show_warga($id_user)
     {
         $warga = User::find($id_user)
             ->warga()
             ->where('id_user', $id_user)
             ->get();
+        $count = User::find($id_user)
+            ->warga()
+            ->where('id_user', $id_user)
+            ->count();
 
         $nomor = User::select('nomor')
             ->where('id_user', $id_user)
@@ -41,7 +49,7 @@ class HomeController extends Controller
             ->get();
         $rt = User::where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt', 'nomor'))->with('title', 'Data Warga');
+        return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt', 'nomor', 'count'))->with('title', 'Data Warga');
     }
     public function show_warga_all()
     {
@@ -136,34 +144,5 @@ class HomeController extends Controller
     }
     //END
 
-    //Halaman menampilkan tambah pekerjaan
-    public function tambahpekerjaan_page()
-    {
-        //return
-    }
-    //END
-    //Halaman menampilkan tambah rt
-    public function tambahrt_page()
-    {
-        //return
-    }
-    //END
-    //Halaman menampilkan ubah rt
-    public function ubahrt_page()
-    {
-        //return
-    }
-    //END
-    //Halaman menampilkan tambah warga
-    public function tambahwarga_page()
-    {
-        //return
-    }
-    //END
-    //Halaman menampilkan ubah rt
-    public function ubahwarga_page()
-    {
-        //return
-    }
-    //END
+
 }
