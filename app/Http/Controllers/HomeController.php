@@ -41,7 +41,7 @@ class HomeController extends Controller
             ->get();
         $rt = User::where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt', 'nomor'));
+        return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt', 'nomor'))->with('title', 'Data Warga');
     }
     public function show_warga_all()
     {
@@ -52,7 +52,7 @@ class HomeController extends Controller
             ->get();
         $rt = User::where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_warga.data_warga_all', compact('warga', 'pekerjaan', 'rt'));
+        return view('admin.pages.data_warga.data_warga_all', compact('warga', 'pekerjaan', 'rt'))->with('title', 'Data Warga');
     }
 
     public function detail_warga($id_warga)
@@ -67,7 +67,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('admin.pages.data_warga.detail_warga', compact('warga', 'pekerjaanWarga'));
+        return view('admin.pages.data_warga.detail_warga', compact('warga', 'pekerjaanWarga'))->with('title', 'Detail Warga');
     }
     public function edit_warga($id_warga)
     {
@@ -76,7 +76,7 @@ class HomeController extends Controller
         $pekerjaan = Pekerjaan::all();
         $rt = User::where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_warga.edit_warga', compact('warga', 'pekerjaan', 'rt'));
+        return view('admin.pages.data_warga.edit_warga', compact('warga', 'pekerjaan', 'rt'))->with('title', 'Edit Warga');
     }
 
 
@@ -86,7 +86,7 @@ class HomeController extends Controller
     {
         $pekerjaan = Pekerjaan::select('*')
             ->get();
-        return view('admin.pages.data_pekerjaan.data_pekerjaan', compact('pekerjaan'));
+        return view('admin.pages.data_pekerjaan.data_pekerjaan', compact('pekerjaan'))->with('title', 'Data Pekerjaan');
     }
 
     //END
@@ -95,7 +95,7 @@ class HomeController extends Controller
     {
         $pekerjaan = Pekerjaan::where('id_pekerjaan', $id_pekerjaan)
             ->get();
-        return view('admin.pages.data_pekerjaan.detail_pekerjaan', compact('pekerjaan'));
+        return view('admin.pages.data_pekerjaan.detail_pekerjaan', compact('pekerjaan'))->with('title', 'Detail Pekerjaan');
     }
 
     //END
@@ -104,7 +104,7 @@ class HomeController extends Controller
     {
         $pekerjaan = Pekerjaan::where('id_pekerjaan', $id_pekerjaan)
             ->get();
-        return view('admin.pages.data_pekerjaan.edit_pekerjaan', compact('pekerjaan'));
+        return view('admin.pages.data_pekerjaan.edit_pekerjaan', compact('pekerjaan'))->with('title', 'Edit Pekerjaan');
     }
 
     //END
@@ -114,7 +114,7 @@ class HomeController extends Controller
         $user = User::select('*')
             ->where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_rt.data_rt', compact('user'));
+        return view('admin.pages.data_rt.data_rt', compact('user'))->with('title', 'Data RT');
     }
     //END 
     //Halaman menampilkan detail rt
@@ -123,7 +123,7 @@ class HomeController extends Controller
         $user = User::where('id_user', $id_user)
             ->where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_rt.detail_rt', compact('user'));
+        return view('admin.pages.data_rt.detail_rt', compact('user'))->with('title', 'Detail RT');
     }
     //END
     //Halaman menampilkan detail rt
@@ -132,7 +132,7 @@ class HomeController extends Controller
         $user = User::where('id_user', $id_user)
             ->where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_rt.edit_rt', compact('user'));
+        return view('admin.pages.data_rt.edit_rt', compact('user'))->with('title', 'Edit RT');
     }
     //END
 
