@@ -62,7 +62,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#"
                         id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../assets/images/users/profile.png" alt="user" class="rounded-circle"
+                        <img src="../image_save/{{ auth()->user()->foto }}" alt="user" class="rounded-circle"
                             width="40" style="border: 3px solid rgba(189, 189, 241, 0.87)">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
@@ -75,9 +75,11 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <a class="dropdown-item fs-5 text-danger" href=""><i
-                                class="mdi mdi-arrow-left-box m-r-5 m-l-5 fs-3 p-1 "></i>
-                            Logout</a>
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button type="submit" class="dropdown-item fs-5 text-danger"><i
+                                    class="mdi mdi-arrow-left-box m-r-5 m-l-5 fs-3 p-1 "></i>Logout</button>
+                        </form>
                     </ul>
                 </li>
                 <!-- ============================================================== -->

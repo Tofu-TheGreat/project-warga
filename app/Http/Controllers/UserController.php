@@ -48,27 +48,29 @@ class UserController extends Controller
     //END
 
     //Login start
-    public function login(Request $request)
+    public function authenticate(Request $request)
     {
         $credential = $request->validate([
-            'nomor_telpon' => 'required',
+            'nomor_telpon' => 'required|min:12',
             'password' => 'required'
         ]);
 
-        if (auth()->attempt($credential)) {
+        if (Auth::attempt($credential)) {
             $request->session()->regenerate();
-            if (auth()->user()->peran == 'rw') {
-                // dd();
-                return redirect()->intended('/datart');
-            } else if (auth()->user()->peran == 'rt') {
-                //return
-            }
-        } else {
-            return redirect()->intended('/login')
-                ->with('error', 'Nomor Telepon atau Password Salah!.');
+            return redirect()->intended('/dashboard');
         }
+
+        return back()->withErrors('loginError');
     }
     //END
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
+    }
 }

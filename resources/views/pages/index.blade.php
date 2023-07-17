@@ -21,7 +21,12 @@
                             alt="">
                         <h1 class="lilitan">Aplikasi Pendataan <span class="text-success">Warga</span></h1>
                         <p class="text-capitalize sora">Lihat Data Warga dan memanipulasinya</p>
-                        <a class="btn btn-success" href="/login" role="button">Ayo Mulai</a>
+                        @guest
+                            <a class="btn btn-success" href="/login" role="button">Ayo Mulai</a>
+                        @endguest
+                        @auth
+                            <a class="btn btn-success" href="/dashboard" role="button">Dashboard</a>
+                        @endauth
                     </div>
                 </div>
             </div>

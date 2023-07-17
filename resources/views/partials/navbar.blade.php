@@ -23,14 +23,24 @@
                 @endguest
                 @auth
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown link
+                        <a class="nav-link dropdown-toggle capitalize" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Welcome Back, {{ auth()->user()->nama_lengkap }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="/dashboard"><i
+                                        class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item"><i
+                                            class="bi bi-box-arrow-left me-2"></i>Logout</button>
+                                </form>
+                            </li>
                         </ul>
                     </li>
                 @endauth

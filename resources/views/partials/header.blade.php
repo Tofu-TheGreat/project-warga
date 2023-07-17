@@ -12,4 +12,5 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat&family=Oswald&family=Sora&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>

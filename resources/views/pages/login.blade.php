@@ -98,9 +98,9 @@
         </div>
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                @if (session('error'))
-                    <div class="alert  alert-success alert-dismissible fade show container-fluid" role="alert">
-                        {{ session('error') }}
+                @if (session()->has('loginError'))
+                    <div class="alert  alert-danger alert-dismissible fade show container-fluid" role="alert">
+                        {{ session('loginError') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
@@ -117,7 +117,7 @@
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
-                                    <form action="{{ route('login.action') }}" method="post">
+                                    <form action="/login" method="post">
                                         @csrf
                                         <div class="d-block d-md-none">
                                             <a href="/" class="text-success d-inline p-3"
@@ -136,27 +136,32 @@
                                         </div>
 
                                         <div class="form-outline mb-4 pt-3">
-                                            <input type="text" name="nomor_telpon" id="form2Example17"
-                                                class="form-control form-control-lg"
-                                                placeholder="Masukkan Nomor Telpon" />
+                                            <input type="number" name="nomor_telpon" id="nomor_telpon"
+                                                class="form-control form-control-lg @error('nomor_telpon')
+                                                    is-invalid
+                                                @enderror"
+                                                value="{{ old('nomor_telpon') }}" placeholder="Masukkan Nomor Telpon"
+                                                autofocus required />
                                             @if ($errors->has('nomor_telpon'))
-                                                <span class="invalid feedback"role="alert">
+                                                <span class="invalid-feedback"role="alert">
                                                     <p>{{ $errors->first('nomor_telpon') }}.</p>
                                                 </span>
                                             @endif
-                                            <label class="form-label" for="form2Example17">Nomor Telpon</label>
+                                            <label class="form-label" for="nomor_telpon">Nomor Telpon</label>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" name="password" id="form2Example27"
-                                                class="form-control form-control-lg"
-                                                placeholder="Masukkan Kata Sandi" />
+                                            <input type="password" name="password" id="password"
+                                                class="form-control form-control-lg  @error('password')
+                                                    is-invalid
+                                                @enderror"
+                                                placeholder="Masukkan Kata Sandi" required />
                                             @if ($errors->has('password'))
-                                                <span class="invalid feedback"role="alert">
+                                                <span class="invalid-feedback"role="alert">
                                                     <p>{{ $errors->first('password') }}.</p>
                                                 </span>
                                             @endif
-                                            <label class="form-label" for="form2Example27">Kata Sandi</label>
+                                            <label class="form-label" for="password">Kata Sandi</label>
                                         </div>
 
                                         <div class="pt-2 mb-4">
