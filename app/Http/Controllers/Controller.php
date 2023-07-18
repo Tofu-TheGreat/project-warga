@@ -15,11 +15,22 @@ class Controller extends BaseController
     //Chart untuk menampilkan jumlah warga 
     public function getChartData()
     {
-        $data = Warga::selectRaw('id_warga as date, COUNT(*) as count')
+        $data = Warga::selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->groupBy('date')
+            ->orderBy('date', 'ASC')
             ->pluck('count', 'date')
             ->toArray();
-        return response()->json($data);
+        
+        $chartData = [];
+        $currentCount = 0;
+        
+        foreach ($data as $date => $count) {
+            $currentCount += $count;
+            $chartData[] = ['date' => $date, 'count' => $currentCount];
+        }
+        
+        return response()->json($chartData);
     }
+    
     //END
 }

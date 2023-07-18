@@ -231,7 +231,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control phone @error('kewarganegaraan') is-invalid @enderror"
-                                                    value="{{ $show->status_kependudukan == '0' ? 'WNI' : 'WNA' }}"
+                                                    value="{{ $show->kewarganegaraan == '0' ? 'WNI' : 'WNA' }}"
                                                     id="kewarganegaraan" name="kewarganegaraan" readonly>
                                             </div>
                                             @error('kewarganegaraan')

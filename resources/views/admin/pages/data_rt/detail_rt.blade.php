@@ -233,7 +233,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control phone @error('kewarganegaraan') is-invalid @enderror"
-                                                    value="{{ $show->status_kependudukan == '0' ? 'WNI' : 'WNA' }}"
+                                                    value="{{ $show->kewarganegaraan == '0' ? 'WNI' : 'WNA' }}"
                                                     id="kewarganegaraan" name="kewarganegaraan" readonly>
                                             </div>
                                             @error('kewarganegaraan')
@@ -273,10 +273,10 @@
                                                 </div>
                                                 <?php
                                                 $nomorTelpon = $show->nomor_telpon;
-
+                                                
                                                 // Menghapus angka 0 di awal nomor telepon
                                                 $nomorTelpon = substr($nomorTelpon, 1);
-
+                                                
                                                 // Menambahkan kode negara (+62)
                                                 $nomorTelponFormatted = '(+62)' . $nomorTelpon;
                                                 ?>

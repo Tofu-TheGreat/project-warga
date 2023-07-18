@@ -40,7 +40,7 @@
                     <p class="jumlah-title"><span>Jumlah Warga</span></p>
                     <p class="jumlah">{{ $warga }} Warga</p>
                     <i width="1em" height="1em" class="icon-jumlah mdi mdi mdi-human-male-female"></i>
-                    <a href="/datawarga" class="stretched-link"></a>
+                    <a href="/data_warga" class="stretched-link"></a>
                 </div>
             </div>
             <div class="col-lg-4 mt-2 col-md-6 col-sm-6 col-12">
@@ -48,7 +48,7 @@
                     <p class="jumlah-title"><span>Jumlah Pekerjaan</span></p>
                     <p class="jumlah">{{ $pekerjaan }} Pekerjaan</p>
                     <i width="1em" height="1em" class="icon-jumlah mdi mdi-briefcase"></i>
-                    <a href="/data-pekerjaan" class="stretched-link"></a>
+                    <a href="/data_pekerjaan" class="stretched-link"></a>
                 </div>
             </div>
         </div>
@@ -66,11 +66,9 @@
                             <div class="ms-auto d-flex no-block align-items-center">
                                 <ul class="list-inline dl d-flex align-items-center m-r-15 m-b-0">
                                     <li class="list-inline-item d-flex align-items-center text-info"><i
-                                            class="fa fa-circle font-10 me-1"></i> Ample
+                                            class="fa fa-circle font-10 me-1"></i> Warga
                                     </li>
-                                    <li class="list-inline-item d-flex align-items-center text-primary"><i
-                                            class="fa fa-circle font-10 me-1"></i> Pixel
-                                    </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -121,29 +119,47 @@
 @endsection
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    fetch('/chart_warga')
-        .then(response => response.json())
-        .then(data => {
-            const labels = Object.keys(data);
-            const values = Object.values(data);
+    $(document).ready(function() {
+        $.ajax({
+            url: '/chart_warga',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Proses data yang diterima untuk menghasilkan chart
+                // Contoh penggunaan library chart.js untuk membuat chart
+                var labels = [];
+                var counts = [];
 
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Jumlah Warga',
-                        data: values,
-                        backgroundColor: 'rgba(0, 123, 255, 0.5)',
-                        borderColor: 'rgba(0, 123, 255, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    // Konfigurasi chart lainnya
-                }
-            });
+                data.forEach(function(item) {
+                    labels.push(item.date);
+                    counts.push(item.count);
+                });
+
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Jumlah Warga',
+                            data: counts,
+                            backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                            borderColor: 'rgba(0, 123, 255, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
         });
+    });
 </script>
