@@ -14,7 +14,10 @@ class HomeController extends Controller
         return view('pages.profile')->with('title', 'Profile');
     }
 
-
+    public function ubah_password()
+    {
+        return view('pages.ubah-password')->with('title', 'Ubah-Password');
+    }
 
     // public function __construct()
     // {
