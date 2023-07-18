@@ -21,15 +21,17 @@
                             <a href="/datart" class="d-inline text-info">
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                             </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Detail RT
+                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:12px; left: 60px">Detail RT
                             </h2>
                         </div>
-                        @foreach ($user as $show)
-                            <a href="/edit-rt/{{ $show->id_user }}" class="btn btn-info rounded-pill btn-edit"
-                                role="button">
-                                <i class="bi bi-pencil text-white"></i>
-                            </a>
-                        @endforeach
+                        @can('rw')
+                            @foreach ($user as $show)
+                                <a href="/edit-rt/{{ $show->id_user }}" class="btn btn-info rounded-pill btn-edit"
+                                    role="button">
+                                    <i class="bi bi-pencil text-white"></i>
+                                </a>
+                            @endforeach
+                        @endcan
                     </div>
                 </div>
                 <div class="card">
@@ -271,10 +273,10 @@
                                                 </div>
                                                 <?php
                                                 $nomorTelpon = $show->nomor_telpon;
-                                                
+
                                                 // Menghapus angka 0 di awal nomor telepon
                                                 $nomorTelpon = substr($nomorTelpon, 1);
-                                                
+
                                                 // Menambahkan kode negara (+62)
                                                 $nomorTelponFormatted = '(+62)' . $nomorTelpon;
                                                 ?>

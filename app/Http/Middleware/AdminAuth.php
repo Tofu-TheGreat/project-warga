@@ -17,8 +17,9 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->peran == 'rw') {
-            return $next($request);
+        if (!auth()->check() || auth()->user()->peran !== 'rw') {
+            abort(403);
         }
+        return $next($request);
     }
 }

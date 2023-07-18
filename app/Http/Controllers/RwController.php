@@ -14,6 +14,7 @@ class RwController extends Controller
     //ADD RT START
     public function create_rt(Request $request)
     {
+        $this->authorize('rw');
         $request->validate([
             'nama_lengkap' => 'required',
             'nik' => 'required|max:16',
@@ -82,6 +83,7 @@ class RwController extends Controller
     //UPDATE RT START
     public function edit_rt(Request $request)
     {
+        $this->authorize('rw');
         $res = $request->validate([
             'nama_lengkap' => 'required',
             'nik' => 'required|max:16',
@@ -161,6 +163,7 @@ class RwController extends Controller
     //DELETE RT START
     public function delete_rt(Request $request, $id_user)
     {
+        $this->authorize('rw');
         $user = User::where('id_user', $request->id_user)->first();
         // Hapus foto lama jika ada
         if ($user->foto != null) {
@@ -178,6 +181,7 @@ class RwController extends Controller
     //DELETE RT START
     public function delete_rt_detail(Request $request, $id_user)
     {
+        $this->authorize('rw');
         $user = User::where('id_user', $request->id_user)->first();
         // Hapus foto lama jika ada
         if ($user->foto != null) {
