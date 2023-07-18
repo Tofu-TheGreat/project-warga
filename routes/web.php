@@ -38,14 +38,11 @@ Route::get('/home', function () {
     return view('pages.home');
 });
 
+// Rute yang hanya dapat diakses oleh Admin
+
 Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt');
 Route::get('/data_warga/{id_user}', [HomeController::class, 'show_warga'])->name('show.warga');
 Route::get('/testes/{id_user}', [HomeController::class, 'table_rt'])->name('show');
-
-// Rute yang hanya dapat diakses oleh Admin
-Route::get('/datart', [HomeController::class, 'show_rt'])
-    ->name('show.rt');
-
 
 Route::get('/detail-rt/{id_user}', [HomeController::class, 'detail_rt'])->name('detail.rt');
 Route::get('/edit-rt/{id_user}', [HomeController::class, 'edit_rt'])->name('edit.rt');

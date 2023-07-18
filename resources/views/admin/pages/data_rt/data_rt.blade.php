@@ -24,9 +24,11 @@
                                 RT
                             </h2>
                         </div>
-                        <button data-bs-toggle="modal" data-bs-target="#modaltambah_rt" class="btn btn-info rounded-pill">
-                            <i class="bi bi-patch-plus text-white"></i>
-                        </button>
+                        @can('rw')
+                            <button data-bs-toggle="modal" data-bs-target="#modaltambah_rt" class="btn btn-info rounded-pill">
+                                <i class="bi bi-patch-plus text-white"></i>
+                            </button>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -45,10 +47,11 @@
             @foreach ($user as $show)
                 <div class="col">
                     <div class="card person">
-
-                        <a class="btn btn-danger btn-hapus" href="/hapus_rt/{{ $show->id_user }}" role="button">
-                            <i class="bi bi-trash"></i>
-                        </a>
+                        @can('rw')
+                            <a class="btn btn-danger btn-hapus" href="/hapus_rt/{{ $show->id_user }}" role="button">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        @endcan
                         <a class="btn btn-info btn-detail" href="/detail-rt/{{ $show->id_user }}" role="button">
                             <i class="bi bi-eye"></i>
                         </a>
