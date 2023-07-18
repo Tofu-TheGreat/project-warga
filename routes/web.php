@@ -23,9 +23,16 @@ Route::get('/', function () {
     return view('Pages.index');
 });
 
+Route::get('/login', function () {
+    return view('pages.login');
+})->name('login')->middleware('guest');
+
+Route::post('/login', [UserController::class, 'authenticate'])->middleware('guest')->name('login');
+Route::post('/logout', [UserController::class, 'logout']);
+
 // route dashboard
 
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 
 Route::get('/home', function () {
     return view('pages.home');
@@ -34,12 +41,6 @@ Route::get('/home', function () {
 Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt');
 Route::get('/data_warga/{id_user}', [HomeController::class, 'show_warga'])->name('show.warga');
 Route::get('/testes/{id_user}', [HomeController::class, 'table_rt'])->name('show');
-Route::get('/login', function () {
-    return view('pages.login');
-})->name('login');
-
-Route::post('/login_action', [UserController::class, 'login'])->name('login.action');
-
 
 // Rute yang hanya dapat diakses oleh Admin
 Route::get('/datart', [HomeController::class, 'show_rt'])

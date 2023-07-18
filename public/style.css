@@ -21,6 +21,19 @@ html {
     color: var(--green-color);
 }
 
+.capitalize {
+    text-transform: capitalize;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.logout-button {
+    background-color: white;
+    border: none;
+    width: 100%;
+}
 /* index css */
 .shape-index {
     background-color: var(--green-color);

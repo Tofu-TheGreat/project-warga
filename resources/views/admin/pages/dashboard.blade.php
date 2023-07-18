@@ -19,7 +19,8 @@
                         <a href="/dashboard" class="d-inline text-info">
                             <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                         </a>
-                        <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:19px; left: 60px">Dahboard siapa
+                        <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:19px; left: 60px">Dahboard <span
+                                class="uppercase">{{ auth()->user()->peran }}</span>
                         </h2>
                     </div>
                 </div>
@@ -59,7 +60,7 @@
                     <div class="card-body">
                         <div class="d-md-flex align-items-center">
                             <div>
-                                <h4 class="card-title">Halo, siapa</h4>
+                                <h4 class="card-title uppercase">Halo, {{ auth()->user()->peran }}</h4>
                                 <h6 class="card-subtitle">Chart Warga</h6>
                             </div>
                             <div class="ms-auto d-flex no-block align-items-center">
