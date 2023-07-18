@@ -142,7 +142,7 @@ class HomeController extends Controller
             ->count();
         return view('admin.pages.data_rt.data_rt', compact('user', 'count'))->with('title', 'Data RT');
     }
-    //END 
+    //END
     //Halaman menampilkan detail rt
     public function detail_rt($id_user)
     {
@@ -155,6 +155,7 @@ class HomeController extends Controller
     //Halaman menampilkan detail rt
     public function edit_rt($id_user)
     {
+        $this->authorize('rw');
         $user = User::where('id_user', $id_user)
             ->where('peran', 'rt')
             ->get();
