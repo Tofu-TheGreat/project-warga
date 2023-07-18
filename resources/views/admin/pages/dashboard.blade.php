@@ -31,6 +31,7 @@
                     <p class="jumlah-title"><span>Jumlah RT</span></p>
                     <p class="jumlah">{{ $rt }} RT</p>
                     <i width="1em" height="1em" class="icon-jumlah mdi mdi-account-network"></i>
+                    <a href="/datart" class="stretched-link"></a>
                 </div>
             </div>
             <div class="col-lg-4 mt-2 col-md-6 col-sm-6 col-12">
@@ -38,6 +39,7 @@
                     <p class="jumlah-title"><span>Jumlah Warga</span></p>
                     <p class="jumlah">{{ $warga }} Warga</p>
                     <i width="1em" height="1em" class="icon-jumlah mdi mdi mdi-human-male-female"></i>
+                    <a href="/datawarga" class="stretched-link"></a>
                 </div>
             </div>
             <div class="col-lg-4 mt-2 col-md-6 col-sm-6 col-12">
@@ -45,6 +47,7 @@
                     <p class="jumlah-title"><span>Jumlah Pekerjaan</span></p>
                     <p class="jumlah">{{ $pekerjaan }} Pekerjaan</p>
                     <i width="1em" height="1em" class="icon-jumlah mdi mdi-briefcase"></i>
+                    <a href="/data-pekerjaan" class="stretched-link"></a>
                 </div>
             </div>
         </div>
