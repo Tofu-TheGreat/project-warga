@@ -63,7 +63,7 @@
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#"
                         id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="../image_save/{{ auth()->user()->foto }}" alt="user" class="rounded-circle"
-                            width="40" style="border: 3px solid rgba(189, 189, 241, 0.87)">
+                            width="40" style="border: 3px solid rgba(189, 189, 241, 0.87); aspect-ratio: 1/1;">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item fs-5" href="/profile"><i
