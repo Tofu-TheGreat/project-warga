@@ -97,3 +97,4 @@ Route::get('/edit-pekerjaan', function () {
 // profile route
 
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+Route::get('/ubah-password', [HomeController::class, 'ubah_password']);
