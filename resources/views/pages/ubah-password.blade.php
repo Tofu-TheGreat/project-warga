@@ -9,7 +9,8 @@
                         <ol class="breadcrumb mb-0 d-flex align-items-center">
                             <li class="breadcrumb-item"><a href="/dashboard" class="link"><i
                                         class="mdi mdi-home-outline fs-4"></i></a></li>
-                            <li class="breadcrumb-item"><a class="link">Profile</a></li>
+                            <li class="breadcrumb-item"><a href="/profile" class="link">Profile</a></li>
+                            <li class="breadcrumb-item"><a class="link">Ubah-Profile</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -20,15 +21,10 @@
                             <a href="/dashboard" class="d-inline text-info">
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                             </a>
-                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:13px; left: 60px">Profile
-                                {{ auth()->user()->nama_lengkap }}
+                            <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:13px; left: 60px">Edit
+                                Profile
                             </h2>
                         </div>
-                        {{-- @foreach ($user as $show) --}}
-                        <a href="/ubah-password/" class="btn btn-info rounded-pill btn-edit" role="button">
-                            <i class="bi bi-pencil text-white"></i>
-                        </a>
-                        {{-- @endforeach --}}
                     </div>
                 </div>
                 <div class="card">
@@ -62,7 +58,7 @@
                                                     <input type="text"
                                                         class="form-control capitalize @error('nama_lengkap') is-invalid @enderror"
                                                         value="{{ auth()->user()->nama_lengkap }}" id="nama_lengkap"
-                                                        name="nama_lengkap" readonly>
+                                                        name="nama_lengkap">
                                                 </div>
                                                 @error('nama_lengkap')
                                                     {{ $message }}
@@ -78,8 +74,7 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control @error('nik') is-invalid @enderror"
-                                                        value="{{ auth()->user()->nik }}" id="nik" name="nik"
-                                                        readonly>
+                                                        value="{{ auth()->user()->nik }}" id="nik" name="nik">
                                                 </div>
                                                 @error('nik')
                                                     {{ $message }}
@@ -97,8 +92,7 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control @error('alamat') is-invalid @enderror"
-                                                        value="{{ auth()->user()->alamat }}" id="alamat" name="alamat"
-                                                        readonly>
+                                                        value="{{ auth()->user()->alamat }}" id="alamat" name="alamat">
                                                 </div>
                                                 @error('alamat')
                                                     {{ $message }}
@@ -114,8 +108,7 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control phone @error('nomor') is-invalid @enderror"
-                                                        value="{{ auth()->user()->nomor }}" id="nomor" name="nomor"
-                                                        readonly>
+                                                        value="{{ auth()->user()->nomor }}" id="nomor" name="nomor">
                                                 </div>
                                                 @error('nomor')
                                                     {{ $message }}
@@ -136,7 +129,7 @@
                                                     <input type="text"
                                                         class="form-control @error('agama') is-invalid @enderror"
                                                         value="{{ auth()->user()->agama == '0' ? 'Islam' : '' }} {{ auth()->user()->agama == '1' ? 'Kristen Protestan' : '' }}{{ auth()->user()->agama == '2' ? 'Kristen Katolik' : '' }}{{ auth()->user()->agama == '3' ? 'Khonghucu' : '' }}{{ auth()->user()->agama == '4' ? 'Hindu' : '' }} {{ auth()->user()->agama == '5' ? 'Buddha' : '' }}"
-                                                        id="agama" name="agama" readonly>
+                                                        id="agama" name="agama">
                                                 </div>
                                                 @error('agama')
                                                     {{ $message }}
@@ -155,7 +148,7 @@
                                                     <input type="text"
                                                         class="form-control @error('jenis_kelamin') is-invalid @enderror"
                                                         value="{{ auth()->user()->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}"
-                                                        id="jenis_kelamin" name="jenis_kelamin" readonly>
+                                                        id="jenis_kelamin" name="jenis_kelamin">
                                                 </div>
                                                 @error('jenis_kelamin')
                                                     {{ $message }}
@@ -178,7 +171,7 @@
                                             <input type="text"
                                                 class="form-control capitalize @error('status_perkawinan') is-invalid @enderror"
                                                 value="{{ auth()->user()->status_perkawinan == '0' ? 'Sudah Menikah' : '' }}{{ auth()->user()->status_perkawinan == '1' ? 'Belum Menikah' : '' }} {{ auth()->user()->status_perkawinan == '2' ? 'Cerai' : '' }}"
-                                                id="status_perkawinan" name="status_perkawinan" readonly>
+                                                id="status_perkawinan" name="status_perkawinan">
                                         </div>
                                         @error('status_perkawinan')
                                             {{ $message }}
@@ -195,7 +188,7 @@
                                             <input type="text"
                                                 class="form-control @error('status_kependudukan') is-invalid @enderror"
                                                 value="{{ auth()->user()->status_kependudukan == '0' ? 'Menetap' : 'Berkunjung' }}"
-                                                id="status_kependudukan" name="status_kependudukan" readonly>
+                                                id="status_kependudukan" name="status_kependudukan">
                                         </div>
                                         @error('status_kependudukan')
                                             {{ $message }}
@@ -214,7 +207,7 @@
                                             <input type="text"
                                                 class="form-control @error('peran') is-invalid @enderror"
                                                 value="{{ auth()->user()->peran == 'rt' ? 'RT' : '' }}" id="peran"
-                                                name="peran" readonly>
+                                                name="peran">
                                         </div>
                                         @error('peran')
                                             {{ $message }}
@@ -231,7 +224,7 @@
                                             <input type="text"
                                                 class="form-control phone @error('kewarganegaraan') is-invalid @enderror"
                                                 value="{{ auth()->user()->status_kependudukan == '0' ? 'WNI' : 'WNA' }}"
-                                                id="kewarganegaraan" name="kewarganegaraan" readonly>
+                                                id="kewarganegaraan" name="kewarganegaraan">
                                         </div>
                                         @error('kewarganegaraan')
                                             {{ $message }}
@@ -251,7 +244,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('id_pekerjaan') is-invalid @enderror"
-                                                value="" id="id_pekerjaan" name="id_pekerjaan" readonly>
+                                                value="" id="id_pekerjaan" name="id_pekerjaan">
                                         </div>
                                         @error('id_pekerjaan')
                                             {{ $message }}
@@ -279,7 +272,7 @@
                                             <input type="text"
                                                 class="form-control @error('nomor_telpon') is-invalid @enderror"
                                                 value="{{ $nomorTelponFormatted }}" id="nomor_telpon"
-                                                name="nomor_telpon" readonly>
+                                                name="nomor_telpon">
                                         </div>
                                         @error('nomor_telpon')
                                             {{ $message }}
@@ -306,12 +299,58 @@
                                         ?>
                                         <input type="text"
                                             class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                            value="{{ $formatted_date }}" id="tanggal_lahir" name="tanggal_lahir"
-                                            readonly>
+                                            value="{{ $formatted_date }}" id="tanggal_lahir" name="tanggal_lahir">
                                     </div>
                                     @error('tanggal_lahir')
                                         {{ $message }}
                                     @enderror
+                                </div>
+                            </div>
+
+                            <div class="card bg-info">
+                                <h3 class="text-center text-white p-1">Isi dibawah ini Jika Ingin Mengubah Password</h3>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="password_lama">Password Lama: </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text ">
+                                                    <i class="bi fs-2 bi-key"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control capitalize @error('password_lama') is-invalid @enderror"
+                                                value="" id="password_lama" name="password_lama">
+                                        </div>
+                                        @error('password_lama')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="password_baru">Password Baru : </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi fs-2 bi-key-fill"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control phone @error('password_baru') is-invalid @enderror"
+                                                value="" id="password_baru" name="password_baru">
+                                        </div>
+                                        @error('password_baru')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end p-3">
+                                    <a type="button" href="/profile" class="btn btn-secondary me-2">Keluar</a>
+                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                 </div>
                             </div>
                         </form>
@@ -326,29 +365,3 @@
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-    $(document).ready(function() {
-        $('.btn-edit').on('click', function(e) {
-            e.preventDefault();
-
-            var url = $(this).attr('href');
-
-            Swal.fire({
-                title: 'Konfirmasi',
-                text: 'Apakah Anda ingin mengedit item ini?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya',
-                cancelButtonText: 'Batal'
-            }).then(function(result) {
-                if (result.isConfirmed) {
-                    // Proceed with the edit by redirecting to the specified URL
-                    window.location.href = url;
-                }
-            });
-        });
-    });
-</script>
