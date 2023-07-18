@@ -106,10 +106,6 @@ class WargaController extends Controller
             $request->validate([
                 'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
-
-
-
-
             // Hapus foto lama jika ada
             $user = Warga::where('id_warga', $request->id_warga)->first();
             // Hapus foto lama jika ada
@@ -124,7 +120,7 @@ class WargaController extends Controller
             $nama_foto = time() . '.' . $request->foto->extension();
             $request->foto->move(public_path('image_save'), $nama_foto);
 
-            $user = Warga::where('id_warga', $request->id_warga)
+            $warga = Warga::where('id_warga', $request->id_warga)
                 ->update([
                     'nama_lengkap' => $request->nama_lengkap,
                     'nik' => $request->nik,
@@ -143,24 +139,24 @@ class WargaController extends Controller
 
             // dd($user);
         } else {
-            $user = Warga::where('id_user', $request->id_user)
+            $warga = Warga::where('id_warga', $request->id_warga)
                 ->update([
                     'nama_lengkap' => $request->nama_lengkap,
                     'nik' => $request->nik,
                     'alamat' => $request->alamat,
+                    'id_user' => $request->id_user,
                     'agama' => $request->agama,
                     'tanggal_lahir' => $request->tanggal_lahir,
                     'jenis_kelamin' => $request->jenis_kelamin,
+                    'id_pekerjaan' => $request->id_pekerjaan,
                     'status_perkawinan' => $request->status_perkawinan,
                     'status_kependudukan' => $request->status_kependudukan,
-                    'peran' => $request->peran,
-                    'nomor' => $request->nomor,
                     'kewarganegaraan' => $request->kewarganegaraan,
                     'nomor_telpon' => $request->nomor_telpon,
                 ]);
 
             // dd($user);
         }
-        return redirect()->intended('/data_warga' . '/' . $request->id_warga);
+        return redirect()->intended('/detail_warga' . '/' . $request->id_warga);
     }
 }

@@ -21,7 +21,7 @@
                                 <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                             </a>
                             <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Profile
-                                (nama orang yg login)
+                                {{ auth()->user()->nama_lengkap }}
                             </h2>
                         </div>
                         {{-- @foreach ($user as $show) --}}
@@ -61,7 +61,7 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control capitalize @error('nama_lengkap') is-invalid @enderror"
-                                                        value="{{ $show->nama_lengkap }}" id="nama_lengkap"
+                                                        value="{{ auth()->user()->nama_lengkap }}" id="nama_lengkap"
                                                         name="nama_lengkap" readonly>
                                                 </div>
                                                 @error('nama_lengkap')
@@ -78,7 +78,8 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control @error('nik') is-invalid @enderror"
-                                                        value="{{ $show->nik }}" id="nik" name="nik" readonly>
+                                                        value="{{ auth()->user()->nik }}" id="nik" name="nik"
+                                                        readonly>
                                                 </div>
                                                 @error('nik')
                                                     {{ $message }}
@@ -96,7 +97,8 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control @error('alamat') is-invalid @enderror"
-                                                        value="{{ $show->alamat }}" id="alamat" name="alamat" readonly>
+                                                        value="{{ auth()->user()->alamat }}" id="alamat" name="alamat"
+                                                        readonly>
                                                 </div>
                                                 @error('alamat')
                                                     {{ $message }}
@@ -112,7 +114,8 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control phone @error('nomor') is-invalid @enderror"
-                                                        value="{{ $show->nomor }}" id="nomor" name="nomor" readonly>
+                                                        value="{{ auth()->user()->nomor }}" id="nomor" name="nomor"
+                                                        readonly>
                                                 </div>
                                                 @error('nomor')
                                                     {{ $message }}
@@ -132,7 +135,7 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control @error('agama') is-invalid @enderror"
-                                                        value="{{ $show->agama == '0' ? 'Islam' : '' }} {{ $show->agama == '1' ? 'Kristen Protestan' : '' }}{{ $show->agama == '2' ? 'Kristen Katolik' : '' }}{{ $show->agama == '3' ? 'Khonghucu' : '' }}{{ $show->agama == '4' ? 'Hindu' : '' }} {{ $show->agama == '5' ? 'Buddha' : '' }}"
+                                                        value="{{ auth()->user()->agama == '0' ? 'Islam' : '' }} {{ auth()->user()->agama == '1' ? 'Kristen Protestan' : '' }}{{ auth()->user()->agama == '2' ? 'Kristen Katolik' : '' }}{{ auth()->user()->agama == '3' ? 'Khonghucu' : '' }}{{ auth()->user()->agama == '4' ? 'Hindu' : '' }} {{ auth()->user()->agama == '5' ? 'Buddha' : '' }}"
                                                         id="agama" name="agama" readonly>
                                                 </div>
                                                 @error('agama')
@@ -151,7 +154,7 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control @error('jenis_kelamin') is-invalid @enderror"
-                                                        value="{{ $show->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}"
+                                                        value="{{ auth()->user()->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}"
                                                         id="jenis_kelamin" name="jenis_kelamin" readonly>
                                                 </div>
                                                 @error('jenis_kelamin')
@@ -174,7 +177,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control capitalize @error('status_perkawinan') is-invalid @enderror"
-                                                value="{{ $show->status_perkawinan == '0' ? 'Sudah Menikah' : '' }}{{ $show->status_perkawinan == '1' ? 'Belum Menikah' : '' }} {{ $show->status_perkawinan == '2' ? 'Cerai' : '' }}"
+                                                value="{{ auth()->user()->status_perkawinan == '0' ? 'Sudah Menikah' : '' }}{{ auth()->user()->status_perkawinan == '1' ? 'Belum Menikah' : '' }} {{ auth()->user()->status_perkawinan == '2' ? 'Cerai' : '' }}"
                                                 id="status_perkawinan" name="status_perkawinan" readonly>
                                         </div>
                                         @error('status_perkawinan')
@@ -191,7 +194,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('status_kependudukan') is-invalid @enderror"
-                                                value="{{ $show->status_kependudukan == '0' ? 'Menetap' : 'Berkunjung' }}"
+                                                value="{{ auth()->user()->status_kependudukan == '0' ? 'Menetap' : 'Berkunjung' }}"
                                                 id="status_kependudukan" name="status_kependudukan" readonly>
                                         </div>
                                         @error('status_kependudukan')
@@ -210,7 +213,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('peran') is-invalid @enderror"
-                                                value="{{ $show->peran == 'rt' ? 'RT' : '' }}" id="peran"
+                                                value="{{ auth()->user()->peran == 'rt' ? 'RT' : '' }}" id="peran"
                                                 name="peran" readonly>
                                         </div>
                                         @error('peran')
@@ -227,7 +230,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control phone @error('kewarganegaraan') is-invalid @enderror"
-                                                value="{{ $show->status_kependudukan == '0' ? 'WNI' : 'WNA' }}"
+                                                value="{{ auth()->user()->status_kependudukan == '0' ? 'WNI' : 'WNA' }}"
                                                 id="kewarganegaraan" name="kewarganegaraan" readonly>
                                         </div>
                                         @error('kewarganegaraan')
@@ -265,7 +268,7 @@
                                                 </div>
                                             </div>
                                             <?php
-                                            $nomorTelpon = $show->nomor_telpon;
+                                            $nomorTelpon = auth()->user()->nomor_telpon;
                                             
                                             // Menghapus angka 0 di awal nomor telepon
                                             $nomorTelpon = substr($nomorTelpon, 1);
@@ -295,7 +298,7 @@
                                         </div>
                                         <?php
                                         // Get the date from the database or any other source
-                                        $tanggal_lahir = $show->tanggal_lahir;
+                                        $tanggal_lahir = auth()->user()->tanggal_lahir;
                                         // Convert the date string to a UNIX timestamp
                                         $timestamp = strtotime($tanggal_lahir);
                                         // Format the date as desired

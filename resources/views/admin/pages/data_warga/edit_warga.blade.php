@@ -34,9 +34,10 @@
                         </div>
                     </div>
                     <div class="card">
-                        <form action="{{ route('edit.warga.action') }}" method="post" enctype="multipart/form-data">
-
+                        <form action="{{ route('edit.warga.action') }}" id="myForm" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
+                            <input type="text" value="{{ $show->id_warga }}" name="id_warga" hidden>
                             <div class="card-body ">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -522,7 +523,8 @@
                             text: response.message,
                             icon: 'success'
                         }).then(function() {
-                            window.location.href = '/data_warga/{{ $show->id_warga }}';
+                            window.location.href =
+                                '/detail_warga/{{ $show->id_warga }}';
                         });
                     },
                     error: function(xhr) {

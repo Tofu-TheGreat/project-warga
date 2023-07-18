@@ -99,6 +99,4 @@ Route::get('/edit-pekerjaan', function () {
 
 // profile route
 
-Route::get('/profile', function () {
-    return view('Pages.profile');
-});
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');

@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function profile()
+    {
+        return view('pages.profile')->with('title', 'Profile');
+    }
+
+
 
     // public function __construct()
     // {
