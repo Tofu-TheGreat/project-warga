@@ -230,7 +230,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control phone @error('kewarganegaraan') is-invalid @enderror"
-                                                value="{{ auth()->user()->status_kependudukan == '0' ? 'WNI' : 'WNA' }}"
+                                                value="{{ auth()->user()->kewarganegaraan == '0' ? 'WNI' : 'WNA' }}"
                                                 id="kewarganegaraan" name="kewarganegaraan" readonly>
                                         </div>
                                         @error('kewarganegaraan')

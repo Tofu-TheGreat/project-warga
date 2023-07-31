@@ -220,11 +220,13 @@ class RwController extends Controller
                 $auth_user = auth()->user(); // Mengambil user saat ini dari autentikasi Anda. Pastikan user telah diautentikasi sebelumnya.
 
                 $request->validate([
+                    'password_baru_ulang' => 'required|same:password_baru',
                     'password_lama' => ['required', function ($attribute, $value, $fail) use ($auth_user) {
                         if (!Hash::check($value, $auth_user->password)) {
                             $fail('Password lama tidak cocok dengan password yang tersimpan.');
                         }
                     }]
+
                 ]);
 
                 $user = User::where('id_user', $request->id_user)

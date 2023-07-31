@@ -53,7 +53,7 @@
                         <h2>Si <span>Dawar</span></h2>
                     </div>
                     <div class="about-text">
-                        <p class="text-white"> Sebuah aplikasi yang dibuat untuk memudahkan pendataan warga,dengan ini kita
+                        <p class="text-white"> Sebuah aplikasi yang dibuat untuk memudahkan pendataan warga, dengan ini kita
                             dapat mendata
                             dengan lebih mudah dan efisien. Aplikasi ini juga mendukung gerakan GO GREEN karena dapat
                             mengurangi penggunaan kertas. </p>
