@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
+use Illuminate\Validation\Rule;
 
 
 class RwController extends Controller
@@ -196,4 +197,75 @@ class RwController extends Controller
         return redirect()->intended('/datart');
     }
     //END
+
+    public function edit_profile(Request $request)
+    {
+        $request->validate([
+            'nama_lengkap' => 'required',
+            'nik' => 'required|max:16',
+            'alamat' => 'required',
+            'agama' => 'required',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required',
+            'nomor' => 'required',
+            'peran' => 'required',
+            'status_perkawinan' => 'required',
+            'status_kependudukan' => 'required',
+            'kewarganegaraan' => 'required',
+            'nomor_telpon' => 'required',
+
+        ]);
+        if ($request->password_lama != null) {
+            if ($request->password_baru != null) {
+                $auth_user = auth()->user(); // Mengambil user saat ini dari autentikasi Anda. Pastikan user telah diautentikasi sebelumnya.
+
+                $request->validate([
+                    'password_lama' => ['required', function ($attribute, $value, $fail) use ($auth_user) {
+                        if (!Hash::check($value, $auth_user->password)) {
+                            $fail('Password lama tidak cocok dengan password yang tersimpan.');
+                        }
+                    }]
+                ]);
+
+                $user = User::where('id_user', $request->id_user)
+                    ->update([
+                        'nama_lengkap' => $request->nama_lengkap,
+                        'nik' =>   $request->nik,
+                        'alamat' => $request->alamat,
+                        'agama' => $request->agama,
+                        'tanggal_lahir' => $request->tanggal_lahir,
+                        'jenis_kelamin' => $request->jenis_kelamin,
+                        'nomor' => $request->nomor,
+                        'peran' => $request->peran,
+                        'status_perkawinan' => $request->status_perkawinan,
+                        'status_kependudukan' => $request->status_kependudukan,
+                        'kewarganegaraan' => $request->kewarganegaraan,
+                        'nomor_telpon' => $request->nomor_telpon,
+                        'password' => Hash::make($request->password_baru)
+                    ]);
+
+                return redirect()->intended('/profile');
+            } else {
+                $user = User::where('id_user', $request->id_user)
+                    ->update([
+                        'nama_lengkap' => $request->nama_lengkap,
+                        'nik' =>   $request->nik,
+                        'alamat' => $request->alamat,
+                        'agama' => $request->agama,
+                        'tanggal_lahir' => $request->tanggal_lahir,
+                        'jenis_kelamin' => $request->jenis_kelamin,
+                        'nomor' => $request->nomor,
+                        'peran' => $request->peran,
+                        'status_perkawinan' => $request->status_perkawinan,
+                        'status_kependudukan' => $request->status_kependudukan,
+                        'kewarganegaraan' => $request->kewarganegaraan,
+                        'nomor_telpon' => $request->nomor_telpon,
+
+                    ]);
+                return redirect()->intended('/profile');
+            }
+        } else {
+            return back()->with('error', 'Password Lama Harus di isi');
+        }
+    }
 }

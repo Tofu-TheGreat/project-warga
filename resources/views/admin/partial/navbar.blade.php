@@ -69,7 +69,7 @@
                         <a class="dropdown-item fs-5" href="/profile"><i
                                 class="ti-user text-warning m-r-5 m-l-5 fs-3 p-1"></i>
                             Profile</a>
-                        <a class="dropdown-item fs-5" href=""><i
+                        <a class="dropdown-item fs-5" href="/ubah-password"><i
                                 class="mdi mdi-account-key m-r-5 m-l-5 fs-3 p-1"></i>
                             Ubah Password</a>
                         <li>

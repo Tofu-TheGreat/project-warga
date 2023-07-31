@@ -1,6 +1,16 @@
 @extends('admin.pages.index')
 
 @section('konten')
+    @if ($errors->any())
+        @foreach ($errors->all() as $err)
+            <p class="alert alert-danger">{{ $err }}</p>
+        @endforeach
+    @endif
+    <!-- Di dalam file blade -->
+    @if (session('error'))
+        <p class="alert alert-danger"> {{ session('error') }}</p>
+    @endif
+
     <div class=" mx-2">
         <div class="page-breadcrumb">
             <div class="row align-items-center">
@@ -30,8 +40,9 @@
                 <div class="card">
                     <div class="card-body ">
                         {{-- @foreach ($user as $show) --}}
-                        <form action="/administrator" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('edit.profile') }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <input type="text" hidden name="id_user" value="{{ auth()->user()->id_user }}">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="justify-content-center mt-3 ms-4">
@@ -126,10 +137,30 @@
                                                             <i class="bi fs-2 bi-book-half"></i>
                                                         </div>
                                                     </div>
-                                                    <input type="text"
-                                                        class="form-control @error('agama') is-invalid @enderror"
-                                                        value="{{ auth()->user()->agama == '0' ? 'Islam' : '' }} {{ auth()->user()->agama == '1' ? 'Kristen Protestan' : '' }}{{ auth()->user()->agama == '2' ? 'Kristen Katolik' : '' }}{{ auth()->user()->agama == '3' ? 'Khonghucu' : '' }}{{ auth()->user()->agama == '4' ? 'Hindu' : '' }} {{ auth()->user()->agama == '5' ? 'Buddha' : '' }}"
-                                                        id="agama" name="agama">
+                                                    <select class="form-select" name="agama"
+                                                        aria-label="Default select example">
+                                                        <option>Pilih di bawah ini</option>
+                                                        <option value="0"
+                                                            {{ auth()->user()->agama == '0' ? 'selected' : '' }}>
+                                                            Islam
+                                                        </option>
+                                                        <option value="1"
+                                                            {{ auth()->user()->agama == '1' ? 'selected' : '' }}>Kristen
+                                                            Protestan</option>
+                                                        <option value="2"
+                                                            {{ auth()->user()->agama == '2' ? 'selected' : '' }}>Kristen
+                                                            Katolik
+                                                        </option>
+                                                        <option value="3"
+                                                            {{ auth()->user()->agama == '3' ? 'selected' : '' }}>Khonghucu
+                                                        </option>
+                                                        <option value="4"
+                                                            {{ auth()->user()->agama == '4' ? 'selected' : '' }}>Hindu
+                                                        </option>
+                                                        <option value="5"
+                                                            {{ auth()->user()->agama == '5' ? 'selected' : '' }}>Buddha
+                                                        </option>
+                                                    </select>
                                                 </div>
                                                 @error('agama')
                                                     {{ $message }}
@@ -145,10 +176,18 @@
                                                             <i class="bi fs-2 bi-gender-ambiguous"></i>
                                                         </div>
                                                     </div>
-                                                    <input type="text"
-                                                        class="form-control @error('jenis_kelamin') is-invalid @enderror"
-                                                        value="{{ auth()->user()->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}"
-                                                        id="jenis_kelamin" name="jenis_kelamin">
+                                                    <select class="form-select" name="jenis_kelamin"
+                                                        aria-label="Default select example">
+                                                        <option>Jenis Kelamin</option>
+                                                        <option value="L"
+                                                            {{ auth()->user()->jenis_kelamin == 'L' ? 'selected' : '' }}>
+                                                            Laki - Laki
+                                                        </option>
+                                                        <option value="P"
+                                                            {{ auth()->user()->jenis_kelamin == 'P' ? 'selected' : '' }}>
+                                                            Perempuan
+                                                        </option>
+                                                    </select>
                                                 </div>
                                                 @error('jenis_kelamin')
                                                     {{ $message }}
@@ -168,10 +207,19 @@
                                                     <i class="bi fs-2 bi-postcard-heart-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control capitalize @error('status_perkawinan') is-invalid @enderror"
-                                                value="{{ auth()->user()->status_perkawinan == '0' ? 'Sudah Menikah' : '' }}{{ auth()->user()->status_perkawinan == '1' ? 'Belum Menikah' : '' }} {{ auth()->user()->status_perkawinan == '2' ? 'Cerai' : '' }}"
-                                                id="status_perkawinan" name="status_perkawinan">
+                                            <select class="form-select" name="status_perkawinan"
+                                                aria-label="Default select example">
+                                                <option>Pilih di bawah ini</option>
+                                                <option value="0"
+                                                    {{ auth()->user()->status_perkawinan == '0' ? 'selected' : '' }}>Sudah
+                                                    Menikah</option>
+                                                <option value="1"
+                                                    {{ auth()->user()->status_perkawinan == '1' ? 'selected' : '' }}>Belum
+                                                    Menikah</option>
+                                                <option value="2"
+                                                    {{ auth()->user()->status_perkawinan == '2' ? 'selected' : '' }}>Cerai
+                                                </option>
+                                            </select>
                                         </div>
                                         @error('status_perkawinan')
                                             {{ $message }}
@@ -185,10 +233,17 @@
                                                     <i class="bi fs-2 bi-geo-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control @error('status_kependudukan') is-invalid @enderror"
-                                                value="{{ auth()->user()->status_kependudukan == '0' ? 'Menetap' : 'Berkunjung' }}"
-                                                id="status_kependudukan" name="status_kependudukan">
+                                            <select class="form-select" name="status_kependudukan"
+                                                aria-label="Default select example">
+                                                <option>Pilih di bawah ini</option>
+                                                <option value="0"
+                                                    {{ auth()->user()->status_kependudukan == '0' ? 'selected' : '' }}>
+                                                    Menetap
+                                                </option>
+                                                <option value="1"
+                                                    {{ auth()->user()->status_kependudukan == '1' ? 'selected' : '' }}>
+                                                    Berkunjung</option>
+                                            </select>
                                         </div>
                                         @error('status_kependudukan')
                                             {{ $message }}
@@ -204,10 +259,19 @@
                                                     <i class="bi fs-2 bi-stack"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control @error('peran') is-invalid @enderror"
-                                                value="{{ auth()->user()->peran == 'rt' ? 'RT' : '' }}" id="peran"
-                                                name="peran">
+
+                                            <select class="form-select  @error('peran') is-invalid @enderror"
+                                                name="peran" aria-label="Default select example">
+                                                <option>Pilih dibawah ini</option>
+                                                <option value="rt"
+                                                    {{ auth()->user()->peran == 'rt' ? 'selected' : '' }}>
+                                                    RT
+                                                </option>
+                                                <option value="rw"
+                                                    {{ auth()->user()->peran == 'rw' ? 'selected' : '' }}>
+                                                    RW
+                                                </option>
+                                            </select>
                                         </div>
                                         @error('peran')
                                             {{ $message }}
@@ -221,10 +285,16 @@
                                                     <i class="bi fs-2 bi-globe-americas"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control phone @error('kewarganegaraan') is-invalid @enderror"
-                                                value="{{ auth()->user()->status_kependudukan == '0' ? 'WNI' : 'WNA' }}"
-                                                id="kewarganegaraan" name="kewarganegaraan">
+                                            <select class="form-select" name="kewarganegaraan"
+                                                aria-label="Default select example">
+                                                <option selected>Pilih di bawah ini</option>
+                                                <option value="0"
+                                                    {{ auth()->user()->kewarganegaraan == '0' ? 'selected' : '' }}>WNI
+                                                </option>
+                                                <option value="1"
+                                                    {{ auth()->user()->kewarganegaraan == '1' ? 'selected' : '' }}>WNA
+                                                </option>
+                                            </select>
                                         </div>
                                         @error('kewarganegaraan')
                                             {{ $message }}
@@ -244,7 +314,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('id_pekerjaan') is-invalid @enderror"
-                                                value="" id="id_pekerjaan" name="id_pekerjaan">
+                                                value="" disabled>
                                         </div>
                                         @error('id_pekerjaan')
                                             {{ $message }}
@@ -260,18 +330,10 @@
                                                     <i class="bi fs-2 bi-telephone-fill"></i>
                                                 </div>
                                             </div>
-                                            <?php
-                                            $nomorTelpon = auth()->user()->nomor_telpon;
 
-                                            // Menghapus angka 0 di awal nomor telepon
-                                            $nomorTelpon = substr($nomorTelpon, 1);
-
-                                            // Menambahkan kode negara (+62)
-                                            $nomorTelponFormatted = '(+62)' . $nomorTelpon;
-                                            ?>
                                             <input type="text"
                                                 class="form-control @error('nomor_telpon') is-invalid @enderror"
-                                                value="{{ $nomorTelponFormatted }}" id="nomor_telpon"
+                                                value="{{ auth()->user()->nomor_telpon }}" id="nomor_telpon"
                                                 name="nomor_telpon">
                                         </div>
                                         @error('nomor_telpon')
@@ -289,17 +351,10 @@
                                                 <i class="bi fs-2 bi-calendar-event-fill"></i>
                                             </div>
                                         </div>
-                                        <?php
-                                        // Get the date from the database or any other source
-                                        $tanggal_lahir = auth()->user()->tanggal_lahir;
-                                        // Convert the date string to a UNIX timestamp
-                                        $timestamp = strtotime($tanggal_lahir);
-                                        // Format the date as desired
-                                        $formatted_date = date('l, d-F-Y', $timestamp);
-                                        ?>
-                                        <input type="text"
+                                        <input type="date"
                                             class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                            value="{{ $formatted_date }}" id="tanggal_lahir" name="tanggal_lahir">
+                                            value="{{ auth()->user()->tanggal_lahir }}" id="tanggal_lahir"
+                                            name="tanggal_lahir">
                                     </div>
                                     @error('tanggal_lahir')
                                         {{ $message }}
@@ -321,9 +376,9 @@
                                                     <i class="bi fs-2 bi-key"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
+                                            <input type="password"
                                                 class="form-control capitalize @error('password_lama') is-invalid @enderror"
-                                                value="" id="password_lama" name="password_lama">
+                                                id="password_lama" name="password_lama">
                                         </div>
                                         @error('password_lama')
                                             {{ $message }}
@@ -339,9 +394,9 @@
                                                     <i class="bi fs-2 bi-key-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
+                                            <input type="password"
                                                 class="form-control phone @error('password_baru') is-invalid @enderror"
-                                                value="" id="password_baru" name="password_baru">
+                                                id="password_baru" name="password_baru">
                                         </div>
                                         @error('password_baru')
                                             {{ $message }}

@@ -67,6 +67,9 @@ Route::get('/hapus_warga/{id_warga}', [WargaController::class, 'delete_warga'])-
 Route::post('/tambah_warga', [WargaController::class, 'create_warga'])->name('create.warga');
 // route data warga
 
+
+
+
 Route::get('/chart_warga', [Controller::class, 'getChartData'])->name('chart.warga');
 
 
@@ -98,3 +101,4 @@ Route::get('/edit-pekerjaan', function () {
 
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('/ubah-password', [HomeController::class, 'ubah_password']);
+Route::post('/edit_profile', [RwController::class, 'edit_profile'])->name('edit.profile');
