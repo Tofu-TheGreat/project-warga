@@ -360,6 +360,22 @@
                                         {{ $message }}
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label for="password_lama">Masukkan Password Lama: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text ">
+                                                <i class="bi fs-2 bi-key"></i>
+                                            </div>
+                                        </div>
+                                        <input type="password"
+                                            class="form-control capitalize @error('password_lama') is-invalid @enderror"
+                                            id="password_lama" name="password_lama">
+                                    </div>
+                                    @error('password_lama')
+                                        {{ $message }}
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="card bg-info">
@@ -367,24 +383,6 @@
                             </div>
 
                             <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="password_lama">Password Lama: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text ">
-                                                    <i class="bi fs-2 bi-key"></i>
-                                                </div>
-                                            </div>
-                                            <input type="password"
-                                                class="form-control capitalize @error('password_lama') is-invalid @enderror"
-                                                id="password_lama" name="password_lama">
-                                        </div>
-                                        @error('password_lama')
-                                            {{ $message }}
-                                        @enderror
-                                    </div>
-                                </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="password_baru">Password Baru : </label>
@@ -399,6 +397,24 @@
                                                 id="password_baru" name="password_baru">
                                         </div>
                                         @error('password_baru')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="password_baru_ulang">Ulangi Password Baru : </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi fs-2 bi-key-fill"></i>
+                                                </div>
+                                            </div>
+                                            <input type="password"
+                                                class="form-control phone @error('password_baru_ulang') is-invalid @enderror"
+                                                id="password_baru_ulang" name="password_baru_ulang">
+                                        </div>
+                                        @error('password_baru_ulang')
                                             {{ $message }}
                                         @enderror
                                     </div>
