@@ -221,40 +221,12 @@ class RwController extends Controller
                 if ($request->password_baru != null) {
                     $auth_user = auth()->user(); // Mengambil user saat ini dari autentikasi Anda. Pastikan user telah diautentikasi sebelumnya.
 
-<<<<<<< a
                     $request->validate([
                         'password_lama' => ['required', function ($attribute, $value, $fail) use ($auth_user) {
                             if (!Hash::check($value, $auth_user->password)) {
                                 $fail('Password lama tidak cocok dengan password yang tersimpan.');
                             }
                         }]
-=======
-                $request->validate([
-                    'password_baru_ulang' => 'required|same:password_baru',
-                    'password_lama' => ['required', function ($attribute, $value, $fail) use ($auth_user) {
-                        if (!Hash::check($value, $auth_user->password)) {
-                            $fail('Password lama tidak cocok dengan password yang tersimpan.');
-                        }
-                    }]
-
-                ]);
-
-                $user = User::where('id_user', $request->id_user)
-                    ->update([
-                        'nama_lengkap' => $request->nama_lengkap,
-                        'nik' =>   $request->nik,
-                        'alamat' => $request->alamat,
-                        'agama' => $request->agama,
-                        'tanggal_lahir' => $request->tanggal_lahir,
-                        'jenis_kelamin' => $request->jenis_kelamin,
-                        'nomor' => $request->nomor,
-                        'peran' => $request->peran,
-                        'status_perkawinan' => $request->status_perkawinan,
-                        'status_kependudukan' => $request->status_kependudukan,
-                        'kewarganegaraan' => $request->kewarganegaraan,
-                        'nomor_telpon' => $request->nomor_telpon,
-                        'password' => Hash::make($request->password_baru)
->>>>>>> main
                     ]);
 
                     $user = User::where('id_user', $request->id_user)
