@@ -62,17 +62,17 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#"
                         id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        @if (auth()->user()->foto != null)
-                            <img src="../image_save/{{ auth()->user()->foto }}" alt="user" class="rounded-circle"
+                        @if (auth()->user()->foto == null)
+                            <img src=" {{ asset('images/kosong.webp') }}" alt="user" class="rounded-circle"
                                 width="40" style="border: 3px solid rgba(189, 189, 241, 0.87); aspect-ratio: 1/1;">
                         @else
-                            <img src="{{ asset('images/kosong.webp') }}" alt="user" class="rounded-circle"
+                            <img src="../image_save/{{ auth()->user()->foto }}" alt="user" class="rounded-circle"
                                 width="40" style="border: 3px solid rgba(189, 189, 241, 0.87); aspect-ratio: 1/1;">
                         @endif
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item fs-5" href="/profile"><i
-                                class="ti-user text-warning m-r-5 m-l-5 fs-3 p-1"></i>
+                        <a class="dropdown-item fs-5 mt-3" href="/profile"><i
+                                class="ti-user text-warning m-r-5 m-l-5 fs-3 p-1 "></i>
                             Profile</a>
                         <a class="dropdown-item fs-5" href="/ubah-password"><i
                                 class="mdi mdi-account-key m-r-5 m-l-5 fs-3 p-1"></i>

@@ -40,31 +40,31 @@ Route::get('/home', function () {
 
 // Rute yang hanya dapat diakses oleh Admin
 
-Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt');
-Route::get('/data_warga/{id_user}', [HomeController::class, 'show_warga'])->name('show.warga');
-Route::get('/testes/{id_user}', [HomeController::class, 'table_rt'])->name('show');
+Route::get('/datart', [HomeController::class, 'show_rt'])->name('show.rt')->middleware("auth");
+Route::get('/data_warga/{id_user}', [HomeController::class, 'show_warga'])->name('show.warga')->middleware("auth");
+Route::get('/testes/{id_user}', [HomeController::class, 'table_rt'])->name('show')->middleware("auth");
 
-Route::get('/detail-rt/{id_user}', [HomeController::class, 'detail_rt'])->name('detail.rt');
-Route::get('/edit-rt/{id_user}', [HomeController::class, 'edit_rt'])->name('edit.rt');
-Route::post('/edit-rt-action', [RwController::class, 'edit_rt'])->name('edit.rt.action');
-Route::get('/hapus_rt/{id_user}', [RwController::class, 'delete_rt'])->name('delete.rt.action');
+Route::get('/detail-rt/{id_user}', [HomeController::class, 'detail_rt'])->name('detail.rt')->middleware("auth");
+Route::get('/edit-rt/{id_user}', [HomeController::class, 'edit_rt'])->name('edit.rt')->middleware("auth");
+Route::post('/edit-rt-action', [RwController::class, 'edit_rt'])->name('edit.rt.action')->middleware("auth");
+Route::get('/hapus_rt/{id_user}', [RwController::class, 'delete_rt'])->name('delete.rt.action')->middleware("admin");
 
-Route::get('/hapus_pekerjaan/{id_pekerjaan}', [PekerjaanController::class, 'delete_pekerjaan'])->name('delete.pekerjaan');
-Route::post('/edit-pekerjaan-action', [PekerjaanController::class, 'edit_pekerjaan'])->name('edit.pekerjaan.action');
-Route::get('/edit_pekerjaan/{id_pekerjaan}', [HomeController::class, 'edit_pekerjaan'])->name('edit.pekerjaan');
-Route::get('/detail_pekerjaan/{id_pekerjaan}', [HomeController::class, 'detail_pekerjaan'])->name('detail.pekerjaan');
-Route::get('/data_pekerjaan', [HomeController::class, 'show_pekerjaan'])->name('show.pekerjaan');
-Route::post('/tambah_pekerjaan', [PekerjaanController::class, 'create_pekerjaan'])->name('create.pekerjaan');
+Route::get('/hapus_pekerjaan/{id_pekerjaan}', [PekerjaanController::class, 'delete_pekerjaan'])->name('delete.pekerjaan')->middleware("auth");
+Route::post('/edit-pekerjaan-action', [PekerjaanController::class, 'edit_pekerjaan'])->name('edit.pekerjaan.action')->middleware("auth");
+Route::get('/edit_pekerjaan/{id_pekerjaan}', [HomeController::class, 'edit_pekerjaan'])->name('edit.pekerjaan')->middleware("auth");
+Route::get('/detail_pekerjaan/{id_pekerjaan}', [HomeController::class, 'detail_pekerjaan'])->name('detail.pekerjaan')->middleware("auth");
+Route::get('/data_pekerjaan', [HomeController::class, 'show_pekerjaan'])->name('show.pekerjaan')->middleware("auth");
+Route::post('/tambah_pekerjaan', [PekerjaanController::class, 'create_pekerjaan'])->name('create.pekerjaan')->middleware("auth");
 
-Route::post('/tambah_rt', [RwController::class, 'create_rt'])->name('create.rt');
+Route::post('/tambah_rt', [RwController::class, 'create_rt'])->name('create.rt')->middleware("auth");
 
-Route::post('/edit_warga-action', [WargaController::class, 'edit_warga'])->name('edit.warga.action');
-Route::get('/data_warga/{id_user}', [HomeController::class, 'show_warga'])->name('show.warga');
-Route::get('/detail_warga/{id_warga}', [HomeController::class, 'detail_warga'])->name('detail.warga');
-Route::get('/data_warga', [HomeController::class, 'show_warga_all'])->name('show.warga.all');
-Route::get('/edit_warga/{id_warga}', [HomeController::class, 'edit_warga'])->name('edit.warga');
-Route::get('/hapus_warga/{id_warga}', [WargaController::class, 'delete_warga'])->name('delete.warga');
-Route::post('/tambah_warga', [WargaController::class, 'create_warga'])->name('create.warga');
+Route::post('/edit_warga-action', [WargaController::class, 'edit_warga'])->name('edit.warga.action')->middleware("auth");
+Route::get('/data_warga/{id_user}', [HomeController::class, 'show_warga'])->name('show.warga')->middleware("auth");
+Route::get('/detail_warga/{id_warga}', [HomeController::class, 'detail_warga'])->name('detail.warga')->middleware("auth");
+Route::get('/data_warga', [HomeController::class, 'show_warga_all'])->name('show.warga.all')->middleware("auth");
+Route::get('/edit_warga/{id_warga}', [HomeController::class, 'edit_warga'])->name('edit.warga')->middleware("auth");
+Route::get('/hapus_warga/{id_warga}', [WargaController::class, 'delete_warga'])->name('delete.warga')->middleware("auth");
+Route::post('/tambah_warga', [WargaController::class, 'create_warga'])->name('create.warga')->middleware("auth");
 // route data warga
 
 
