@@ -216,8 +216,9 @@ class RwController extends Controller
 
         ]);
         $cek = Hash::check($request->password_lama, auth()->user()->password);
-        if ($cek) {
-            if ($request->password_lama != null) {
+
+        if ($request->password_lama != null) {
+            if ($cek) {
                 if ($request->password_baru != null) {
                     $auth_user = auth()->user(); // Mengambil user saat ini dari autentikasi Anda. Pastikan user telah diautentikasi sebelumnya.
 
@@ -228,49 +229,119 @@ class RwController extends Controller
                             }
                         }]
                     ]);
-
-                    $user = User::where('id_user', $request->id_user)
-                        ->update([
-                            'nama_lengkap' => $request->nama_lengkap,
-                            'nik' =>   $request->nik,
-                            'alamat' => $request->alamat,
-                            'agama' => $request->agama,
-                            'tanggal_lahir' => $request->tanggal_lahir,
-                            'jenis_kelamin' => $request->jenis_kelamin,
-                            'nomor' => $request->nomor,
-                            'peran' => $request->peran,
-                            'status_perkawinan' => $request->status_perkawinan,
-                            'status_kependudukan' => $request->status_kependudukan,
-                            'kewarganegaraan' => $request->kewarganegaraan,
-                            'nomor_telpon' => $request->nomor_telpon,
-                            'password' => Hash::make($request->password_baru)
+                    if ($request->hasFile('foto')) {
+                        $request->validate([
+                            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                         ]);
+                        // Hapus foto lama jika ada
+                        $user = User::where('id_user', $request->id_user)->first();
+                        // Hapus foto lama jika ada
+                        if ($user->foto != null) {
+                            $fotoPath = public_path('image_save/') . $user->foto;
+                            if (file_exists($fotoPath)) {
+                                unlink($fotoPath);
+                            }
+                        }
+
+                        $nama_foto = time() . '.' . $request->foto->extension();
+                        $request->foto->move(public_path('image_save'), $nama_foto);
+
+                        $user = User::where('id_user', $request->id_user)
+                            ->update([
+                                'nama_lengkap' => $request->nama_lengkap,
+                                'nik' =>   $request->nik,
+                                'alamat' => $request->alamat,
+                                'agama' => $request->agama,
+                                'tanggal_lahir' => $request->tanggal_lahir,
+                                'jenis_kelamin' => $request->jenis_kelamin,
+                                'nomor' => $request->nomor,
+                                'peran' => $request->peran,
+                                'status_perkawinan' => $request->status_perkawinan,
+                                'status_kependudukan' => $request->status_kependudukan,
+                                'kewarganegaraan' => $request->kewarganegaraan,
+                                'nomor_telpon' => $request->nomor_telpon,
+                                'password' => Hash::make($request->password_baru),
+                                'foto' => $nama_foto,
+                            ]);
+                    } else {
+                        $user = User::where('id_user', $request->id_user)
+                            ->update([
+                                'nama_lengkap' => $request->nama_lengkap,
+                                'nik' =>   $request->nik,
+                                'alamat' => $request->alamat,
+                                'agama' => $request->agama,
+                                'tanggal_lahir' => $request->tanggal_lahir,
+                                'jenis_kelamin' => $request->jenis_kelamin,
+                                'nomor' => $request->nomor,
+                                'peran' => $request->peran,
+                                'status_perkawinan' => $request->status_perkawinan,
+                                'status_kependudukan' => $request->status_kependudukan,
+                                'kewarganegaraan' => $request->kewarganegaraan,
+                                'nomor_telpon' => $request->nomor_telpon,
+                                'password' => Hash::make($request->password_baru)
+                            ]);
+                    }
 
                     return redirect()->intended('/profile');
                 } else {
-                    $user = User::where('id_user', $request->id_user)
-                        ->update([
-                            'nama_lengkap' => $request->nama_lengkap,
-                            'nik' =>   $request->nik,
-                            'alamat' => $request->alamat,
-                            'agama' => $request->agama,
-                            'tanggal_lahir' => $request->tanggal_lahir,
-                            'jenis_kelamin' => $request->jenis_kelamin,
-                            'nomor' => $request->nomor,
-                            'peran' => $request->peran,
-                            'status_perkawinan' => $request->status_perkawinan,
-                            'status_kependudukan' => $request->status_kependudukan,
-                            'kewarganegaraan' => $request->kewarganegaraan,
-                            'nomor_telpon' => $request->nomor_telpon,
-
+                    if ($request->hasFile('foto')) {
+                        $request->validate([
+                            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                         ]);
+                        // Hapus foto lama jika ada
+                        $user = User::where('id_user', $request->id_user)->first();
+                        // Hapus foto lama jika ada
+                        if ($user->foto != null) {
+                            $fotoPath = public_path('image_save/') . $user->foto;
+                            if (file_exists($fotoPath)) {
+                                unlink($fotoPath);
+                            }
+                        }
+
+                        $nama_foto = time() . '.' . $request->foto->extension();
+                        $request->foto->move(public_path('image_save'), $nama_foto);
+
+                        $user = User::where('id_user', $request->id_user)
+                            ->update([
+                                'nama_lengkap' => $request->nama_lengkap,
+                                'nik' =>   $request->nik,
+                                'alamat' => $request->alamat,
+                                'agama' => $request->agama,
+                                'tanggal_lahir' => $request->tanggal_lahir,
+                                'jenis_kelamin' => $request->jenis_kelamin,
+                                'nomor' => $request->nomor,
+                                'peran' => $request->peran,
+                                'status_perkawinan' => $request->status_perkawinan,
+                                'status_kependudukan' => $request->status_kependudukan,
+                                'kewarganegaraan' => $request->kewarganegaraan,
+                                'nomor_telpon' => $request->nomor_telpon,
+                                'foto' => $nama_foto,
+                            ]);
+                    } else {
+                        $user = User::where('id_user', $request->id_user)
+                            ->update([
+                                'nama_lengkap' => $request->nama_lengkap,
+                                'nik' =>   $request->nik,
+                                'alamat' => $request->alamat,
+                                'agama' => $request->agama,
+                                'tanggal_lahir' => $request->tanggal_lahir,
+                                'jenis_kelamin' => $request->jenis_kelamin,
+                                'nomor' => $request->nomor,
+                                'peran' => $request->peran,
+                                'status_perkawinan' => $request->status_perkawinan,
+                                'status_kependudukan' => $request->status_kependudukan,
+                                'kewarganegaraan' => $request->kewarganegaraan,
+                                'nomor_telpon' => $request->nomor_telpon,
+
+                            ]);
+                    }
                     return redirect()->intended('/profile');
                 }
             } else {
-                return back()->with('error', 'Password Lama Harus di isi');
+                return back()->with('error', 'Password Lama Salah !!');
             }
         } else {
-            return back()->with('error', 'Password Lama Salah !!');
+            return back()->with('error', 'Password Lama Harus di isi');
         }
     }
 }

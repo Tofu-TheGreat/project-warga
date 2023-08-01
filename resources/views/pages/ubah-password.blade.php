@@ -47,11 +47,11 @@
                                 <div class="col-md-4">
                                     <div class="justify-content-center mt-3 ms-4">
                                         @if (auth()->user()->foto == null)
-                                            <img src="{{ asset('images/kosong.webp') }}" alt="foto"
+                                            <img src="{{ asset('images/kosong.webp') }}" id="preview" alt="foto"
                                                 class="foto-user w-75 rounded-circle">
                                         @else
-                                            <img src="../image_save/{{ auth()->user()->foto }}" alt="foto"
-                                                class="foto-user w-75 rounded-circle">
+                                            <img src="../image_save/{{ auth()->user()->foto }}" id="preview"
+                                                alt="foto" class="foto-user w-75 rounded-circle">
                                         @endif
                                     </div>
                                 </div>
@@ -361,6 +361,22 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="foto">Foto : </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-file-earmark-image fs-2"></i>
+                                            </div>
+                                        </div>
+                                        <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                            onchange="previewImage(event)" id="foto" name="foto">
+                                    </div>
+                                    @error('foto')
+                                        {{ $message }}
+                                    @enderror
+                                    <small class="text-secondary">Note: Maksimal 1 mb</small>
+                                </div>
+                                <div class="form-group">
                                     <label for="password_lama">Masukkan Password Lama: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -436,3 +452,13 @@
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('preview');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

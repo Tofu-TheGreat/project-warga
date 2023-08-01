@@ -33,6 +33,7 @@
             </div>
             <span class="badge bg-success p-2 px-3">{{ $count }}
                 Total Warga</span>
+            <a href="/export_warga_all" type="button" class="btn btn-primary">Export to Excel</a>
         </div>
     </div>
     @if ($errors->any())

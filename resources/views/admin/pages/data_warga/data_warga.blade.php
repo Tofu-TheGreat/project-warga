@@ -35,6 +35,9 @@
             </div>
             <span class="badge bg-success p-2 px-3">{{ $count }}
                 Total Warga</span>
+            @foreach ($rt2 as $show)
+                <a href="/export/{{ $show->id_user }}" type="button" class="btn btn-primary">Export to Excel</a>
+            @endforeach
         </div>
     </div>
     @if ($errors->any())

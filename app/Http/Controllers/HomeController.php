@@ -56,6 +56,8 @@ class HomeController extends Controller
             ->where('id_user', $id_user)
             ->count();
 
+        $rt2 = User::where('id_user', $id_user)
+            ->get();
         $nomor = User::select('nomor')
             ->where('id_user', $id_user)
             ->get();
@@ -63,7 +65,7 @@ class HomeController extends Controller
             ->get();
         $rt = User::where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt', 'nomor', 'count'))->with('title', 'Data Warga');
+        return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt', 'nomor', 'count', 'rt2'))->with('title', 'Data Warga');
     }
     public function show_warga_all()
     {

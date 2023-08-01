@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\RwController;
@@ -91,7 +92,9 @@ Route::get('/data-pekerjaan', function () {
     return view('Admin.pages.data_pekerjaan.data_pekerjaan');
 });
 
-
+Route::get('/export/{id_user}', [ExcelController::class, 'export_warga'])->name('export.excel');
+Route::get('/export_rt', [ExcelController::class, 'export_rt'])->name('export.rt.excel');
+Route::get('/export_warga_all', [ExcelController::class, 'export_warga_all'])->name('export.warga.excel');
 
 Route::get('/edit-pekerjaan', function () {
     return view('Admin.pages.data_pekerjaan.edit_pekerjaan');

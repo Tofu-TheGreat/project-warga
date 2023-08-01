@@ -34,6 +34,7 @@
             </div>
             <span class="badge bg-success p-2 px-3">{{ $count }}
                 Total RT</span>
+            <a href="/export_rt" type="button" class="btn btn-primary">Export to Excel</a>
         </div>
     </div>
     @if ($errors->any())
@@ -117,7 +118,8 @@
                                             <i class="bi bi-person-vcard-fill fs-2"></i>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control capitalize @error('nik') is-invalid @enderror"
+                                    <input type="text"
+                                        class="form-control capitalize @error('nik') is-invalid @enderror"
                                         value="{{ old('nik') }}" id="nik" name="nik"
                                         placeholder="Masukkan NIK">
                                 </div>

@@ -34,6 +34,6 @@ class Warga extends Model
     }
     public function pekerjaan()
     {
-        return $this->hasOne(Pekerjaan::class, 'id_pekerjaan');
+        return $this->belongsTo(Pekerjaan::class, 'id_pekerjaan');
     }
 }
