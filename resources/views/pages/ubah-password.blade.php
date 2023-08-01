@@ -314,7 +314,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('id_pekerjaan') is-invalid @enderror"
-                                                value="" disabled>
+                                                value="{{ auth()->user()->peran == 'rt' ? 'RT' : 'RW' }}" disabled>
                                         </div>
                                         @error('id_pekerjaan')
                                             {{ $message }}
