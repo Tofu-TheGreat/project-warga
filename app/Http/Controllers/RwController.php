@@ -215,10 +215,20 @@ class RwController extends Controller
             'nomor_telpon' => 'required',
 
         ]);
-        if ($request->password_lama != null) {
-            if ($request->password_baru != null) {
-                $auth_user = auth()->user(); // Mengambil user saat ini dari autentikasi Anda. Pastikan user telah diautentikasi sebelumnya.
+        $cek = Hash::check($request->password_lama, auth()->user()->password);
+        if ($cek) {
+            if ($request->password_lama != null) {
+                if ($request->password_baru != null) {
+                    $auth_user = auth()->user(); // Mengambil user saat ini dari autentikasi Anda. Pastikan user telah diautentikasi sebelumnya.
 
+<<<<<<< a
+                    $request->validate([
+                        'password_lama' => ['required', function ($attribute, $value, $fail) use ($auth_user) {
+                            if (!Hash::check($value, $auth_user->password)) {
+                                $fail('Password lama tidak cocok dengan password yang tersimpan.');
+                            }
+                        }]
+=======
                 $request->validate([
                     'password_baru_ulang' => 'required|same:password_baru',
                     'password_lama' => ['required', function ($attribute, $value, $fail) use ($auth_user) {
@@ -244,30 +254,51 @@ class RwController extends Controller
                         'kewarganegaraan' => $request->kewarganegaraan,
                         'nomor_telpon' => $request->nomor_telpon,
                         'password' => Hash::make($request->password_baru)
+>>>>>>> main
                     ]);
 
-                return redirect()->intended('/profile');
+                    $user = User::where('id_user', $request->id_user)
+                        ->update([
+                            'nama_lengkap' => $request->nama_lengkap,
+                            'nik' =>   $request->nik,
+                            'alamat' => $request->alamat,
+                            'agama' => $request->agama,
+                            'tanggal_lahir' => $request->tanggal_lahir,
+                            'jenis_kelamin' => $request->jenis_kelamin,
+                            'nomor' => $request->nomor,
+                            'peran' => $request->peran,
+                            'status_perkawinan' => $request->status_perkawinan,
+                            'status_kependudukan' => $request->status_kependudukan,
+                            'kewarganegaraan' => $request->kewarganegaraan,
+                            'nomor_telpon' => $request->nomor_telpon,
+                            'password' => Hash::make($request->password_baru)
+                        ]);
+
+                    return redirect()->intended('/profile');
+                } else {
+                    $user = User::where('id_user', $request->id_user)
+                        ->update([
+                            'nama_lengkap' => $request->nama_lengkap,
+                            'nik' =>   $request->nik,
+                            'alamat' => $request->alamat,
+                            'agama' => $request->agama,
+                            'tanggal_lahir' => $request->tanggal_lahir,
+                            'jenis_kelamin' => $request->jenis_kelamin,
+                            'nomor' => $request->nomor,
+                            'peran' => $request->peran,
+                            'status_perkawinan' => $request->status_perkawinan,
+                            'status_kependudukan' => $request->status_kependudukan,
+                            'kewarganegaraan' => $request->kewarganegaraan,
+                            'nomor_telpon' => $request->nomor_telpon,
+
+                        ]);
+                    return redirect()->intended('/profile');
+                }
             } else {
-                $user = User::where('id_user', $request->id_user)
-                    ->update([
-                        'nama_lengkap' => $request->nama_lengkap,
-                        'nik' =>   $request->nik,
-                        'alamat' => $request->alamat,
-                        'agama' => $request->agama,
-                        'tanggal_lahir' => $request->tanggal_lahir,
-                        'jenis_kelamin' => $request->jenis_kelamin,
-                        'nomor' => $request->nomor,
-                        'peran' => $request->peran,
-                        'status_perkawinan' => $request->status_perkawinan,
-                        'status_kependudukan' => $request->status_kependudukan,
-                        'kewarganegaraan' => $request->kewarganegaraan,
-                        'nomor_telpon' => $request->nomor_telpon,
-
-                    ]);
-                return redirect()->intended('/profile');
+                return back()->with('error', 'Password Lama Harus di isi');
             }
         } else {
-            return back()->with('error', 'Password Lama Harus di isi');
+            return back()->with('error', 'Password Lama Salah !!');
         }
     }
 }
