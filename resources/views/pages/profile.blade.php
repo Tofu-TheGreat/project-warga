@@ -251,7 +251,8 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('id_pekerjaan') is-invalid @enderror"
-                                                value="" id="id_pekerjaan" name="id_pekerjaan" readonly>
+                                                value="{{ auth()->user()->peran == 'rt' ? 'RT' : 'RW' }}"
+                                                id="id_pekerjaan" name="id_pekerjaan" readonly>
                                         </div>
                                         @error('id_pekerjaan')
                                             {{ $message }}
@@ -269,10 +270,10 @@
                                             </div>
                                             <?php
                                             $nomorTelpon = auth()->user()->nomor_telpon;
-                                            
+
                                             // Menghapus angka 0 di awal nomor telepon
                                             $nomorTelpon = substr($nomorTelpon, 1);
-                                            
+
                                             // Menambahkan kode negara (+62)
                                             $nomorTelponFormatted = '(+62)' . $nomorTelpon;
                                             ?>
