@@ -35,9 +35,6 @@
             </div>
             <span class="badge bg-success p-2 px-3">{{ $count }}
                 Total Warga</span>
-            @foreach ($rt2 as $show)
-                <a href="/export/{{ $show->id_user }}" type="button" class="btn btn-primary">Export to Excel</a>
-            @endforeach
         </div>
     </div>
     @if ($errors->any())
@@ -47,6 +44,29 @@
     @endif
     <div class="container-fluid ">
         <div class="row card p-3 mx-2">
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col">
+                        @foreach ($rt2 as $show)
+                            <a href="/export/{{ $show->id_user }}" type="button" class="btn text-white justify-content-end"
+                                style="background: linear-gradient(45deg, rgb(37, 94, 54), rgb(83, 196, 61));"><i
+                                    class="bi bi-filetype-xlsx"></i> Export</a>
+                        @endforeach
+                    </div>
+                    <div class="col-3 import-button">
+                        <form action="">
+                            <div class="input-group mb-3 ">
+                                <label for="inputGroupFile03" class="btn input-group-text text-white"
+                                    style="background: linear-gradient(45deg, rgb(137, 145, 72), rgb(216, 228, 58)); border-radius:5px">
+                                    <i class="bi bi-database-fill-down p-2"> Import</i>
+                                </label>
+                                <input type="file" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
+                                    aria-label="Upload" style="display:none;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <table id="myTable" class="table table-bordered table-responsive table-striped">
                 <thead class="table-success">
                     <tr>

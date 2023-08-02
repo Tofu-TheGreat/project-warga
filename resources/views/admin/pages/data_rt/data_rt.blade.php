@@ -32,9 +32,27 @@
                     </div>
                 </div>
             </div>
-            <span class="badge bg-success p-2 px-3">{{ $count }}
-                Total RT</span>
-            <a href="/export_rt" type="button" class="btn btn-primary">Export to Excel</a>
+            <div class="d-flex justify-content-end ">
+                <span class="badge bg-success p-2 px-3">{{ $count }}
+                    Total RT</span>
+            </div>
+            <div class="d-flex justify-content-start mt-2 ms-5">
+                <a href="/export_rt" type="button" class="btn text-white justify-content-end"
+                    style="background: linear-gradient(45deg, rgb(37, 94, 54), rgb(83, 196, 61));"><i
+                        class="bi bi-filetype-xlsx"></i> Export</a>
+            </div>
+            <div class="import-button-rt">
+                <form action="">
+                    <div class="input-group mb-3 ">
+                        <label for="inputGroupFile03" class="btn input-group-text text-white"
+                            style="background: linear-gradient(45deg, rgb(137, 145, 72), rgb(216, 228, 58)); border-radius:5px">
+                            <i class="bi bi-database-fill-down p-2"> Import</i>
+                        </label>
+                        <input type="file" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
+                            aria-label="Upload" style="display:none;">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     @if ($errors->any())
@@ -43,7 +61,6 @@
         @endforeach
     @endif
     <div class="container-fluid ">
-
         <div class="row ms-5">
             @foreach ($user as $show)
                 <div class="col">
