@@ -28,6 +28,7 @@ class ExcelController extends Controller
     //IMPORT
     public function import_warga(Request $request)
     {
+        // dd($request->file('file'));
         $file = $request->file('file');
 
         Excel::import(new WargaImport, $file);
