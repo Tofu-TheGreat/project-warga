@@ -586,6 +586,17 @@ html {
 
 /* foto user */
 
+.import-button {
+    position: absolute;
+    left: 120px;
+}
+
+.import-button-rt {
+    position: absolute;
+    top: 215px;
+    left: 216px;
+}
+
 .foto-user {
     aspect-ratio: 1/1;
 }
