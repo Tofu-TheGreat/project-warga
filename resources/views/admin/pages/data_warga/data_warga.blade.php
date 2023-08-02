@@ -167,7 +167,7 @@
                             <div class="mb-3 container-fluid">
                                 <label for="formFile" class="form-label">Masukkan File Yang Ingin Di Import : </label>
                                 <input class="form-control" type="file" name="file" id="formFile"
-                                    style="width: 420px">
+                                    style="width: 420px" accept=".xlsx, .xls">
                             </div>
 
                     </div>
