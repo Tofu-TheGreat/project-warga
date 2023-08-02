@@ -5,30 +5,30 @@ namespace App\Imports;
 use Illuminate\Support\Collection;
 use App\Models\Warga;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class WargaImport implements ToModel
+class WargaImport implements ToModel, WithHeadingRow
 {
     /**
      * @param Collection $collection
      */
     public function model(array $row)
     {
-        return Warga::firstOrCreate(
-            // Kolom yang digunakan sebagai kriteria untuk pencocokan data
-            ['nik' => $row['NIK']],
-            // Data yang akan disimpan
+        return new Warga(
             [
-                'id_warga' => $row['ID'],
-                'nama_lengkap' => $row['Nama Lengkap'],
-                'nik' => $row['NIK'],
-                'alamat' => $row['Alamat'],
-                'agama' => $this->transformAgama($row['Agama']),
-                'tanggal_lahir' => $row['Tanggal Lahir'],
-                'jenis_kelamin' => $this->transformJenisKelamin($row['Jenis Kelamin']),
-                'status_perkawinan' => $this->transformStatusKawin($row['Status Perkawinan']),
-                'status_kependudukan' => $this->transformStatusKependudukan($row['Status Kependudukan']),
-                'kewarganegaraan' => $this->transformKewarganegaraan($row['Kewarganegaraan']),
-                'nomor_telpon' => $row['Nomor Telpon'],
+                'id_warga' => $row['id_warga'],
+                'nama_lengkap' => $row['nama_lengkap'],
+                'nik' => $row['nik'],
+                'alamat' => $row['alamat'],
+                'agama' => $this->transformAgama($row['agama']),
+                'tanggal_lahir' => $row['tanggal_lahir'],
+                'jenis_kelamin' => $this->transformJenisKelamin($row['jenis_kelamin']),
+                'status_perkawinan' => $this->transformStatusKawin($row['status_perkawinan']),
+                'status_kependudukan' => $this->transformStatusKependudukan($row['status_kependudukan']),
+                'kewarganegaraan' => $this->transformKewarganegaraan($row['kewarganegaraan']),
+                'nomor_telpon' => $row['nomor_telpon'],
+                'id_user' => $row['id_user'],
+                'id_pekerjaan' => $row['id_pekerjaan'],
                 // Tambahkan atribut lain sesuai kebutuhan
             ]
         );

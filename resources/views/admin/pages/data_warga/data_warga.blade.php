@@ -46,27 +46,21 @@
         <div class="row card p-3 mx-2">
             <div class="mb-3">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-3">
                         @foreach ($rt2 as $show)
-                            <a href="/export/{{ $show->id_user }}" type="button" class="btn text-white justify-content-end"
+                            <a href="/export/{{ $show->id_user }}" type="button"
+                                class="btn text-white justify-content-end "
                                 style="background: linear-gradient(45deg, rgb(37, 94, 54), rgb(83, 196, 61));"><i
                                     class="bi bi-filetype-xlsx"></i> Export</a>
                         @endforeach
                     </div>
-                    <div class="col-3 import-button">
-                        <form action="">
-                            <div class="input-group mb-3 ">
-                                <label for="inputGroupFile03" class="btn input-group-text text-white"
-                                    style="background: linear-gradient(45deg, rgb(137, 145, 72), rgb(216, 228, 58)); border-radius:5px">
-                                    <i class="bi bi-database-fill-down p-2"> Import</i>
-                                </label>
-                                <form action="{{ route('import.warga') }}" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="file" id="inputGroupFile03"
-                                        aria-describedby="inputGroupFileAddon03" aria-label="Upload" style="display:none;">
-                                    <button type="submit" id="submitBtn">Upload File</button>
-                                </form>
-                            </div>
-                        </form>
+
+                    <div class="col-2 import-button">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#importModal"
+                            style="background: linear-gradient(45deg, rgb(137, 145, 72), rgb(216, 228, 58)); border-radius:5px">
+                            <i class="bi bi-database-fill-down p-2"> Import</i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -158,10 +152,42 @@
             </table>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="modaltambah_warga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- Modal Import --}}
+    <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-5">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="importModalLabel">Import Data Warga</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3">
+                    <div class="input-group mb-3 ">
+                        <form action="/import-warga" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3 container-fluid">
+                                <label for="formFile" class="form-label">Masukkan File Yang Ingin Di Import : </label>
+                                <input class="form-control" type="file" name="file" id="formFile"
+                                    style="width: 420px">
+                            </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" value="Import" class="btn btn-success text-white">
+                        Click Untuk
+                        import</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tambah Warga-->
+    <div class="modal fade" id="modaltambah_warga" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content rounded-5 ">
+            <div class="modal-content rounded-4 ">
                 <div class="modal-header p-4 d-flex ">
                     <h1 class="modal-title fs-2 bold justify-center">Tambah Data Warga</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -519,7 +545,7 @@
         });
     });
 </script> --}}
-<script>
+{{-- <script>
     // Dapatkan elemen input file dan tombol submit
     const fileInput = document.getElementById('inputGroupFile03');
     const submitBtn = document.getElementById('submitBtn');
@@ -534,4 +560,4 @@
             submitBtn.setAttribute('disabled', 'disabled');
         }
     });
-</script>
+</script> --}}

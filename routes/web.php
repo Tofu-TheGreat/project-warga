@@ -99,7 +99,7 @@ Route::get('/export/{id_user}', [ExcelController::class, 'export_warga'])->name(
 Route::get('/export_rt', [ExcelController::class, 'export_rt'])->name('export.rt.excel');
 Route::get('/export_warga_all', [ExcelController::class, 'export_warga_all'])->name('export.warga.excel');
 
-Route::post('/import', [ExcelController::class, 'import_warga'])->name('import.warga');
+Route::post('/import-warga', [ExcelController::class, 'import_warga']);
 
 
 Route::get('/edit-pekerjaan', function () {
