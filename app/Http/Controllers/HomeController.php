@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pekerjaan;
 use App\Models\Warga;
+use Illuminate\Support\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -55,6 +56,17 @@ class HomeController extends Controller
             ->warga()
             ->where('id_user', $id_user)
             ->count();
+        $ages = [];
+        foreach ($warga as $user) {
+            // Ambil tanggal lahir dari data pengguna
+            $tanggalLahir = Carbon::parse($user->tanggal_lahir);
+
+            // Hitung umur dengan menggunakan diffInYears
+            $umur = $tanggalLahir->diffInYears(Carbon::now());
+
+            // Tambahkan hasil umur ke dalam array
+            $ages[$user->id_warga] = $umur;
+        }
 
         $rt2 = User::where('id_user', $id_user)
             ->get();
@@ -65,20 +77,31 @@ class HomeController extends Controller
             ->get();
         $rt = User::where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt', 'nomor', 'count', 'rt2'))->with('title', 'Data Warga');
+        return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt', 'nomor', 'count', 'rt2', 'ages'))->with('title', 'Data Warga');
     }
     public function show_warga_all()
     {
         $warga = Warga::all();
         $count = Warga::all()
             ->count();
+        $ages = [];
+        foreach ($warga as $user) {
+            // Ambil tanggal lahir dari data pengguna
+            $tanggalLahir = Carbon::parse($user->tanggal_lahir);
+
+            // Hitung umur dengan menggunakan diffInYears
+            $umur = $tanggalLahir->diffInYears(Carbon::now());
+
+            // Tambahkan hasil umur ke dalam array
+            $ages[$user->id_warga] = $umur;
+        }
 
 
         $pekerjaan = Pekerjaan::select('*')
             ->get();
         $rt = User::where('peran', 'rt')
             ->get();
-        return view('admin.pages.data_warga.data_warga_all', compact('warga', 'pekerjaan', 'rt', 'count'))->with('title', 'Data Warga');
+        return view('admin.pages.data_warga.data_warga_all', compact('warga', 'pekerjaan', 'rt', 'count', 'ages'))->with('title', 'Data Warga');
     }
 
     public function detail_warga($id_warga)

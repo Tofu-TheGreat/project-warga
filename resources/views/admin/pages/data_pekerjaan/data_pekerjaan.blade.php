@@ -52,9 +52,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    $no = 0;
+                    ?>
+
                     @foreach ($pekerjaan as $show)
+                        <?php
+                        $no++;
+                        ?>
                         <tr>
-                            <th scope="row">{{ $show->id_pekerjaan }}</th>
+                            <th scope="row">{{ $no }}</th>
                             <td>{{ $show->nama_pekerjaan }}</td>
                             <td>{{ $datawarga->where('id_pekerjaan', $show->id_pekerjaan)->count() }}</td>
                             {{-- Tombol Action --}}
@@ -179,7 +186,7 @@
                             }).then(function() {
                                 // Redirect to the specified route
                                 window.location.href =
-                                    '{{ route('show.rt') }}';
+                                    '{{ route('show.pekerjaan') }}';
                             });
                         },
                         error: function(xhr) {

@@ -33,7 +33,10 @@ Route::post('/logout', [UserController::class, 'logout']);
 
 // route dashboard
 
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+Route::get(
+    '/dashboard',
+    [HomeController::class, 'dashboard']
+)->name('dashboard')->middleware('auth');
 
 Route::get('/home', function () {
     return view('pages.home');
@@ -108,6 +111,6 @@ Route::get('/edit-pekerjaan', function () {
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('/ubah-password', [HomeController::class, 'ubah_password']);
 Route::post('/edit_profile', [RwController::class, 'edit_profile'])->name('edit.profile');
-// Route::get('/data-processing', function () {
+// Route::get('loading', function () {
 //     return view('loading');
-// })->middleware('show.loading');
+// })->middleware('show.loading')->name('loading');

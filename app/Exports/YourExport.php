@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Warga;
+use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -37,6 +38,7 @@ class YourExport implements FromCollection, WithHeadings, WithMapping
             'Agama',
             'Tanggal Lahir',
             'Jenis Kelamin',
+            'Umur',
             'Nama Pekerjaan',
             'Status Perkawinan',
             'Status Kependudukan',
@@ -65,6 +67,7 @@ class YourExport implements FromCollection, WithHeadings, WithMapping
             $this->convertAgama($row->agama),
             $row->tanggal_lahir,
             ($row->jenis_kelamin === 'L') ? 'Laki-Laki' : 'Perempuan',
+            $this->calculateAge($row->tanggal_lahir),
             $row->pekerjaan->nama_pekerjaan,
             $this->convertstatusperkawinan($row->status_perkawinan),
             ($row->status_kependudukan === '0') ? 'Menetap' : 'Berkunjung',
@@ -107,5 +110,11 @@ class YourExport implements FromCollection, WithHeadings, WithMapping
             default:
                 return 'Tidak Diketahui';
         }
+    }
+    private function calculateAge($birthdate)
+    {
+        $tanggalLahir = Carbon::parse($birthdate);
+        $umur = $tanggalLahir->diffInYears(Carbon::now());
+        return $umur;
     }
 }

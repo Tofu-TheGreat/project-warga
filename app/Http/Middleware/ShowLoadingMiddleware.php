@@ -16,7 +16,9 @@ class ShowLoadingMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+
         sleep(3);
+
         return $next($request);
     }
 }

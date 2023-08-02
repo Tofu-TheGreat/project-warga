@@ -78,9 +78,10 @@
                         <th>NIK</th>
                         <th>Agama</th>
                         <th>Jenis Kelamin</th>
+                        <th>Umur</th>
                         <th>Status Kependudukan</th>
                         <th>RT</th>
-                        <th>Nomor Telpon</th>
+
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -115,6 +116,8 @@
                                     </span>
                                 @endif
                             </td>
+                            <td>{{ $ages[$show->id_warga] }} Thn.</td>
+
                             <td class="text-center">
                                 @if ($show->status_kependudukan == '0')
                                     <span class="badge text-bg-success">
@@ -127,7 +130,7 @@
                                 @endif
                             </td>
                             <td>{{ $show->user->nomor }}</td>
-                            <td>{{ $show->nomor_telpon }}</td>
+
                             {{-- Tombol Action --}}
                             <td class="">
                                 <a class="btn btn-primary dropdown-toggle" href="#" role="button"

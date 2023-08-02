@@ -12,6 +12,17 @@ class PekerjaanController extends Controller
         $request->validate([
             'nama_pekerjaan' => 'required'
         ]);
+
+        if ($request->ajax()) {
+            $pekerjaan = new Pekerjaan([
+                'nama_pekerjaan' => $request->nama_pekerjaan
+            ]);
+            $pekerjaan->save();
+
+            // Jika ingin mengembalikan data JSON sebagai response, gunakan kode ini
+            return response()->json(['message' => 'Data pekerjaan berhasil disimpan.']);
+        }
+
         $pekerjaan = new Pekerjaan([
             'nama_pekerjaan' => $request->nama_pekerjaan
         ]);

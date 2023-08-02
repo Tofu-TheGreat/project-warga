@@ -60,12 +60,6 @@
         </div>
     </div>
 </body>
-<script>
-    // JavaScript untuk mengatur loading kustom
-    window.addEventListener('load', function() {
-        // Menghilangkan elemen loading setelah halaman selesai dimuat
-        document.querySelector('.loading-container').style.display = 'none';
-    });
-</script>
+
 
 </html>
