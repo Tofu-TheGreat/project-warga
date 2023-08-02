@@ -47,6 +47,7 @@
                     <tr>
                         <th>#</th>
                         <th>Nama Pekerjaan</th>
+                        <th>Jumlah Pekerja</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -55,6 +56,7 @@
                         <tr>
                             <th scope="row">{{ $show->id_pekerjaan }}</th>
                             <td>{{ $show->nama_pekerjaan }}</td>
+                            <td>{{ $datawarga->where('id_pekerjaan', $show->id_pekerjaan)->count() }}</td>
                             {{-- Tombol Action --}}
                             <td class="">
                                 <a class="btn btn-primary dropdown-toggle show" href="#" role="button"

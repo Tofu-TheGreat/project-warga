@@ -26,7 +26,7 @@ class WargaFactory extends Factory
             'tanggal_lahir' => fake()->date('Y_m_d'),
             'jenis_kelamin' => fake()->randomElement(["L", "P"]),
             'foto' => null,
-            'id_pekerjaan' => fake()->randomElement(["0", "1", "2"]),
+            'id_pekerjaan' => fake()->randomDigitNotNull(),
             'status_perkawinan' => fake()->randomElement(["0", "1", "2"]),
             'status_kependudukan' => fake()->randomElement(["0", "1"]),
             'kewarganegaraan' => fake()->randomElement(["0", "1"]),

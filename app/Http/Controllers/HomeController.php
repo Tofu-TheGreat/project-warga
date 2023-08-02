@@ -112,9 +112,11 @@ class HomeController extends Controller
     {
         $pekerjaan = Pekerjaan::select('*')
             ->get();
+
         $count = Pekerjaan::select('*')
             ->count();
-        return view('admin.pages.data_pekerjaan.data_pekerjaan', compact('pekerjaan', 'count'))->with('title', 'Data Pekerjaan');
+        $datawarga = Warga::all();
+        return view('admin.pages.data_pekerjaan.data_pekerjaan', compact('pekerjaan', 'count', 'datawarga'))->with('title', 'Data Pekerjaan');
     }
 
     //END
