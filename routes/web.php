@@ -96,6 +96,9 @@ Route::get('/export/{id_user}', [ExcelController::class, 'export_warga'])->name(
 Route::get('/export_rt', [ExcelController::class, 'export_rt'])->name('export.rt.excel');
 Route::get('/export_warga_all', [ExcelController::class, 'export_warga_all'])->name('export.warga.excel');
 
+Route::post('/import', [ExcelController::class, 'import_warga'])->name('import.warga');
+
+
 Route::get('/edit-pekerjaan', function () {
     return view('Admin.pages.data_pekerjaan.edit_pekerjaan');
 });
@@ -105,3 +108,6 @@ Route::get('/edit-pekerjaan', function () {
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('/ubah-password', [HomeController::class, 'ubah_password']);
 Route::post('/edit_profile', [RwController::class, 'edit_profile'])->name('edit.profile');
+// Route::get('/data-processing', function () {
+//     return view('loading');
+// })->middleware('show.loading');

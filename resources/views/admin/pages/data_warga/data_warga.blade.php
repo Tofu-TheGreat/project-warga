@@ -60,8 +60,11 @@
                                     style="background: linear-gradient(45deg, rgb(137, 145, 72), rgb(216, 228, 58)); border-radius:5px">
                                     <i class="bi bi-database-fill-down p-2"> Import</i>
                                 </label>
-                                <input type="file" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"
-                                    aria-label="Upload" style="display:none;">
+                                <form action="{{ route('import.warga') }}" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="file" id="inputGroupFile03"
+                                        aria-describedby="inputGroupFileAddon03" aria-label="Upload" style="display:none;">
+                                    <button type="submit" id="submitBtn">Upload File</button>
+                                </form>
                             </div>
                         </form>
                     </div>
@@ -513,3 +516,19 @@
         });
     });
 </script> --}}
+<script>
+    // Dapatkan elemen input file dan tombol submit
+    const fileInput = document.getElementById('inputGroupFile03');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Tambahkan event listener untuk input file
+    fileInput.addEventListener('change', () => {
+        // Jika ada file yang dipilih, maka aktifkan tombol submit
+        if (fileInput.files.length > 0) {
+            submitBtn.removeAttribute('disabled');
+        } else {
+            // Jika tidak ada file yang dipilih, maka nonaktifkan tombol submit
+            submitBtn.setAttribute('disabled', 'disabled');
+        }
+    });
+</script>

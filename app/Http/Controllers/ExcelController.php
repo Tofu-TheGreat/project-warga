@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Warga;
 use App\Exports\RtExport;
 use App\Exports\WargaAllExport;
+use App\Imports\WargaImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Exports\YourExport;
@@ -29,7 +30,7 @@ class ExcelController extends Controller
     {
         $file = $request->file('file');
 
-        Excel::import(new Warga, $file);
+        Excel::import(new WargaImport, $file);
 
         return redirect()->back()->with('success', 'Data berhasil diimpor.');
     }
