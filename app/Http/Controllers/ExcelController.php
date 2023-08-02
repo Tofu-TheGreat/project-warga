@@ -24,4 +24,13 @@ class ExcelController extends Controller
     {
         return Excel::download(new WargaAllExport, 'daftar_warga_all.xlsx'); // Gantikan nama_file.xlsx dengan nama file Excel yang ingin diekspor
     }
+    //IMPORT
+    public function import_warga(Request $request)
+    {
+        $file = $request->file('file');
+
+        Excel::import(new Warga, $file);
+
+        return redirect()->back()->with('success', 'Data berhasil diimpor.');
+    }
 }
