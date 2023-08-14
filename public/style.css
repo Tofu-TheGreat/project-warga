@@ -467,6 +467,49 @@ html {
     border: 3px solid #6b64f3;
 }
 
+.container-input {
+    position: absolute;
+    top: 220px;
+    right: 65px;
+}
+
+.search {
+    width: 150px;
+    padding: 10px 0px 10px 40px;
+    border-radius: 9999px;
+    border: solid 1px #333;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+    opacity: 0.8;
+}
+
+.container-input .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0, -50%);
+}
+
+.search:focus {
+    opacity: 1;
+    width: 250px;
+}
+
+.container-input:hover > .search-icon {
+    animation: anim 1s linear infinite;
+}
+
+@keyframes anim {
+    0%,
+    100% {
+        transform: translateY(calc(-20% - 5px)) scale(1);
+    }
+
+    50% {
+        transform: translateY(calc(-20% - 5px)) scale(1.1);
+    }
+}
+
 .person .card-border-top {
     position: absolute;
     width: 60%;
