@@ -446,7 +446,7 @@
 
 <script>
     $(document).ready(function() {
-        let table = new DataTable('#myTable');
+
     });
 </script>
 

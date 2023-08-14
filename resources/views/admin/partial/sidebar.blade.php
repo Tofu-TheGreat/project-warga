@@ -6,16 +6,17 @@
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/dashboard"
                         aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
                             class="hide-menu">Dashboard</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/datart"
-                        aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">Data
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        onclick="routeToRt()" href="#" aria-expanded="false"><i
+                            class="mdi mdi-account-network"></i><span class="hide-menu">Data
                             RT</span></a>
                 </li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="/data_warga" aria-expanded="false"><i class="mdi mdi-human-male-female"></i><span
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
+                        onclick="routeToWarga()" aria-expanded="false"><i class="mdi mdi-human-male-female"></i><span
                             class="hide-menu">Data
                             Warga</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="/data_pekerjaan" aria-expanded="false"><i class="mdi mdi-briefcase"></i><span
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
+                        onclick="routeToPekerjaan()" aria-expanded="false"><i class="mdi mdi-briefcase"></i><span
                             class="hide-menu">Data
                             Pekerjaan</span></a></li>
                 <li class="sidebar-item">
