@@ -70,10 +70,12 @@
                                 <i class="bi bi-trash"></i>
                             </a>
                         @endcan
-                        <a class="btn btn-info btn-detail" href="/detail-rt/{{ $show->id_user }}" role="button">
+                        <a class="btn btn-info btn-detail" href="#" onclick="routeToDetail({{ $show->id_user }})"
+                            role="button">
                             <i class="bi bi-eye"></i>
                         </a>
-                        <a class="btn btn-waring btn-warga" href="/data_warga/{{ $show->id_user }}" role="button">
+                        <a class="btn btn-waring btn-warga" onclick="routeToDataWarga({{ $show->id_user }})" href="#"
+                            role="button">
                             <i class="bi bi-people"></i>
                         </a>
 
