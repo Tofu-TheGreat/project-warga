@@ -48,6 +48,11 @@
                     <i class="bi bi-database-fill-down p-2"> Import</i>
                 </button>
             </div>
+            <div class="container-input">
+                <input type="text" placeholder="Search" name="text" class="search">
+                <i class="bi bi-search-heart search-icon"></i>
+            </div>
+
         </div>
     </div>
     @if ($errors->any())
