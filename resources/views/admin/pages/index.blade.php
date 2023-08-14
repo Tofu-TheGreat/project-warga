@@ -34,7 +34,7 @@
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 
-<script>
+{{-- <script>
     function routeToRt() {
         event.preventDefault();
         const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -55,9 +55,14 @@
                 // Misalnya, jika ada event listeners yang perlu diatur ulang, lakukan di sini
                 // ...
 
+                const newUrl = "/datart"; // Ganti dengan URL yang sesuai
+                history.pushState(null, null, newUrl);
+
+                location.reload(); // Reload the entire page
             }
         })
     }
+
 
     function routeToWarga() {
         event.preventDefault();
@@ -108,4 +113,29 @@
             }
         })
     }
-</script>
+
+    function routeToDashboard() {
+        event.preventDefault();
+        const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/dashboard",
+            type: 'get',
+            data: {
+                CSRF_TOKEN
+            },
+            success: function(data) {
+                // Hapus sidebar dan komponen lain yang tidak diperlukan dari respons
+                const content = $(data).find('#konten').html();
+                $("#konten").html(content);
+                $('#myTable1').DataTable(); // Initialize DataTables on the updated table
+
+                // Atur ulang event listeners atau komponen lain yang perlu diatur ulang
+                // ...
+
+                // Misalnya, jika ada event listeners yang perlu diatur ulang, lakukan di sini
+                // ...
+
+            }
+        })
+    }
+</script> --}}

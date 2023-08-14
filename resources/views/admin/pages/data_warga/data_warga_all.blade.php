@@ -446,7 +446,7 @@
 
 <script>
     $(document).ready(function() {
-
+        $('#myTable').DataTable(); // Initialize DataTables on the updated table
     });
 </script>
 

@@ -54,7 +54,7 @@
 
 <body>
     <div class="loading-container">
-        <div class="loader">
+        <div class="loader" id="custom-loading">
             <span>siDawar</span>
             <span>siDawar</span>
         </div>
