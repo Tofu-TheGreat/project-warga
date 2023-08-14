@@ -100,6 +100,8 @@ Route::get('/export_rt', [ExcelController::class, 'export_rt'])->name('export.rt
 Route::get('/export_warga_all', [ExcelController::class, 'export_warga_all'])->name('export.warga.excel');
 
 Route::post('/import-warga', [ExcelController::class, 'import_warga']);
+Route::post('/import-rt', [ExcelController::class, 'import_rt']);
+Route::post('/import-warga-all', [ExcelController::class, 'import_warga_all']);
 
 
 Route::get('/edit-pekerjaan', function () {
