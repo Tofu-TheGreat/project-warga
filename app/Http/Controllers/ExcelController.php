@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Warga;
+use App\Models\User;
 use App\Exports\RtExport;
 use App\Exports\WargaAllExport;
 use App\Imports\WargaImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Exports\YourExport;
+use App\Imports\RTImport;
 
 class ExcelController extends Controller
 {
@@ -32,6 +34,26 @@ class ExcelController extends Controller
         $file = $request->file('file');
 
         Excel::import(new WargaImport, $file);
+
+        return redirect()->back()->with('success', 'Data berhasil diimpor.');
+    }
+
+    public function import_warga_all(Request $request)
+    {
+        // dd($request->file('file'));
+        $file = $request->file('file');
+
+        Excel::import(new WargaImport, $file);
+
+        return redirect()->back()->with('success', 'Data berhasil diimpor.');
+    }
+
+    public function import_rt(Request $request)
+    {
+        // dd($request->file('file'));
+        $file = $request->file('file');
+
+        Excel::import(new RTImport, $file);
 
         return redirect()->back()->with('success', 'Data berhasil diimpor.');
     }
