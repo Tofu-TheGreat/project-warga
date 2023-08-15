@@ -64,92 +64,94 @@
                     </div>
                 </div>
             </div>
-            <table id="myTable" class="table table-bordered table-responsive table-striped">
-                <thead class="table-success">
-                    <tr>
-                        <th>#</th>
-                        <th>Nama</th>
-                        <th>NIK</th>
-                        <th>Agama</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Umur</th>
-                        <th>Status Kependudukan</th>
-                        <th>RT</th>
-
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $no = 0;
-                    ?>
-                    @foreach ($warga as $show)
-                        <?php
-                        $no++;
-                        ?>
+            <div class="table-responsive">
+                <table id="myTable" class="table table-bordered  table-striped">
+                    <thead class="table-success">
                         <tr>
-                            <th scope="row">{{ $no }}</th>
-                            <td>{{ $show->nama_lengkap }}</td>
-                            <td>{{ $show->nik }}</td>
-                            <td>{{ $show->agama == '0' ? 'Islam' : '' }}
+                            <th>#</th>
+                            <th>Nama</th>
+                            <th>NIK</th>
+                            <th>Agama</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Umur</th>
+                            <th>Status Kependudukan</th>
+                            <th>RT</th>
 
-                                {{ $show->agama == '1' ? 'Kristen Protestan' : '' }}
-                                {{ $show->agama == '2' ? 'Kristen Katolik' : '' }}
-                                {{ $show->agama == '3' ? 'Khonghucu' : '' }}
-                                {{ $show->agama == '4' ? 'Hindu' : '' }}
-                                {{ $show->agama == '5' ? 'Buddha' : '' }}
-                            </td>
-                            <td class="text-center">
-                                @if ($show->jenis_kelamin == 'L')
-                                    <span class="badge text-bg-primary rounded-circle p-2">
-                                        <i class="bi bi-gender-male"></i>
-                                    </span>
-                                @else
-                                    <span class="badge rounded-circle p-2" style="background-color: rgb(255, 146, 164)">
-                                        <i class="bi bi-gender-female"></i>
-                                    </span>
-                                @endif
-                            </td>
-                            <td>{{ $ages[$show->id_warga] }} Thn.</td>
-
-                            <td class="text-center">
-                                @if ($show->status_kependudukan == '0')
-                                    <span class="badge text-bg-success">
-                                        Menetap
-                                    </span>
-                                @else
-                                    <span class="badge text-bg-warning">
-                                        Berkunjung
-                                    </span>
-                                @endif
-                            </td>
-                            <td>{{ $show->user->nomor }}</td>
-
-                            {{-- Tombol Action --}}
-                            <td class="">
-                                <a class="btn btn-primary dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-three-dots-vertical btn-tambah-data"></i>
-                                </a>
-                                <ul class="dropdown-menu ">
-                                    <a class="dropdown-item has-icon text-info"
-                                        href="/detail_warga/{{ $show->id_warga }}"><i class="far bi-eye"></i>
-                                        Detail</a>
-                                    <a class="dropdown-item has-icon text-warning" href="/edit-warga"><i
-                                            class="far bi-pencil-square"></i>
-                                        Edit</a>
-
-                                    <a type="button" href="/hapus_warga/{{ $show->id_warga }}"
-                                        class="confirm dropdown-item has-icon text-danger">
-                                        <i class="far bi-trash-fill mt-2"></i><small>Hapus</small></a>
-
-                                </ul>
-                            </td>
-                            {{-- Tombol Action --}}
+                            <th>Aksi</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $no = 0;
+                        ?>
+                        @foreach ($warga as $show)
+                            <?php
+                            $no++;
+                            ?>
+                            <tr>
+                                <th scope="row">{{ $no }}</th>
+                                <td>{{ $show->nama_lengkap }}</td>
+                                <td>{{ $show->nik }}</td>
+                                <td>{{ $show->agama == '0' ? 'Islam' : '' }}
+
+                                    {{ $show->agama == '1' ? 'Kristen Protestan' : '' }}
+                                    {{ $show->agama == '2' ? 'Kristen Katolik' : '' }}
+                                    {{ $show->agama == '3' ? 'Khonghucu' : '' }}
+                                    {{ $show->agama == '4' ? 'Hindu' : '' }}
+                                    {{ $show->agama == '5' ? 'Buddha' : '' }}
+                                </td>
+                                <td class="text-center">
+                                    @if ($show->jenis_kelamin == 'L')
+                                        <span class="badge text-bg-primary rounded-circle p-2">
+                                            <i class="bi bi-gender-male"></i>
+                                        </span>
+                                    @else
+                                        <span class="badge rounded-circle p-2" style="background-color: rgb(255, 146, 164)">
+                                            <i class="bi bi-gender-female"></i>
+                                        </span>
+                                    @endif
+                                </td>
+                                <td>{{ $ages[$show->id_warga] }} Thn.</td>
+
+                                <td class="text-center">
+                                    @if ($show->status_kependudukan == '0')
+                                        <span class="badge text-bg-success">
+                                            Menetap
+                                        </span>
+                                    @else
+                                        <span class="badge text-bg-warning">
+                                            Berkunjung
+                                        </span>
+                                    @endif
+                                </td>
+                                <td>{{ $show->user->nomor }}</td>
+
+                                {{-- Tombol Action --}}
+                                <td class="">
+                                    <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical btn-tambah-data"></i>
+                                    </a>
+                                    <ul class="dropdown-menu ">
+                                        <a class="dropdown-item has-icon text-info"
+                                            href="/detail_warga/{{ $show->id_warga }}"><i class="far bi-eye"></i>
+                                            Detail</a>
+                                        <a class="dropdown-item has-icon text-warning" href="/edit-warga"><i
+                                                class="far bi-pencil-square"></i>
+                                            Edit</a>
+
+                                        <a type="button" href="/hapus_warga/{{ $show->id_warga }}"
+                                            class="confirm dropdown-item has-icon text-danger">
+                                            <i class="far bi-trash-fill mt-2"></i><small>Hapus</small></a>
+
+                                    </ul>
+                                </td>
+                                {{-- Tombol Action --}}
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     {{-- Modal Import --}}
@@ -480,7 +482,7 @@
 
 <script>
     $(document).ready(function() {
-       
+
     });
 </script>
 

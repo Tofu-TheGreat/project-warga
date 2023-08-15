@@ -19,7 +19,7 @@
                         <a href="/dashboard" class="d-inline text-info">
                             <i class="bi bi-arrow-left-circle-fill d-inline fs-3  rounded-circle"></i>
                         </a>
-                        <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:19px; left: 60px">Dahboard <span
+                        <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:19px; left: 60px">Dashboard <span
                                 class="uppercase">{{ auth()->user()->peran }}</span>
                         </h2>
                     </div>

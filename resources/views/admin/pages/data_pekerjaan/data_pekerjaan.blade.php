@@ -41,8 +41,8 @@
         @endforeach
     @endif
     <div class="container-fluid ">
-        <div class="row card p-3 mx-2">
-            <table id="myTable1" class="table table-bordered table-responsive table-striped">
+        <div class="row card p-3 mx-2 table-responsive">
+            <table id="myTable1" class="table table-bordered  table-striped">
                 <thead class="table-success">
                     <tr>
                         <th>#</th>

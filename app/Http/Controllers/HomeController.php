@@ -6,6 +6,7 @@ use App\Models\Pekerjaan;
 use App\Models\Warga;
 use Illuminate\Support\Carbon;
 use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -77,6 +78,7 @@ class HomeController extends Controller
             ->get();
         $rt = User::where('peran', 'rt')
             ->get();
+
         return view('admin.pages.data_warga.data_warga', compact('warga', 'pekerjaan', 'rt', 'nomor', 'count', 'rt2', 'ages'))->with('title', 'Data Warga');
     }
     public function show_warga_all()
