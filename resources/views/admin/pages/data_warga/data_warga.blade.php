@@ -22,7 +22,7 @@
                             </a>
                             @foreach ($nomor as $show)
                                 <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:17px; left: 60px">Data
-                                    Warga {{ $show->nomor }}
+                                    Warga - RT {{ $show->nomor }}
                                 </h2>
                             @endforeach
                         </div>
