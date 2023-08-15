@@ -23,7 +23,7 @@
                     <form action="/logout" method="post">
                         @csrf
                         <button role="button" type="submit"
-                            class="sidebar-link waves-effect waves-dark sidebar-link logout-button"><i
+                            class="sidebar-link waves-effect waves-dark sidebar-link logout-button btn-logout"><i
                                 class="mdi mdi-arrow-left-box"></i><span class="hide-menu">Logout</span></button>
                     </form>
                 </li>
@@ -33,3 +33,33 @@
         <!-- End Sidebar navigation -->
     </div>
 </aside>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.btn-logout').on('click', function(e) {
+            e.preventDefault();
+
+            var form = $(this).closest('form');
+            var url = form.attr('action');
+
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Apakah Anda ingin Logout?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Submit the logout form to perform the logout action
+                    form.submit();
+                }
+            });
+        });
+    });
+</script>
