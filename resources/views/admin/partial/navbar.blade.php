@@ -30,7 +30,7 @@
             <!-- End Logo -->
             <!-- ============================================================== -->
             <!-- This is for the sidebar toggle which is visible on mobile only -->
-            <a class="nav-toggler waves-effect waves-light d-block d-md-none" href=""><i
+            <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="#"><i
                     class="ti-menu ti-close"></i></a>
         </div>
         <!-- ============================================================== -->
