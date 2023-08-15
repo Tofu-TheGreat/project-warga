@@ -627,6 +627,10 @@ html {
     background: #534bf3;
 }
 
+.no-data-svg {
+    max-width: 500px;
+}
+
 @media only screen and (max-width: 600px) {
     .container-input {
         position: absolute;
