@@ -49,10 +49,9 @@
                 </button>
             </div>
             <div class="container-input">
-                <input type="text" placeholder="Search" name="text" class="search">
+                <input type="text" placeholder="Search" name="text" class="search" id="searchInput">
                 <i class="bi bi-search-heart search-icon"></i>
             </div>
-
         </div>
     </div>
     @if ($errors->any())
@@ -63,7 +62,7 @@
     <div class="container-fluid ">
         <div class="row ms-5">
             @foreach ($user as $show)
-                <div class="col">
+                <div class="col person-card">
                     <div class="card person">
                         @can('rw')
                             <a class="btn btn-danger btn-hapus" href="/hapus_rt/{{ $show->id_user }}" role="button">
@@ -380,8 +379,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col"> <label for="formFile" class="form-label">Foto (Opsional)</label>
-                                <input class="form-control" name="foto" type="file" id="formFile"
+                            <div class="col"> <label for="formFoto" class="form-label">Foto (Opsional)</label>
+                                <input class="form-control" name="foto" type="file" id="formFoto"
                                     onchange="previewImage(event)">
 
                                 <div class="mt-2">
@@ -421,6 +420,23 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#searchInput').on('keyup', function() {
+            var searchText = $(this).val().toLowerCase();
+            $('.person-card').each(function() {
+                var cardName = $(this).find('span').text().toLowerCase();
+                if (cardName.includes(searchText)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+
 
 <script>
     function previewImage(event) {
