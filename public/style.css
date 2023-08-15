@@ -627,6 +627,18 @@ html {
     background: #534bf3;
 }
 
+@media only screen and (max-width: 600px) {
+    .container-input {
+        position: absolute;
+        top: 265px;
+        right: 65px;
+    }
+
+    .person-card {
+        margin-top: 40px;
+    }
+}
+
 /* foto user */
 
 .import-button {
