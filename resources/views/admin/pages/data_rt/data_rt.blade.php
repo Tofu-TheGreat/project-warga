@@ -61,41 +61,47 @@
     @endif
     <div class="container-fluid ">
         <div class="row ms-5">
-            @foreach ($user as $show)
-                <div class="col person-card">
-                    <div class="card person">
-                        @can('rw')
-                            <a class="btn btn-danger btn-hapus" href="/hapus_rt/{{ $show->id_user }}" role="button">
-                                <i class="bi bi-trash"></i>
+            @if ($count > 0)
+                @foreach ($user as $show)
+                    <div class="col person-card">
+                        <div class="card person">
+                            @can('rw')
+                                <a class="btn btn-danger btn-hapus" href="/hapus_rt/{{ $show->id_user }}" role="button">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            @endcan
+                            <a class="btn btn-info btn-detail" href="#" onclick="routeToDetail({{ $show->id_user }})"
+                                role="button">
+                                <i class="bi bi-eye"></i>
                             </a>
-                        @endcan
-                        <a class="btn btn-info btn-detail" href="#" onclick="routeToDetail({{ $show->id_user }})"
-                            role="button">
-                            <i class="bi bi-eye"></i>
-                        </a>
-                        <a class="btn btn-waring btn-warga" onclick="routeToDataWarga({{ $show->id_user }})" href="#"
-                            role="button">
-                            <i class="bi bi-people"></i>
-                        </a>
+                            <a class="btn btn-waring btn-warga" onclick="routeToDataWarga({{ $show->id_user }})"
+                                href="#" role="button">
+                                <i class="bi bi-people"></i>
+                            </a>
 
-                        <div class="d-flex justify-content-center">
-                            <div class="card-border-top">
+                            <div class="d-flex justify-content-center">
+                                <div class="card-border-top">
+                                </div>
+                                <div class="mt-4">
+                                    @if ($show->foto == null)
+                                        <img src="{{ asset('images/kosong.webp') }}" alt="foto" class="img-rt "
+                                            src="#" src="#" alt="Preview">
+                                    @else
+                                        <img src="../image_save/{{ $show->foto }}" alt="foto" class="img-rt "
+                                            src="#" alt="Preview">
+                                    @endif
+                                </div>
                             </div>
-                            <div class="mt-4">
-                                @if ($show->foto == null)
-                                    <img src="{{ asset('images/kosong.webp') }}" alt="foto" class="img-rt "
-                                        src="#" src="#" alt="Preview">
-                                @else
-                                    <img src="../image_save/{{ $show->foto }}" alt="foto" class="img-rt "
-                                        src="#" alt="Preview">
-                                @endif
-                            </div>
+                            <span> {{ $show->nama_lengkap }}</span>
+                            <p class="job"> {{ $show->nomor }}</p>
                         </div>
-                        <span> {{ $show->nama_lengkap }}</span>
-                        <p class="job"> {{ $show->nomor }}</p>
                     </div>
+                @endforeach
+            @else
+                <div class="m-auto no-data-svg">
+                    @include('komponen.svg-3')
                 </div>
-            @endforeach
+            @endif
         </div>
     </div>
     {{-- Modal Import --}}
