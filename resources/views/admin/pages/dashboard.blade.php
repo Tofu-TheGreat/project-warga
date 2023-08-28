@@ -22,6 +22,13 @@
                         <h2 class="mb-0 fw-bold text-white" style="position: absolute; top:19px; left: 60px">Dashboard <span
                                 class="uppercase">{{ auth()->user()->peran }}</span>
                         </h2>
+                        <div class="tombol">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-info text-white rounded-pill" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" style="position: absolute; top:15px; right: 30px">
+                                Jokes Hari ini
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,6 +124,25 @@
         </div>
     </div>
 @endsection
+
+<!-- Modal Jokes Bapak Bapak -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Jokes Hari Ini !!</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img class="m-auto d-flex justify-content-center" width="300px"
+                    src="https://jokesbapak2.reinaldyrafli.com/api/" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
